@@ -45,7 +45,7 @@ public class Game
 
                 
         boolean finished = false;
-        while (! finished) {
+        while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
@@ -91,7 +91,7 @@ public class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        parser.showCommands();
+        parser.showCommands(); // Udskriver alle tilgængelige kommandoer for input, på nær UNKNOWN, da den bliver sorteret fra.
     }
 
     private void goRoom(Command command) 

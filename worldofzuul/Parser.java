@@ -14,7 +14,7 @@ public class Parser
         reader = new Scanner(System.in);
     }
 
-    public Command getCommand() 
+    public Command getCommand() //Denne metode tager input, i form af tekst og deler det op i 2 ord.
     {
         String inputLine;
         String word1 = null;
