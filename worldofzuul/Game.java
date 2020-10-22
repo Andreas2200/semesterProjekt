@@ -15,32 +15,44 @@ public class Game
 
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office, lecture_hall;
+        Room town_square, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
       
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        lecture_hall = new Room("in the lecture hall");
+        town_square = new Room("in the Town Square");
+        shopping_street = new Room("in the shopping street");
+        fish_store = new Room("in the fish store");
+        harbour_east = new Room("at Harbour east");
+        harbour_west = new Room("at Harbour west");
+        beach = new Room("on the Beach");
+        pier_1 = new Room("at Pier 1");
+        pier_2 = new Room("at pier 2");
+        reef = new Room("on the reef)");
         
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-        outside.setExit("north", lecture_hall);
+        town_square.setExit("east", shopping_street);
+        town_square.setExit("south", harbour_west);
 
-        theatre.setExit("west", outside);
+        shopping_street.setExit("west", town_square);
+        shopping_street.setExit("east", fish_store);
+        shopping_street.setExit("south", harbour_east);
 
-        pub.setExit("east", outside);
+        fish_store.setExit("west", shopping_street);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        harbour_west.setExit("north", town_square);
+        harbour_west.setExit("east", harbour_east);
+        harbour_west.setExit("south", pier_1);
 
-        office.setExit("west", lab);
+        harbour_east.setExit("north", shopping_street);
+        harbour_east.setExit("east", beach);
+        harbour_east.setExit("south", pier_2);
+        harbour_east.setExit("west", harbour_west);
 
-        lecture_hall.setExit("south", outside);
+        beach.setExit("west", harbour_east);
 
-        currentRoom = outside;
+        pier_1.setExit("north", harbour_west);
+
+        pier_2.setExit("north", harbour_east);
+        pier_2.setExit("east", reef);
+
+        currentRoom = town_square;
     }
 
     public void play() 
