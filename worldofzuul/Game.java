@@ -26,9 +26,8 @@ public class Game
         beach = new Room("on the Beach");
         pier_1 = new Room("at Pier 1");
         pier_2 = new Room("at pier 2");
-        reef = new Room("on the reef)");
+        reef = new Room("on the reef");
 
-        town_square.setExit("west", garbage_disposal);
         town_square.setExit("east", shopping_street);
         town_square.setExit("south", harbour_west);
 
