@@ -15,9 +15,10 @@ public class Game
 
     private void createRooms()
     {
-        Room town_square, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
+        Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
       
         town_square = new Room("in the Town Square");
+        garbage_disposal = new Room("at the Garbage disposal");
         shopping_street = new Room("in the shopping street");
         fish_store = new Room("in the fish store");
         harbour_east = new Room("at Harbour east");
@@ -26,9 +27,12 @@ public class Game
         pier_1 = new Room("at Pier 1");
         pier_2 = new Room("at pier 2");
         reef = new Room("on the reef)");
-        
+
+        town_square.setExit("west", garbage_disposal);
         town_square.setExit("east", shopping_street);
         town_square.setExit("south", harbour_west);
+
+        garbage_disposal.setExit("east", town_square);
 
         shopping_street.setExit("west", town_square);
         shopping_street.setExit("east", fish_store);
