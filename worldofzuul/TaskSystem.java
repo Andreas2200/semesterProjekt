@@ -4,6 +4,7 @@ public class TaskSystem
     private int activeTaskCounter;
     private Task[] completedTask;
     private int completedTaskCounter;
+    public Task testTask;
 
     public TaskSystem(int amountOfQuests)
     {
@@ -16,8 +17,6 @@ public class TaskSystem
 
     private void createTasks()
     {
-        Task testTask;
-
         testTask = new Task(100,2,"This task is merely a simple test, to verify that the task system works.");
         testTask.setStep(0, "Go to the fishers market");
         testTask.setStep(1,"Return to the harbor");

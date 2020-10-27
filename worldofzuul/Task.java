@@ -8,9 +8,9 @@ public class Task
     private boolean isCompleted = false;
     private boolean rewardType = false;
 
-    public Task(int goodRewardPoints, int steps, String taskDescription)
+    public Task(int RewardPoints, int steps, String taskDescription)
     {
-        this.RewardPoints = goodRewardPoints;
+        this.RewardPoints = RewardPoints;
         this.steps = new String[steps];
         this.taskDescription = taskDescription;
         this.completedSteps = new String[steps];

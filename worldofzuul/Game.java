@@ -9,9 +9,9 @@ public class Game
 
     public Game() 
     {
+        ts = new TaskSystem(10);
         createRooms();
         parser = new Parser();
-        ts = new TaskSystem(10);
     }
 
 
@@ -32,8 +32,10 @@ public class Game
 
         town_square.setExit("east", shopping_street);
         town_square.setExit("south", harbour_west);
+        town_square.setExit("west", garbage_disposal);
 
         garbage_disposal.setExit("east", town_square);
+        garbage_disposal.addTask("main", ts.testTask);
 
         shopping_street.setExit("west", town_square);
         shopping_street.setExit("east", fish_store);

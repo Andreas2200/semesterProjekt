@@ -9,11 +9,13 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    private HashMap<String, Task> tasksInRoom;
 
     public Room(String description)
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        tasksInRoom = new HashMap<String, Task>();
     }
 
     public void setExit(String direction, Room neighbor) 
@@ -28,7 +30,18 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString() + "\n" + getTasksInRoom();
+    }
+
+    public String getTasksInRoom()
+    {
+        String temp = "Tasks:";
+        Set<String> tasks = tasksInRoom.keySet();
+        for(String tasksInRoom : tasks)
+        {
+            temp += " " + tasksInRoom;
+        }
+        return temp;
     }
 
     private String getExitString()
@@ -44,6 +57,11 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+
+    public void addTask(String taskName,Task task)
+    {
+        tasksInRoom.put(taskName, task);
     }
 }
 
