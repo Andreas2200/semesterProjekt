@@ -4,12 +4,14 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private TaskSystem ts;
         
 
     public Game() 
     {
         createRooms();
         parser = new Parser();
+        ts = new TaskSystem(10);
     }
 
 
