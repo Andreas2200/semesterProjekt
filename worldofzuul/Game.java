@@ -7,6 +7,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private TaskSystem ts;
+    private PointSystem ps;
 
 
     public Game() 
@@ -14,6 +15,7 @@ public class Game
         ts = new TaskSystem(10);
         createRooms();
         parser = new Parser();
+        ps = new PointSystem();
     }
 
 
@@ -112,6 +114,9 @@ public class Game
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
         }
+        else if (commandWord == CommandWord.SHOW) {
+            show(command);
+        }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -144,6 +149,26 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+        }
+    }
+
+    private void show(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Show what?");
+            return;
+        }
+
+        String showing = command.getSecondWord();
+
+        if (showing.equals("point"))
+        {
+            System.out.println(ps.toString());
+        }
+        else
+        {
+            System.out.println("Can't show that");
         }
     }
 

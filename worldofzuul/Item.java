@@ -9,6 +9,8 @@ public class Item {
         this.size = size;
     }
 
+
+    //Getters
     public String getName()
     {
         return name;
@@ -18,4 +20,9 @@ public class Item {
     {
         return size;
     }
+
+    //Setters
+    public void setName(String name) { this.name = name; }
+
+    public void setSize(int size) { this.size = size; }
 }
