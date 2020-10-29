@@ -1,6 +1,6 @@
 public class Task
 {
-    private int RewardPoints;
+    private int rewardPoints;
     private String[] steps;
     private String[] completedSteps;
     private int completedStepsCounter;
@@ -8,9 +8,9 @@ public class Task
     private boolean isCompleted = false;
     private boolean rewardType = false;
 
-    public Task(int RewardPoints, int steps, String taskDescription)
+    public Task(int rewardPoints, int steps, String taskDescription)
     {
-        this.RewardPoints = RewardPoints;
+        this.rewardPoints = rewardPoints;
         this.steps = new String[steps];
         this.taskDescription = taskDescription;
         this.completedSteps = new String[steps];
@@ -20,7 +20,7 @@ public class Task
     //Getters
     public int getRewardPoints()
     {
-        return RewardPoints;
+        return rewardPoints;
     }
 
     public String getTaskDescription()
