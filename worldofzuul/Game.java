@@ -1,11 +1,13 @@
 //package worldofzuul;
 
-public class Game 
+import javax.swing.*;
+
+public class Game
 {
     private Parser parser;
     private Room currentRoom;
     private TaskSystem ts;
-        
+
 
     public Game() 
     {
@@ -17,6 +19,12 @@ public class Game
 
     private void createRooms()
     {
+        Item apple, plastic, freezer;
+
+        apple = new Item("Apple", 1);
+        freezer = new Item("Freezer", 10);
+        plastic = new Item("Plastic", 1);
+
         Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
       
         town_square = new Room("in the Town Square");
@@ -33,6 +41,7 @@ public class Game
         town_square.setExit("east", shopping_street);
         town_square.setExit("south", harbour_west);
         town_square.setExit("west", garbage_disposal);
+        town_square.addItem("Apple", apple);
 
         garbage_disposal.setExit("east", town_square);
         garbage_disposal.addTask("main", ts.testTask);
@@ -42,6 +51,7 @@ public class Game
         shopping_street.setExit("south", harbour_east);
 
         fish_store.setExit("west", shopping_street);
+        fish_store.addItem("Freezer", freezer);
 
         harbour_west.setExit("north", town_square);
         harbour_west.setExit("east", harbour_east);
