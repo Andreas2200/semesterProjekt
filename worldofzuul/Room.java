@@ -32,30 +32,61 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString() + "\n" + getTasksInRoom() + "\n" + getItemInRoom();
+        return "You are " + description + ".\n" + getExitString() + getTasksInRoom() + getItemInRoom();
     }
 
     public String getItemInRoom()
     {
-        String temp = "Items:";
-        Set<String> items = itemsInRoom.keySet();
-        for (String itemsInRoom: items)
+        String temp = " ";
+        if(isItemsInRoom())
         {
-            temp += " " + itemsInRoom;
+            temp = "\n" + "Items:";
+            Set<String> items = itemsInRoom.keySet();
+            for (String itemsInRoom: items)
+            {
+                temp += " " + itemsInRoom;
+            }
         }
         return temp;
     }
 
+    public boolean isItemsInRoom()
+    {
+        if(itemsInRoom.size() >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public String getTasksInRoom()
     {
-        String temp = "Tasks in the room:";
-        Set<String> tasks = tasksInRoom.keySet();
-        for(String tasksInRoom : tasks)
+        String temp = " ";
+        if(isTasksInRoom())
         {
-            temp += " " + tasksInRoom;
+            temp = "\n" + "Tasks in the room:";
+            Set<String> tasks = tasksInRoom.keySet();
+            for(String tasksInRoom : tasks)
+            {
+                temp += " " + tasksInRoom;
+            }
         }
         return temp;
+    }
+
+    public boolean isTasksInRoom()
+    {
+        if(tasksInRoom.size() >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private String getExitString()

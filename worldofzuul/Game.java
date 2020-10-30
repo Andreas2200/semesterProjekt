@@ -148,14 +148,7 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
-            if(currentRoom.getTasksInRoom() != "Tasks in the room:")
-            {
-                System.out.println(currentRoom.getLongDescription());
-            }
-            else
-            {
-                System.out.println(currentRoom.getShortDescription());
-            }
+            System.out.println(currentRoom.getLongDescription());
         }
     }
 
