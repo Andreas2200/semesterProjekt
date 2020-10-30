@@ -18,7 +18,6 @@ public class Game
         ps = new PointSystem();
     }
 
-
     private void createRooms()
     {
         Item apple, plastic, freezer;
@@ -94,7 +93,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getShortDescription());
     }
 
     private boolean processCommand(Command command) 
@@ -148,7 +147,14 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            if(currentRoom.getTasksInRoom() != "Tasks in the room:")
+            {
+                System.out.println(currentRoom.getLongDescription());
+            }
+            else
+            {
+                System.out.println(currentRoom.getShortDescription());
+            }
         }
     }
 

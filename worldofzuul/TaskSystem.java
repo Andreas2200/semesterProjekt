@@ -8,7 +8,7 @@ public class TaskSystem
 
     public TaskSystem(int amountOfQuests)
     {
-        this.activeTasks = new Task[amountOfQuests];
+        activeTasks = new Task[amountOfQuests];
         completedTask = new Task[amountOfQuests];
         activeTaskCounter = 0;
         completedTaskCounter = 0;

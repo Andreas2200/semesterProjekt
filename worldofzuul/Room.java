@@ -27,7 +27,7 @@ public class Room
 
     public String getShortDescription()
     {
-        return description;
+        return "You are " + description + ".\n" + getExitString();
     }
 
     public String getLongDescription()
@@ -49,7 +49,7 @@ public class Room
 
     public String getTasksInRoom()
     {
-        String temp = "Tasks:";
+        String temp = "Tasks in the room:";
         Set<String> tasks = tasksInRoom.keySet();
         for(String tasksInRoom : tasks)
         {
