@@ -64,6 +64,7 @@ public class Game
         harbour_east.setExit("west", harbour_west);
 
         beach.setExit("west", harbour_east);
+        beach.addItem("Plastic", plastic);
 
         pier_1.setExit("north", harbour_west);
 
@@ -174,7 +175,7 @@ public class Game
         }
         else
         {
-            System.out.println("Can't show that");
+            System.out.println(showing + " is not valid show command");
         }
     }
 
