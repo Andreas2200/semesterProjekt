@@ -77,6 +77,11 @@ public class Room
         return temp;
     }
 
+    public void removeTaskFromRoom(String task)
+    {
+        tasksInRoom.remove(task);
+    }
+
     public boolean isTasksInRoom()
     {
         if(tasksInRoom.size() >= 1)
@@ -102,6 +107,11 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+
+    public Task getTask(String name)
+    {
+        return tasksInRoom.get(name);
     }
 
     public void addItem(String itemName, Item item)

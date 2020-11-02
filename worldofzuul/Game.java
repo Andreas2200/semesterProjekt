@@ -45,7 +45,7 @@ public class Game
         town_square.addItem("Apple", apple);
 
         garbage_disposal.setExit("east", town_square);
-        garbage_disposal.addTask("main", ts.testTask);
+        garbage_disposal.addTask(ts.testTask.getTaskName(), ts.testTask);
 
         shopping_street.setExit("west", town_square);
         shopping_street.setExit("east", fish_store);
@@ -67,9 +67,18 @@ public class Game
         beach.addItem("Plastic", plastic);
 
         pier_1.setExit("north", harbour_west);
+        pier_1.addTask(ts.testTrack2.getTaskName(),ts.testTrack2);
 
         pier_2.setExit("north", harbour_east);
         pier_2.setExit("east", reef);
+
+        //assign Task Steps
+        ts.assignStepRoom(ts.testTask, 0, fish_store);
+        ts.assignStepRoom(ts.testTask,1, harbour_east);
+
+        ts.assignStepRoom(ts.testTrack2,0, beach);
+        ts.assignStepRoom(ts.testTrack2, 1, pier_1);
+        ts.assignBadStepRoom(ts.testTrack2, 0, pier_2);
 
         currentRoom = town_square;
     }
@@ -83,8 +92,37 @@ public class Game
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
+            checkTasks();
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+
+    private void checkTasks()
+    {
+        if(ts.getActiveTask() != null)
+        {
+            Task activeTask = ts.getActiveTask();
+            if(activeTask.getRoomStep() == currentRoom) //Checks if a task step requires you to be in the current room, and if true, then the task step is marked as completed
+            {
+                activeTask.completedStep();
+            }
+            else if(activeTask.getRoomBadStep() == currentRoom)
+            {
+                activeTask.completedBadStep();
+            }
+            if(activeTask.isCompleted())
+            {
+                System.out.println("Congratulations task: " + activeTask.getTaskName() + " has been completed!");
+                ts.moveCompletedTask(activeTask);
+                ps.addPoint(activeTask.getRewardPoints());
+            }
+            else if(activeTask.isCompletedBad())
+            {
+                System.out.println("Wow really? You just made the oceans health worse. Good job!");
+                ts.moveCompletedTask(activeTask);
+                ps.addPoint(activeTask.getRewardPoints());
+            }
+        }
     }
 
     private void printWelcome()
@@ -94,7 +132,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getShortDescription());
+        System.out.println(currentRoom.getLongDescription());
     }
 
     private boolean processCommand(Command command) 
@@ -108,17 +146,26 @@ public class Game
             return false;
         }
 
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        }
-        else if (commandWord == CommandWord.GO) {
-            goRoom(command);
-        }
-        else if (commandWord == CommandWord.SHOW) {
-            show(command);
-        }
-        else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
+        switch (commandWord)
+        {
+            case HELP:
+                printHelp();
+                break;
+            case GO:
+                goRoom(command);
+                break;
+            case SHOW:
+                show(command);
+                break;
+            case ACCEPT:
+                accept(command);
+                break;
+            case SPEAK:
+                speak(command);
+                break;
+            case QUIT:
+                wantToQuit = quit(command);
+                break;
         }
         return wantToQuit;
     }
@@ -138,7 +185,6 @@ public class Game
             System.out.println("Go where?");
             return;
         }
-
         String direction = command.getSecondWord();
 
         Room nextRoom = currentRoom.getExit(direction);
@@ -152,6 +198,11 @@ public class Game
         }
     }
 
+    private void speak(Command command)
+    {
+        System.out.println("Under construction");
+    }
+
     private void show(Command command)
     {
         if(!command.hasSecondWord())
@@ -162,13 +213,51 @@ public class Game
 
         String showing = command.getSecondWord();
 
-        if (showing.equals("point"))
+        switch (showing)
         {
-            System.out.println(ps.toString());
+            case "point":
+                System.out.println(ps.toString());
+                break;
+
+            case "task":
+                String task = command.getThirdWord();
+                if(!command.hasThirdWord())
+                {
+                    System.out.println(ts.toString());
+                    break;
+                }
+                else if(ts.getActiveTaskCounter() > 0)
+                {
+                    if(ts.isATask(task))
+                    {
+                        Task temp = ts.getTask(task);
+                        System.out.println(ts.showTaskStep(temp));
+                        break;
+                    }
+                }
+            case "completed":
+                System.out.println("Completed tasks: " + ts.getCompletedTask());
+                break;
+            default:
+                System.out.println(showing + " is not a valid command for show");
         }
-        else
+    }
+
+    private void accept(Command command)
+    {
+        if(!command.hasSecondWord())
         {
-            System.out.println(showing + " is not valid show command");
+            System.out.println("Accept what?");
+            return;
+        }
+        String task = command.getSecondWord();
+        System.out.println("Accepting " + task);
+
+        if(currentRoom.getTask(task) != null)
+        {
+            Task temp = currentRoom.getTask(task);
+            ts.addTask(temp);
+            currentRoom.removeTaskFromRoom(task);
         }
     }
 

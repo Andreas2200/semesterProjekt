@@ -1,25 +1,82 @@
 public class Task
 {
     private int rewardPoints;
-    private String[] steps;
-    private String[] completedSteps;
     private int completedStepsCounter;
+    private int completedBadStepsCounter;
+    private String[] goodSteps;
+    private String[] badSteps;
+    private Room[] roomSteps;
+    private Room[] badRoomSteps;
+    private String[] completedSteps;
     private String taskDescription;
+    private String taskName;
     private boolean isCompleted = false;
+    private boolean isCompletedBad = false;
     private boolean rewardType = false;
 
-    public Task(int rewardPoints, int steps, String taskDescription)
+    public Task(int rewardPoints, int goodSteps, int badSteps, String taskName, String taskDescription)
     {
         this.rewardPoints = rewardPoints;
-        this.steps = new String[steps];
+        this.goodSteps = new String[goodSteps];
+        this.badSteps = new String[badSteps];
+        this.roomSteps = new Room[goodSteps];
+        this.badRoomSteps = new Room[badSteps];
         this.taskDescription = taskDescription;
-        this.completedSteps = new String[steps];
+        this.taskName = taskName;
+        this.completedSteps = new String[goodSteps];
         completedStepsCounter = 0;
+    }
+
+    public Task(int rewardPoints, int goodSteps, String taskName, String taskDescription)
+    {
+        this.rewardPoints = rewardPoints;
+        this.goodSteps = new String[goodSteps];
+        this.roomSteps = new Room[goodSteps];
+        this.taskDescription = taskDescription;
+        this.taskName = taskName;
+        this.completedSteps = new String[goodSteps];
+        completedStepsCounter = 0;
+    }
+
+    //Methods
+    public void completedStep()
+    {
+        completedSteps[completedStepsCounter] = goodSteps[completedStepsCounter];
+        completedStepsCounter++;
+        System.out.println("Step completed");
+        if(completedStepsCounter == goodSteps.length)
+        {
+            isCompleted = true;
+        }
+    }
+
+    public void completedBadStep()
+    {
+        completedSteps[completedStepsCounter] = badSteps[completedBadStepsCounter];
+        completedBadStepsCounter++;
+        System.out.println("Bad step completed");
+        if(completedBadStepsCounter == badSteps.length)
+        {
+            isCompletedBad = true;
+        }
+    }
+
+    public String taskStart()
+    {
+        String taskStartDescription = "";
+
+        taskStartDescription += getTaskDescription() + "\n" + getStep();
+
+        return taskStartDescription;
     }
 
     //Getters
     public int getRewardPoints()
     {
+        if(isCompletedBad)
+        {
+            return -rewardPoints;
+        }
         return rewardPoints;
     }
 
@@ -28,9 +85,19 @@ public class Task
         return taskDescription;
     }
 
-    public String[] getSteps()
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public String getStep()
     {
-        return steps;
+        String getStepString = "";
+        getStepString += goodSteps[completedStepsCounter];
+        if(badSteps.length != 0)
+        {
+            getStepString += "\nBad step: " + badSteps[completedBadStepsCounter];
+        }
+        return getStepString;
     }
 
     public String[] getCompletedSteps()
@@ -38,26 +105,60 @@ public class Task
         return completedSteps;
     }
 
+    public int getCompletedStepsCounter()
+    {
+        return completedStepsCounter;
+    }
+
     public boolean isRewardType()
     {
         return rewardType;
     }
 
+    public boolean isCompleted()
+    {
+        return isCompleted;
+    }
+
+    public boolean isCompletedBad()
+    {
+        return isCompletedBad;
+    }
+
+    public Room getRoomStep()
+    {
+        return roomSteps[completedStepsCounter];
+    }
+
+    public Room getRoomBadStep()
+    {
+        return badRoomSteps[completedBadStepsCounter];
+    }
+
     //Setters
     public void setStep(int stepNumber, String stepDescription)
     {
-        steps[stepNumber] = stepDescription;
+        goodSteps[stepNumber] = stepDescription;
     }
 
-    public void setRewardType(boolean rewardType)
+    public void setBadStep(int stepNumber, String stepDescription)
     {
-        this.rewardType = rewardType;
+        badSteps[stepNumber] = stepDescription;
     }
 
-    //Methods
-    public void completedStep(int stepNumber)
+    public void setRoomSteps(int stepNumber, Room room)
     {
-        completedSteps[completedStepsCounter] = steps[stepNumber];
-        completedStepsCounter++;
+        roomSteps[stepNumber] = room;
+    }
+
+    public void setRoomBadStep(int stepNumber, Room room)
+    {
+        badRoomSteps[stepNumber] = room;
+    }
+
+    @Override
+    public String toString()
+    {
+        return taskName;
     }
 }
