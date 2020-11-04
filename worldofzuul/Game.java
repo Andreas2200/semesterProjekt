@@ -153,71 +153,64 @@ public class Game
             return false;
         }
 
-        switch (commandWord)
-        {
-            case HELP:
-                printHelp();
-                break;
-            case GO:
-                goRoom(command);
-                break;
-            case SHOW:
-                show(command);
-                break;
-            case ACCEPT:
-                accept(command);
-                break;
-            case SPEAK:
-                speak(command);
-                break;
-            case QUIT:
-                wantToQuit = quit(command);
-                break;
-        }
-        else if (commandWord == CommandWord.TAKE){
-            if(command.hasSecondWord() == false){
-                return false;
-            }
-            String secondWord = command.getSecondWord();
-            Item item = currentRoom.getItem(secondWord);
-            if (item == null){
-                System.out.println("Item not found");
-                return false;
-            }
-
-            if (inv.addItem(item)){
-                System.out.println("Took" + " " + item.getName());
-                currentRoom.removeItem(secondWord);
-            } else {
-                System.out.println("Not enough space in inventory");
-            }
-        }
-        else if (commandWord == CommandWord.DROP){
-            if(command.hasSecondWord() == false){
-                return false;
-            }
-            String secondWord = command.getSecondWord();
-            Item item = inv.removeItem(secondWord);
-            if (item == null){
-                System.out.println("Item not found");
-                return false;
-            }
-            currentRoom.addItem(secondWord, item);
-            System.out.println("Dropped" + " " + item.getName());
-        }
-        else if (commandWord == CommandWord.INV){
-            Item[] inventory = inv.getInventory();
-            if (inventory.length == 0){
-                System.out.println("Inventory is empty");
-                return false;
-            }
-            for(Item item : inventory){
-                System.out.println(item.getName());
-            }
-            System.out.println("Total weight" + " " + inv.getTotalWeight());
+        switch (commandWord) {
+            case HELP -> printHelp();
+            case GO -> goRoom(command);
+            case SHOW -> show(command);
+            case ACCEPT -> accept(command);
+            case SPEAK -> speak(command);
+            case TAKE -> take(command);
+            case DROP -> drop(command);
+            case INV -> printInventory();
+            case QUIT -> wantToQuit = quit(command);
         }
 
         return wantToQuit;
+    }
+
+    private void take(Command command){
+        if(command.hasSecondWord() == false){
+            return;
+        }
+        String secondWord = command.getSecondWord();
+        Item item = currentRoom.getItem(secondWord);
+        if (item == null){
+            System.out.println("Item not found");
+            return;
+        }
+
+        if (inv.addItem(item)){
+            System.out.println("Took" + " " + item.getName());
+            currentRoom.removeItem(secondWord);
+        } else {
+            System.out.println("Not enough space in inventory");
+        }
+    }
+
+    private void drop(Command command){
+        if(command.hasSecondWord() == false){
+            return;
+        }
+        String secondWord = command.getSecondWord();
+        Item item = inv.removeItem(secondWord);
+        if (item == null){
+            System.out.println("Item not found");
+            return;
+        }
+        currentRoom.addItem(secondWord, item);
+        System.out.println("Dropped" + " " + item.getName());
+    }
+
+    private void printInventory(){
+        Item[] inventory = inv.getInventory();
+        if (inventory.length == 0){
+            System.out.println("Inventory is empty");
+            return;
+        }
+        for(Item item : inventory){
+            System.out.println(item.getName());
+        }
+        System.out.println("Total weight" + " " + inv.getTotalWeight());
     }
 
     private void printHelp() 
