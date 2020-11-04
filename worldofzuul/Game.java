@@ -8,7 +8,7 @@ public class Game
     private Room currentRoom;
     private TaskSystem ts;
     private PointSystem ps;
-
+    private Inventory inv;
 
     public Game() 
     {
@@ -16,6 +16,7 @@ public class Game
         createRooms();
         parser = new Parser();
         ps = new PointSystem();
+        inv = new Inventory(10);
     }
 
     private void createRooms()
@@ -173,6 +174,49 @@ public class Game
                 wantToQuit = quit(command);
                 break;
         }
+        else if (commandWord == CommandWord.TAKE){
+            if(command.hasSecondWord() == false){
+                return false;
+            }
+            String secondWord = command.getSecondWord();
+            Item item = currentRoom.getItem(secondWord);
+            if (item == null){
+                System.out.println("Item not found");
+                return false;
+            }
+
+            if (inv.addItem(item)){
+                System.out.println("Took" + " " + item.getName());
+                currentRoom.removeItem(secondWord);
+            } else {
+                System.out.println("Not enough space in inventory");
+            }
+        }
+        else if (commandWord == CommandWord.DROP){
+            if(command.hasSecondWord() == false){
+                return false;
+            }
+            String secondWord = command.getSecondWord();
+            Item item = inv.removeItem(secondWord);
+            if (item == null){
+                System.out.println("Item not found");
+                return false;
+            }
+            currentRoom.addItem(secondWord, item);
+            System.out.println("Dropped" + " " + item.getName());
+        }
+        else if (commandWord == CommandWord.INV){
+            Item[] inventory = inv.getInventory();
+            if (inventory.length == 0){
+                System.out.println("Inventory is empty");
+                return false;
+            }
+            for(Item item : inventory){
+                System.out.println(item.getName());
+            }
+            System.out.println("Total weight" + " " + inv.getTotalWeight());
+        }
+
         return wantToQuit;
     }
 

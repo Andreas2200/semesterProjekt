@@ -1,29 +1,58 @@
 import java.util.ArrayList;
 
 public class Inventory {
-    
-    private int maxSize = 10;
-    private int currentSize = 0;
-    
-    private ArrayList<Item> items = new ArrayList<Item>(maxSize);
-    //maxSize sættes til 10, og der laves en arraylist istedet for et array.
-    //Arraylist manager det normale array for os.
 
-    public void addItem (Item item){
-        if (currentSize + item.getSize() > maxSize){
-            return;
-    //Når størrelsen af items>mængden af maxitems returneres ingenting(Går ud af metoden).
-        }
-        
-        currentSize += item.getSize();
-        items.add(item);
-    //Vi laver en additem metode, som kan tilføje items til inventaret.
+    public Inventory(int maxSize){
+        this.maxSize = maxSize;
+    //This.maxSize(Field maxSize) = maxSize(Parameter) FieldmaxSize tilhoerer vores objekt.
     }
 
-    public void removeItem (int index){
+    private int maxSize; //Lav en constructor!!
+    private int totalWeight = 0;
+    
+    private final ArrayList<Item> items = new ArrayList<Item>(maxSize);
+    //maxSize saettes til 10, og der laves en arraylist istedet for et array.
+    //Arraylist manager det normale array for os.
+
+    public boolean addItem (Item item){
+        if (totalWeight + item.getSize() > maxSize){
+
+            return false;
+    //Når stoerrelsen af items>maengden af maxitems returneres ingenting(Går ud af metoden).
+        }
+        
+        totalWeight += item.getSize();
+        items.add(item);
+        return true;
+    //Vi laver en additem metode, som kan tilfoeje items til inventaret.
+    }
+
+    public Item removeItem (int index){
         Item removedItem = items.remove(index);
-        currentSize -= removedItem.getSize();
+        totalWeight -= removedItem.getSize();
+        return removedItem;
     //Vi laver en removeitem metode, som kan fjerne items fra inventaret.
+    }
+
+    Item removeItem(String name){
+        for (Item item : items){
+            if (!item.getName().equals(name))
+                continue;
+            items.remove(item);
+            totalWeight -= item.getSize();
+            return item;
+        }
+        return null;
+    }
+
+    public Item[] getInventory(){
+        Item[] inventory = new Item[items.size()];
+        inventory = items.toArray(inventory);
+        return inventory;
+    }
+
+    public int getTotalWeight(){
+        return totalWeight;
     }
 
     public Item getItem (int index){

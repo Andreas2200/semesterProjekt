@@ -32,10 +32,20 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString() + getTasksInRoom() + getItemInRoom();
+        return "You are " + description + ".\n" + getExitString() + getTasksInRoom() + getItemStringsInRoom();
     }
 
-    public String getItemInRoom()
+    public Item getItem(String name){
+        Item item = itemsInRoom.get(name);
+        return item;
+    }
+
+    public void removeItem(String name){
+        itemsInRoom.remove(name);
+
+    }
+
+    public String getItemStringsInRoom()
     {
         String temp = " ";
         if(isItemsInRoom())
