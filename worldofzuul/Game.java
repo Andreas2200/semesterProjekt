@@ -243,7 +243,7 @@ public class Game
                 System.out.println("Victor is not in this room");
             }
         }
-        if(talkTo.equals("sigurd"))
+        else if (talkTo.equals("sigurd"))
         {
             if (currentRoom.getRoomName().equals("pier_1"))
             {
