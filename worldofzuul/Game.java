@@ -8,6 +8,7 @@ public class Game
     private Room currentRoom;
     private TaskSystem ts;
     private PointSystem ps;
+    private NPC npc;
 
 
     public Game() 
@@ -16,28 +17,36 @@ public class Game
         createRooms();
         parser = new Parser();
         ps = new PointSystem();
+        npc = new NPC("WTF", true);
     }
 
     private void createRooms()
     {
         Item apple, plastic, freezer;
 
-        apple = new Item("Apple", 1);
-        freezer = new Item("Freezer", 10);
-        plastic = new Item("Plastic", 1);
+        apple = new Item("Apple", 1);        //Town_square
+        freezer = new Item("Freezer", 10);   //Fish_store
+        plastic = new Item("Plastic", 1);    //Beach
+
+        NPC victor, sigurd;
+
+        victor = new NPC("Victor", false); //Shopping_street
+        sigurd = new NPC("Sigurd", true); // Pier_1
+
+
 
         Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
       
-        town_square = new Room("in the Town Square" );
-        garbage_disposal = new Room("at the Garbage disposal");
-        shopping_street = new Room("in the shopping street");
-        fish_store = new Room("in the fish store" + "hey Andersen, i am so glad you could make it down here. We need you help." + "Subsidies, or support provided to the fishing industry to offset the costs of doing business, are another key driver of overfishing. Subsidies can lead to overcapacity of fishing vessels and skewing of production costs so that fishing operations continue when they would otherwise not make economic sense. Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times the capacity needed to catch what we actually need. The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies. We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
-        harbour_east = new Room("at Harbour east");
-        harbour_west = new Room("at Harbour west");
-        beach = new Room("on the Beach");
-        pier_1 = new Room("at Pier 1");
-        pier_2 = new Room("at Pier 2");
-        reef = new Room("on the reef");
+        town_square = new Room("in the Town Square", "town_square" );
+        garbage_disposal = new Room("at the Garbage disposal", "garbage_disposal");
+        shopping_street = new Room("in the shopping street", "shopping_street");
+        fish_store = new Room("in the fish store" + "hey Andersen, i am so glad you could make it down here. We need you help." + "Subsidies, or support provided to the fishing industry to offset the costs of doing business, are another key driver of overfishing. Subsidies can lead to overcapacity of fishing vessels and skewing of production costs so that fishing operations continue when they would otherwise not make economic sense. Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times the capacity needed to catch what we actually need. The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies. We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ", "fish_store");
+        harbour_east = new Room("at Harbour east", "harbour_east");
+        harbour_west = new Room("at Harbour west", "harbour_west");
+        beach = new Room("on the Beach", "beach");
+        pier_1 = new Room("at Pier 1", "pier_1");
+        pier_2 = new Room("at Pier 2", "pier_2");
+        reef = new Room("on the reef", "reef");
 
         town_square.setExit("east", shopping_street);
         town_square.setExit("south", harbour_west);
@@ -50,6 +59,7 @@ public class Game
         shopping_street.setExit("west", town_square);
         shopping_street.setExit("east", fish_store);
         shopping_street.setExit("south", harbour_east);
+        shopping_street.addNPC("Victor", victor);
 
         fish_store.setExit("west", shopping_street);
         fish_store.addItem("Freezer", freezer);
@@ -68,6 +78,7 @@ public class Game
 
         pier_1.setExit("north", harbour_west);
         pier_1.addTask(ts.testTrack2.getTaskName(),ts.testTrack2);
+        pier_1.addNPC("Sigurd", sigurd);
 
         pier_2.setExit("north", harbour_east);
         pier_2.setExit("east", reef);
@@ -172,6 +183,9 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            case HELLO:
+                hello(command);
+                break;
         }
         return wantToQuit;
     }
@@ -207,6 +221,40 @@ public class Game
     private void speak(Command command)
     {
         System.out.println("Under construction");
+    }
+
+    private void hello(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Who do you want to talk to?");
+            return;
+        }
+
+        String talkTo = command.getSecondWord();
+
+        if(talkTo.equals("victor"))
+        {
+            if(currentRoom.getRoomName().equals("shopping_street")) {
+                System.out.println(npc.victor());
+            }
+            else
+            {
+                System.out.println("Victor is not in this room");
+            }
+        }
+        if(talkTo.equals("sigurd"))
+        {
+            if (currentRoom.getRoomName().equals("pier_1"))
+            {
+                System.out.println(npc.sigurd());
+            }
+            else System.out.println("Sigurd is not in this room");
+        }
+        else
+        {
+            System.out.println("Don't konw who " + talkTo + " is");
+        }
     }
 
     private void show(Command command)

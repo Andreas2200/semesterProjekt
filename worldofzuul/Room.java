@@ -8,9 +8,12 @@ import java.util.Iterator;
 public class Room 
 {
     private String description;
+    private String roomName;
+    private NPC npc;
     private HashMap<String, Room> exits;
     private HashMap<String, Task> tasksInRoom;
     private HashMap<String, Item> itemsInRoom;
+    private HashMap<String, NPC> NPCsInRoom;
 
     public Room(String description)
     {
@@ -18,9 +21,22 @@ public class Room
         exits = new HashMap<String, Room>();
         tasksInRoom = new HashMap<String, Task>();
         itemsInRoom = new HashMap<String, Item>();
+        NPCsInRoom = new HashMap<String, NPC>();
     }
 
-    public void setExit(String direction, Room neighbor) 
+    public Room(String description, String roomName)
+    {
+        this.description = description;
+        this.roomName = roomName;
+        exits = new HashMap<String, Room>();
+        tasksInRoom = new HashMap<String, Task>();
+        itemsInRoom = new HashMap<String, Item>();
+        NPCsInRoom = new HashMap<String, NPC>();
+    }
+
+    public String getRoomName() { return roomName; }
+
+    public void setExit(String direction, Room neighbor)
     {
         exits.put(direction, neighbor);
     }
@@ -32,7 +48,7 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString() + getTasksInRoom() + getItemInRoom();
+        return "You are " + description + ".\n" + getExitString() + getTasksInRoom() + getItemInRoom() + getNPCInRoom();
     }
 
     public String getItemInRoom()
@@ -94,6 +110,34 @@ public class Room
         }
     }
 
+    public String getNPCInRoom()
+    {
+        String temp = " ";
+        if(isNPCInRoom())
+        {
+            temp = "\n" + "The";
+            Set<String> NPCs = NPCsInRoom.keySet();
+            for (String NPCsInRoom: NPCs)
+            {
+                temp += " " + NPCsInRoom + " is in the Room";
+            }
+
+        }
+        return temp;
+    }
+
+    public boolean isNPCInRoom()
+    {
+        if(NPCsInRoom.size() >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private String getExitString()
     {
         String returnString = "Exits:";
@@ -122,6 +166,11 @@ public class Room
     public void addTask(String taskName,Task task)
     {
         tasksInRoom.put(taskName, task);
+    }
+
+    public void addNPC(String npcName, NPC npc)
+    {
+        NPCsInRoom.put(npcName, npc);
     }
 }
 
