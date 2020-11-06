@@ -9,6 +9,9 @@ public class NPC {
         this.forced = forced;
     }
 
+    public NPC()
+    {}
+
     public String victor()
     {
         String temp = "hi there";

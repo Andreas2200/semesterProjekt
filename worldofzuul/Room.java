@@ -9,7 +9,6 @@ public class Room
 {
     private String description;
     private String roomName;
-    private NPC npc;
     private HashMap<String, Room> exits;
     private HashMap<String, Task> tasksInRoom;
     private HashMap<String, Item> itemsInRoom;

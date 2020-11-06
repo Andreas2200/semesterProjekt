@@ -17,7 +17,7 @@ public class Game
         createRooms();
         parser = new Parser();
         ps = new PointSystem();
-        npc = new NPC("WTF", true);
+        npc = new NPC();
     }
 
     private void createRooms()
@@ -232,28 +232,27 @@ public class Game
         }
 
         String talkTo = command.getSecondWord();
+        switch (talkTo) {
 
-        if(talkTo.equals("victor"))
-        {
-            if(currentRoom.getRoomName().equals("shopping_street")) {
-                System.out.println(npc.victor());
+            case "victor": {
+                if (currentRoom.getRoomName().equals("shopping_street")) {
+                    System.out.println(npc.victor());
+                } else {
+                    System.out.println("Victor is not in this room");
+                }
+                break;
             }
-            else
-            {
-                System.out.println("Victor is not in this room");
+            case "sigurd": {
+                if (currentRoom.getRoomName().equals("pier_1")) {
+                    System.out.println(npc.sigurd());
+                } else {
+                    System.out.println("Sigurd is not in this room");
+                }
+                break;
             }
-        }
-        else if (talkTo.equals("sigurd"))
-        {
-            if (currentRoom.getRoomName().equals("pier_1"))
-            {
-                System.out.println(npc.sigurd());
+            default: {
+                System.out.println("Don't konw who " + talkTo + " is");
             }
-            else System.out.println("Sigurd is not in this room");
-        }
-        else
-        {
-            System.out.println("Don't konw who " + talkTo + " is");
         }
     }
 
