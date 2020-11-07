@@ -21,18 +21,18 @@ public class Game
 
     private void createRooms()
     {
-        Item apple, plastic, freezer;
+        Item apple, bottle, freezer;
 
-        apple = new Item("Apple", 1);
-        freezer = new Item("Freezer", 10);
-        plastic = new Item("Plastic", 1);
+        apple = new Item("Apple", 1, ItemType.BIOLOGICAL);
+        freezer = new Item("Freezer", 10, ItemType.METAL);
+        bottle = new Item("Bottle", 1, ItemType.PLASTIC);
 
         Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
       
         town_square = new Room("in the Town Square" );
         garbage_disposal = new Room("at the Garbage disposal");
         shopping_street = new Room("in the shopping street");
-        fish_store = new Room("in the fish store" + "hey Andersen, i am so glad you could make it down here. We need you help." + "Subsidies, or support provided to the fishing industry to offset the costs of doing business, are another key driver of overfishing. Subsidies can lead to overcapacity of fishing vessels and skewing of production costs so that fishing operations continue when they would otherwise not make economic sense. Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times the capacity needed to catch what we actually need. The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies. We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
+        fish_store = new Room("in the fish store" + "\n" + "hey Andersen, i am so glad you could make it down here. We need you help." + "Subsidies, or support provided to the fishing industry to offset the costs of doing business, are another key driver of overfishing. Subsidies can lead to overcapacity of fishing vessels and skewing of production costs so that fishing operations continue when they would otherwise not make economic sense. Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times the capacity needed to catch what we actually need. The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies. We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
         harbour_east = new Room("at Harbour east");
         harbour_west = new Room("at Harbour west");
         beach = new Room("on the Beach");
@@ -65,7 +65,7 @@ public class Game
         harbour_east.setExit("west", harbour_west);
 
         beach.setExit("west", harbour_east);
-        beach.addItem("Plastic", plastic);
+        beach.addItem("Bottle", bottle);
 
         pier_1.setExit("north", harbour_west);
         pier_1.addTask(ts.testTrack2.getTaskName(),ts.testTrack2);
@@ -169,9 +169,29 @@ public class Game
             case DROP -> drop(command);
             case INV -> printInventory();
             case QUIT -> wantToQuit = quit(command);
+            case INSPECT -> inspect(command);
         }
 
         return wantToQuit;
+    }
+
+    private void inspect(Command command) {
+        if(command.hasSecondWord() == false){
+            return;
+        }
+        String item_name = command.getSecondWord();
+        Item[] inventory = inv.getInventory();
+        if (inventory.length == 0) {
+            System.out.println("Inventory is empty");
+            return;
+        }
+        for(Item item : inventory){
+            if(item.getName().equals(item_name)) {
+                System.out.println("Item " + item.getName() + " is of size " + item.getSize() + " and type " + item.getType().toString());
+                return;
+            }
+        }
+        System.out.println("Item not found");
     }
 
     private void take(Command command){
@@ -184,6 +204,7 @@ public class Game
             System.out.println("Item not found");
             return;
         }
+
 
         if (inv.addItem(item)){
             System.out.println("Took" + " " + item.getName());
