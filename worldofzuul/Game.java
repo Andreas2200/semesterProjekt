@@ -107,9 +107,15 @@ public class Game
             {
                 activeTask.completedStep();
             }
-            else if(activeTask.getRoomBadStep() == currentRoom)
+            else
             {
-                activeTask.completedBadStep();
+                try
+                {
+                    activeTask.completedBadStep();
+                }
+                catch (NullPointerException e)
+                {
+                }
             }
             if(activeTask.isCompleted())
             {

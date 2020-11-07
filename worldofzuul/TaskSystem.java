@@ -20,7 +20,7 @@ public class TaskSystem
 
     private void createTasks()
     {
-        testTask = new Task(100,2,"main","This task is merely a simple test, to verify that the task system works.");
+        testTask = new Task(100,2,"main","Test Task");
         testTask.setStep(0, "Go to the fishers market and speak with Kenneth");
         testTask.setStep(1,"Return to the harbor");
 

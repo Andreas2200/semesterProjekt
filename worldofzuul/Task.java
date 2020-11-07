@@ -93,7 +93,7 @@ public class Task
     {
         String getStepString = "";
         getStepString += goodSteps[completedStepsCounter];
-        if(badSteps.length != 0)
+        if(badSteps != null)
         {
             getStepString += "\nBad step: " + badSteps[completedBadStepsCounter];
         }
