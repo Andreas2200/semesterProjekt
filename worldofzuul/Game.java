@@ -1,6 +1,7 @@
 //package worldofzuul;
 
 import javax.swing.*;
+import java.util.Scanner;
 
 public class Game
 {
@@ -11,6 +12,7 @@ public class Game
     private Inventory inv;
     private NPC npc;
 
+    protected Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
 
     public Game() 
     {
@@ -38,8 +40,7 @@ public class Game
 
 
 
-        Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
-      
+
         town_square = new Room("in the Town Square", "town_square" );
         garbage_disposal = new Room("at the Garbage disposal", "garbage_disposal");
         shopping_street = new Room("in the shopping street", "shopping_street");
@@ -53,6 +54,10 @@ public class Game
                 + "\n" + "the capacity needed to catch what we actually need. "
                 + "\n" + "The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies."
                 + "\n" + " We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
+        town_square = new Room("in the Town Square" );
+        garbage_disposal = new Room("at the Garbage disposal");
+        shopping_street = new Room("in the shopping street");
+        fish_store = new Room("in the fish store" + "\n" + "hey Andersen, i am so glad you could make it down here. We need you help." + "Subsidies, or support provided to the fishing industry to offset the costs of doing business, are another key driver of overfishing. Subsidies can lead to overcapacity of fishing vessels and skewing of production costs so that fishing operations continue when they would otherwise not make economic sense. Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times the capacity needed to catch what we actually need. The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies. We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
         harbour_east = new Room("at Harbour east");
         harbour_west = new Room("at Harbour west");
         beach = new Room("on the Beach");
@@ -119,8 +124,34 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
             checkTasks();
+            if(currentRoom == reef)
+            {
+                endGame();
+            }
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+
+    private void endGame()
+    {
+        System.out.println("You ended the game with " + ps.getPoint() + " points");
+        int points = ps.getPoint();
+
+        if(points <= -100)
+        {
+            System.out.println("The reef is dead, there is no life anywhere to be seen.");
+            System.out.println("There is nothing to be done, the world as we know it is going to die this way.");
+        }
+        else if(points > -100 && points < 100)
+        {
+            System.out.println("The reef is in a bad state, if nothing is done the reef will die in the near future.");
+            System.out.println("We need to do something right now.");
+        }
+        else if(points >= 100)
+        {
+            System.out.println("Its a miracle, the reef is healing");
+            System.out.println("You did it, the fish are returning to the reef!");
+        }
     }
 
     private void checkTasks()
@@ -196,6 +227,7 @@ public class Game
             case QUIT -> wantToQuit = quit(command);
             case INSPECT -> inspect(command);
         }
+
         return wantToQuit;
     }
 
@@ -264,7 +296,7 @@ public class Game
         System.out.println("Total weight" + " " + inv.getTotalWeight());
     }
 
-    private void printHelp()
+    private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
@@ -286,6 +318,26 @@ public class Game
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
+        else if(nextRoom == reef)
+        {
+            System.out.println("You are about to go to the reef, are you sure you wanna go there?");
+            System.out.println("Yes - Go to the reef");
+            System.out.println("No - Stay at the pier");
+
+            Scanner in = new Scanner(System.in);
+            String temp = in.nextLine();
+            if(temp.equals("yes") || temp.equals("Yes"))
+            {
+                currentRoom = reef;
+                System.out.println(currentRoom.getLongDescription());
+            }
+            else if(temp.equals("no") || temp.equals("No"))
+            {
+                currentRoom = pier_2;
+                System.out.println(currentRoom.getLongDescription());
+            }
+        }
+
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
