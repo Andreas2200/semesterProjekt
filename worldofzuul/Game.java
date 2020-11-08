@@ -28,10 +28,11 @@ public class Game
         freezer = new Item("Freezer", 10);   //Fish_store
         plastic = new Item("Plastic", 1);    //Beach
 
-        NPC victor, sigurd;
+        NPC victor, sigurd, kenneth;
 
         victor = new NPC("Victor", false); //Shopping_street
         sigurd = new NPC("Sigurd", true); // Pier_1
+        kenneth = new NPC("Kenneth",false); // Fish_store
 
 
 
@@ -63,6 +64,7 @@ public class Game
 
         fish_store.setExit("west", shopping_street);
         fish_store.addItem("Freezer", freezer);
+        fish_store.addNPC("Kenneth", kenneth);
 
         harbour_west.setExit("north", town_square);
         harbour_west.setExit("east", harbour_east);
@@ -250,8 +252,16 @@ public class Game
                 }
                 break;
             }
+            case "kenneth": {
+                if (currentRoom.getRoomName().equals("fish_store")) {
+                    System.out.println(npc.kenneth());
+                } else {
+                    System.out.println("Kenneth is not in this room");
+                }
+                break;
+            }
             default: {
-                System.out.println("Don't konw who " + talkTo + " is");
+                System.out.println("Don't know who " + talkTo + " is");
             }
         }
     }

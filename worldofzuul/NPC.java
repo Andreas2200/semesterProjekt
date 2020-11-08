@@ -24,6 +24,10 @@ public class NPC {
         return temp;
     }
 
+    public String kenneth() {
+        String temp = "Hi";
+        return temp;
+    }
     public boolean getForced() { return forced; }
 
     public String getName() { return name; }
