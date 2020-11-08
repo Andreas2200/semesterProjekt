@@ -9,6 +9,8 @@ public class Game
     private TaskSystem ts;
     private PointSystem ps;
     private Inventory inv;
+    private NPC npc;
+
 
     public Game() 
     {
@@ -17,6 +19,7 @@ public class Game
         parser = new Parser();
         ps = new PointSystem();
         inv = new Inventory(10);
+        npc = new NPC();
     }
 
     private void createRooms()
@@ -27,11 +30,19 @@ public class Game
         freezer = new Item("Freezer", 10, ItemType.METAL);
         bottle = new Item("Bottle", 1, ItemType.PLASTIC);
 
+        NPC victor, sigurd, kenneth;
+
+        victor = new NPC("Victor", false); //Shopping_street
+        sigurd = new NPC("Sigurd", true); // Pier_1
+        kenneth = new NPC("Kenneth",false); // Fish_store
+
+
+
         Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
       
-        town_square = new Room("in the Town Square" );
-        garbage_disposal = new Room("at the Garbage disposal");
-        shopping_street = new Room("in the shopping street");
+        town_square = new Room("in the Town Square", "town_square" );
+        garbage_disposal = new Room("at the Garbage disposal", "garbage_disposal");
+        shopping_street = new Room("in the shopping street", "shopping_street");
         fish_store = new Room("in the fish store"
                 + "\n" + "Hey Andersen, i am so glad you could make it down here. We need your help."
                 + "\n" + "Subsidies, or support provided to the fishing industry to offset the costs of doing business,"
@@ -59,9 +70,11 @@ public class Game
         shopping_street.setExit("west", town_square);
         shopping_street.setExit("east", fish_store);
         shopping_street.setExit("south", harbour_east);
+        shopping_street.addNPC("Victor", victor);
 
         fish_store.setExit("west", shopping_street);
         fish_store.addItem("Freezer", freezer);
+        fish_store.addNPC("Kenneth", kenneth);
 
         harbour_west.setExit("north", town_square);
         harbour_west.setExit("east", harbour_east);
@@ -78,6 +91,7 @@ public class Game
 
         pier_1.setExit("north", harbour_west);
         pier_1.addTask(ts.testTrack2.getTaskName(),ts.testTrack2);
+        pier_1.addNPC("Sigurd", sigurd);
 
         pier_2.setExit("north", harbour_east);
         pier_2.setExit("east", reef);
@@ -182,7 +196,6 @@ public class Game
             case QUIT -> wantToQuit = quit(command);
             case INSPECT -> inspect(command);
         }
-
         return wantToQuit;
     }
 
@@ -251,7 +264,7 @@ public class Game
         System.out.println("Total weight" + " " + inv.getTotalWeight());
     }
 
-    private void printHelp() 
+    private void printHelp()
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
@@ -282,6 +295,47 @@ public class Game
     private void speak(Command command)
     {
         System.out.println("Under construction");
+    }
+
+    private void hello(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Who do you want to talk to?");
+            return;
+        }
+
+        String talkTo = command.getSecondWord();
+        switch (talkTo) {
+
+            case "victor": {
+                if (currentRoom.getRoomName().equals("shopping_street")) {
+                    System.out.println(npc.victor());
+                } else {
+                    System.out.println("Victor is not in this room");
+                }
+                break;
+            }
+            case "sigurd": {
+                if (currentRoom.getRoomName().equals("pier_1")) {
+                    System.out.println(npc.sigurd());
+                } else {
+                    System.out.println("Sigurd is not in this room");
+                }
+                break;
+            }
+            case "kenneth": {
+                if (currentRoom.getRoomName().equals("fish_store")) {
+                    System.out.println(npc.kenneth());
+                } else {
+                    System.out.println("Kenneth is not in this room");
+                }
+                break;
+            }
+            default: {
+                System.out.println("Don't know who " + talkTo + " is");
+            }
+        }
     }
 
     private void show(Command command)

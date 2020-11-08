@@ -126,10 +126,7 @@ public class Task
         return isCompletedBad;
     }
 
-    public Room getRoomStep()
-    {
-        return roomSteps[completedStepsCounter];
-    }
+    public Room getRoomStep() { return roomSteps[completedStepsCounter]; }
 
     public Room getRoomBadStep()
     {
