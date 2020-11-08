@@ -38,9 +38,6 @@ public class Game
         sigurd = new NPC("Sigurd", true); // Pier_1
         kenneth = new NPC("Kenneth",false); // Fish_store
 
-
-
-
         town_square = new Room("in the Town Square", "town_square" );
         garbage_disposal = new Room("at the Garbage disposal", "garbage_disposal");
         shopping_street = new Room("in the shopping street", "shopping_street");
@@ -54,10 +51,6 @@ public class Game
                 + "\n" + "the capacity needed to catch what we actually need. "
                 + "\n" + "The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies."
                 + "\n" + " We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
-        town_square = new Room("in the Town Square" );
-        garbage_disposal = new Room("at the Garbage disposal");
-        shopping_street = new Room("in the shopping street");
-        fish_store = new Room("in the fish store" + "\n" + "hey Andersen, i am so glad you could make it down here. We need you help." + "Subsidies, or support provided to the fishing industry to offset the costs of doing business, are another key driver of overfishing. Subsidies can lead to overcapacity of fishing vessels and skewing of production costs so that fishing operations continue when they would otherwise not make economic sense. Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times the capacity needed to catch what we actually need. The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies. We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
         harbour_east = new Room("at Harbour east");
         harbour_west = new Room("at Harbour west");
         beach = new Room("on the Beach");
@@ -226,8 +219,8 @@ public class Game
             case INV -> printInventory();
             case QUIT -> wantToQuit = quit(command);
             case INSPECT -> inspect(command);
+            case HELLO -> hello(command);
         }
-
         return wantToQuit;
     }
 
@@ -296,7 +289,7 @@ public class Game
         System.out.println("Total weight" + " " + inv.getTotalWeight());
     }
 
-    private void printHelp() 
+    private void printHelp()
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
