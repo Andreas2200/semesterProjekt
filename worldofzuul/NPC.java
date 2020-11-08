@@ -3,6 +3,7 @@ public class NPC {
     private String name;
     private boolean forced;
 
+
     public NPC (String name, boolean forced)
     {
         this.name = name;

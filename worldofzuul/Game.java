@@ -38,9 +38,9 @@ public class Game
         sigurd = new NPC("Sigurd", true); // Pier_1
         kenneth = new NPC("Kenneth",false); // Fish_store
 
-        town_square = new Room("in the Town Square", "town_square" );
-        garbage_disposal = new Room("at the Garbage disposal", "garbage_disposal");
-        shopping_street = new Room("in the shopping street", "shopping_street");
+        town_square = new Room("in the Town Square");
+        garbage_disposal = new Room("at the Garbage disposal");
+        shopping_street = new Room("in the shopping street");
         fish_store = new Room("in the fish store"
                 + "\n" + "Hey Andersen, i am so glad you could make it down here. We need your help."
                 + "\n" + "Subsidies, or support provided to the fishing industry to offset the costs of doing business,"
@@ -50,7 +50,7 @@ public class Game
                 + "\n" + "Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times "
                 + "\n" + "the capacity needed to catch what we actually need. "
                 + "\n" + "The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies."
-                + "\n" + " We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
+                + "\n" + " We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing");
         harbour_east = new Room("at Harbour east");
         harbour_west = new Room("at Harbour west");
         beach = new Room("on the Beach");
@@ -354,7 +354,7 @@ public class Game
         switch (talkTo) {
 
             case "victor": {
-                if (currentRoom.getRoomName().equals("shopping_street")) {
+                if (currentRoom == shopping_street) {
                     System.out.println(npc.victor());
                 } else {
                     System.out.println("Victor is not in this room");
@@ -362,7 +362,7 @@ public class Game
                 break;
             }
             case "sigurd": {
-                if (currentRoom.getRoomName().equals("pier_1")) {
+                if (currentRoom == pier_1) {
                     System.out.println(npc.sigurd());
                 } else {
                     System.out.println("Sigurd is not in this room");
@@ -370,7 +370,7 @@ public class Game
                 break;
             }
             case "kenneth": {
-                if (currentRoom.getRoomName().equals("fish_store")) {
+                if (currentRoom == fish_store) {
                     System.out.println(npc.kenneth());
                 } else {
                     System.out.println("Kenneth is not in this room");

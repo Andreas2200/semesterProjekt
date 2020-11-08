@@ -8,7 +8,6 @@ import java.util.Iterator;
 public class Room 
 {
     private String description;
-    private String roomName;
     private HashMap<String, Room> exits;
     private HashMap<String, Task> tasksInRoom;
     private HashMap<String, Item> itemsInRoom;
@@ -22,18 +21,6 @@ public class Room
         itemsInRoom = new HashMap<String, Item>();
         NPCsInRoom = new HashMap<String, NPC>();
     }
-
-    public Room(String description, String roomName)
-    {
-        this.description = description;
-        this.roomName = roomName;
-        exits = new HashMap<String, Room>();
-        tasksInRoom = new HashMap<String, Task>();
-        itemsInRoom = new HashMap<String, Item>();
-        NPCsInRoom = new HashMap<String, NPC>();
-    }
-
-    public String getRoomName() { return roomName; }
 
     public void setExit(String direction, Room neighbor)
     {
