@@ -32,7 +32,16 @@ public class Game
         town_square = new Room("in the Town Square" );
         garbage_disposal = new Room("at the Garbage disposal");
         shopping_street = new Room("in the shopping street");
-        fish_store = new Room("in the fish store" + "\n" + "hey Andersen, i am so glad you could make it down here. We need you help." + "Subsidies, or support provided to the fishing industry to offset the costs of doing business, are another key driver of overfishing. Subsidies can lead to overcapacity of fishing vessels and skewing of production costs so that fishing operations continue when they would otherwise not make economic sense. Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times the capacity needed to catch what we actually need. The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies. We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
+        fish_store = new Room("in the fish store"
+                + "\n" + "Hey Andersen, i am so glad you could make it down here. We need your help."
+                + "\n" + "Subsidies, or support provided to the fishing industry to offset the costs of doing business,"
+                + "\n" + " are another key driver of overfishing. "
+                + "\n" + "Subsidies can lead to overcapacity of fishing vessels and skewing of production "
+                + "\n" + "costs so that fishing operations continue when they would otherwise not make economic sense. "
+                + "\n" + "Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times "
+                + "\n" + "the capacity needed to catch what we actually need. "
+                + "\n" + "The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies."
+                + "\n" + " We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing ");
         harbour_east = new Room("at Harbour east");
         harbour_west = new Room("at Harbour west");
         beach = new Room("on the Beach");
@@ -46,7 +55,6 @@ public class Game
         town_square.addItem("Apple", apple);
 
         garbage_disposal.setExit("east", town_square);
-        garbage_disposal.addTask(ts.testTask.getTaskName(), ts.testTask);
 
         shopping_street.setExit("west", town_square);
         shopping_street.setExit("east", fish_store);
@@ -58,6 +66,7 @@ public class Game
         harbour_west.setExit("north", town_square);
         harbour_west.setExit("east", harbour_east);
         harbour_west.setExit("south", pier_1);
+        harbour_west.addTask(ts.mainTask.getTaskName(), ts.mainTask);
 
         harbour_east.setExit("north", shopping_street);
         harbour_east.setExit("east", beach);
@@ -74,8 +83,10 @@ public class Game
         pier_2.setExit("east", reef);
 
         //assign Task Steps
-        ts.assignStepRoom(ts.testTask, 0, fish_store);
-        ts.assignStepRoom(ts.testTask,1, harbour_east);
+        ts.assignStepRoom(ts.mainTask, 0, fish_store);
+        ts.assignStepRoom(ts.mainTask, 1, pier_2);
+        ts.assignStepRoom(ts.mainTask, 2, fish_store);
+        ts.assignStepRoom(ts.mainTask,3,harbour_west);
 
         ts.assignStepRoom(ts.testTrack2,0, beach);
         ts.assignStepRoom(ts.testTrack2, 1, pier_1);

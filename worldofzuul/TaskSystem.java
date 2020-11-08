@@ -6,7 +6,7 @@ public class TaskSystem
     private int activeTaskCounter;
     private Task[] completedTask;
     private int completedTaskCounter;
-    public Task testTask;
+    public Task mainTask;
     public Task testTrack2;
 
     public TaskSystem(int amountOfQuests)
@@ -20,10 +20,15 @@ public class TaskSystem
 
     private void createTasks()
     {
-        testTask = new Task(100,2,"main","Test Task");
-        testTask.setStep(0, "Go to the fishers market and speak with Kenneth");
-        testTask.setStep(1,"Return to the harbor");
+        // Main Task:
+        mainTask = new Task(100,4,"main","Main task");
+        mainTask.setStep(0, "Go to the fishers market and speak with Kenneth");
+        mainTask.setStep(1,"Go to pier 2, to get a fishing rod");
+        mainTask.setStep(2,"Return to Kenneth in fishers market");
+        mainTask.setStep(3,"Return to the harbor");
 
+
+        // Side Task; plastic waste
         testTrack2 = new Task(100,2, 1,"side","Test task 2");
         testTrack2.setStep(0,"Go to the beach");
         testTrack2.setStep(1,"Return to Bridge 1");
