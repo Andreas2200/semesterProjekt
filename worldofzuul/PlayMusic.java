@@ -20,7 +20,7 @@ public class PlayMusic {
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
 
-                JOptionPane.showMessageDialog(null,"Press OK to start playing");
+                //JOptionPane.showMessageDialog(null,"Press OK to start playing");
             }
             else {
                 System.out.println("Can't find file");
