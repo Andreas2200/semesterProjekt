@@ -12,9 +12,11 @@ public class Game
     private Inventory inv;
     private NPC npc;
 
+
     protected Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
 
-    public Game() 
+
+    public Game()
     {
         ts = new TaskSystem(10);
         createRooms();
