@@ -111,7 +111,7 @@ public class Room
         String temp = " ";
         if(isNPCInRoom())
         {
-            temp = "\n" + "The";
+            temp = "\n" + "";
             Set<String> NPCs = NPCsInRoom.keySet();
             for (String NPCsInRoom: NPCs)
             {

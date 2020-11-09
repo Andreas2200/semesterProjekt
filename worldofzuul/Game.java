@@ -12,9 +12,11 @@ public class Game
     private Inventory inv;
     private NPC npc;
 
+
     protected Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
 
-    public Game() 
+
+    public Game()
     {
         ts = new TaskSystem(10);
         createRooms();
@@ -41,16 +43,7 @@ public class Game
         town_square = new Room("in the Town Square");
         garbage_disposal = new Room("at the Garbage disposal");
         shopping_street = new Room("in the shopping street");
-        fish_store = new Room("in the fish store"
-                + "\n" + "Hey Andersen, i am so glad you could make it down here. We need your help."
-                + "\n" + "Subsidies, or support provided to the fishing industry to offset the costs of doing business,"
-                + "\n" + " are another key driver of overfishing. "
-                + "\n" + "Subsidies can lead to overcapacity of fishing vessels and skewing of production "
-                + "\n" + "costs so that fishing operations continue when they would otherwise not make economic sense. "
-                + "\n" + "Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times "
-                + "\n" + "the capacity needed to catch what we actually need. "
-                + "\n" + "The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies."
-                + "\n" + " We need your help. We have been given fishermen subsidies and need it back, so we can stop overfishing");
+        fish_store = new Room("in the fish store");
         harbour_east = new Room("at Harbour east");
         harbour_west = new Room("at Harbour west");
         beach = new Room("on the Beach");
@@ -68,7 +61,7 @@ public class Game
         shopping_street.setExit("west", town_square);
         shopping_street.setExit("east", fish_store);
         shopping_street.setExit("south", harbour_east);
-        shopping_street.addNPC("Victor", victor);
+
 
         fish_store.setExit("west", shopping_street);
         fish_store.addItem("Freezer", freezer);
@@ -78,6 +71,7 @@ public class Game
         harbour_west.setExit("east", harbour_east);
         harbour_west.setExit("south", pier_1);
         harbour_west.addTask(ts.mainTask.getTaskName(), ts.mainTask);
+        harbour_west.addNPC("Victor", victor);
 
         harbour_east.setExit("north", shopping_street);
         harbour_east.setExit("east", beach);
@@ -89,16 +83,18 @@ public class Game
 
         pier_1.setExit("north", harbour_west);
         pier_1.addTask(ts.testTrack2.getTaskName(),ts.testTrack2);
-        pier_1.addNPC("Sigurd", sigurd);
+
 
         pier_2.setExit("north", harbour_east);
         pier_2.setExit("east", reef);
+        pier_2.addNPC("Sigurd", sigurd);
 
         //assign Task Steps
         ts.assignStepRoom(ts.mainTask, 0, fish_store);
         ts.assignStepRoom(ts.mainTask, 1, pier_2);
         ts.assignStepRoom(ts.mainTask, 2, fish_store);
         ts.assignStepRoom(ts.mainTask,3,harbour_west);
+        ts.assignStepRoom(ts.mainTask, 4,pier_2);
 
         ts.assignStepRoom(ts.testTrack2,0, beach);
         ts.assignStepRoom(ts.testTrack2, 1, pier_1);
@@ -319,12 +315,12 @@ public class Game
 
             Scanner in = new Scanner(System.in);
             String temp = in.nextLine();
-            if(temp.equals("yes") || temp.equals("Yes"))
+            if(temp.equalsIgnoreCase("yes"))
             {
                 currentRoom = reef;
                 System.out.println(currentRoom.getLongDescription());
             }
-            else if(temp.equals("no") || temp.equals("No"))
+            else if(temp.equalsIgnoreCase("no"))
             {
                 currentRoom = pier_2;
                 System.out.println(currentRoom.getLongDescription());
@@ -354,7 +350,7 @@ public class Game
         switch (talkTo) {
 
             case "victor": {
-                if (currentRoom == shopping_street) {
+                if (currentRoom == harbour_west) {
                     System.out.println(npc.victor());
                 } else {
                     System.out.println("Victor is not in this room");
@@ -362,7 +358,7 @@ public class Game
                 break;
             }
             case "sigurd": {
-                if (currentRoom == pier_1) {
+                if (currentRoom == pier_2) {
                     System.out.println(npc.sigurd());
                 } else {
                     System.out.println("Sigurd is not in this room");
