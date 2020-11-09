@@ -7,7 +7,7 @@ public class Inventory {
     //This.maxSize(Field maxSize) = maxSize(Parameter) FieldmaxSize tilhoerer vores objekt.
     }
 
-    private int maxSize; //Lav en constructor!!
+    private int maxSize; 
     private int totalWeight = 0;
     
     private final ArrayList<Item> items = new ArrayList<Item>(maxSize);
