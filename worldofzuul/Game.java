@@ -188,7 +188,7 @@ public class Game
         System.out.println( " \"Hey you are finally awake, you are the famous marine biologist, right? We need your help. "
                 +"\n" + "  The world is in trouble, but you can help us save it!\"");
         System.out.println("You: \"No it is already too late, the world is going to end. Leave me alone!\"");
-        System.out.println("Government official: \"You know that isn't true! Do me a favor, go down to the harbour, "
+        System.out.println("Government official: \"You know that isn't true! Do me a favor, go south to the harbour, "
                 + "\n" + "  there is someone who needs your help. We can still make it!");
         System.out.println();
 
@@ -306,9 +306,9 @@ public class Game
         System.out.println("To show what the next step in your task is, write 'show task' followed by the task name!"
                             + "\n" + "  Example: 'show task main' - to see the next step of the main task!");
         System.out.println("To pick up an item, write 'take' followed by the item name");
+        System.out.println("To view your inventory, simply write 'inventory'");
         System.out.println("To inspect an item, write 'inspect' followed by the item name");
         System.out.println("To drop an item, write 'drop' followed by the item name");
-        System.out.println("To view your inventory, simply write 'inventory'");
         System.out.println("To quit the game, simply write 'quit'");
 
     }

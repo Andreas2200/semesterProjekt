@@ -42,7 +42,7 @@ public class NPC {
                 + "\n" + "Kenneth: \"Who's General Kenobi? You know what, it doesn't matter,"
                 + "\n" + " I know who you are, and I know why you're here! You want my subsidies don't you?"
                 + "\n" + " Well, if you want them back, you're gonna have to go get me a new fishing rod"
-                + "\n" + " I've heard that Sigurd, down on Pier 2, has one\"";
+                + "\n" + " I've heard that Sigurd, whom is south-south-west of here, has one\"";
         return temp;
     }
     public boolean getForced() { return forced; }
