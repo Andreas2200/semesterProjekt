@@ -181,15 +181,20 @@ public class Game
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("World of Zuul is an incredibly exciting adventure game.");
         System.out.println("It has been a very hard night.");
         System.out.println("You wake up after a night full of drinking. You do not know where you are.");
-        System.out.println("A goverment official comes up to you,");
-        System.out.println( "\"hey you are finally awake, you are the famous marine biologist Andersen right? We need your help. The world is in trouble, but you can help us save it.");
-        System.out.println("Andersen \" No it is done, the world is going to end. Leave me alone.");
-        System.out.println("Goverment official " + "You know that isn't true, but do me a favor go down to the habour, there is someone who needs your help. We can still make it");
+        System.out.println("A government official comes up to you;");
+        System.out.println( " \"Hey you are finally awake, you are the famous marine biologist, right? We need your help. "
+                +"\n" + "  The world is in trouble, but you can help us save it!\"");
+        System.out.println("You: \"No it is already too late, the world is going to end. Leave me alone!\"");
+        System.out.println("Government official: \"You know that isn't true! Do me a favor, go down to the harbour, "
+                + "\n" + "  there is someone who needs your help. We can still make it!");
         System.out.println();
+
+        System.out.println("Type '" + CommandWord.HELP + "' if you need help with the controls.");
+        System.out.println();
+
         System.out.println(currentRoom.getLongDescription());
     }
 
@@ -227,7 +232,7 @@ public class Game
         String item_name = command.getSecondWord();
         Item[] inventory = inv.getInventory();
         if (inventory.length == 0) {
-            System.out.println("Inventory is empty");
+            System.out.println("Inventory is empty.");
             return;
         }
         for(Item item : inventory){
@@ -236,7 +241,7 @@ public class Game
                 return;
             }
         }
-        System.out.println("Item not found");
+        System.out.println("Item not found.");
     }
 
     private void take(Command command){
@@ -246,7 +251,7 @@ public class Game
         String secondWord = command.getSecondWord();
         Item item = currentRoom.getItem(secondWord);
         if (item == null){
-            System.out.println("Item not found");
+            System.out.println("Item not found.");
             return;
         }
 
@@ -255,7 +260,7 @@ public class Game
             System.out.println("Took" + " " + item.getName());
             currentRoom.removeItem(secondWord);
         } else {
-            System.out.println("Not enough space in inventory");
+            System.out.println("Not enough space in inventory.");
         }
     }
 
@@ -266,7 +271,7 @@ public class Game
         String secondWord = command.getSecondWord();
         Item item = inv.removeItem(secondWord);
         if (item == null){
-            System.out.println("Item not found");
+            System.out.println("Item not found.");
             return;
         }
         currentRoom.addItem(secondWord, item);
@@ -276,7 +281,7 @@ public class Game
     private void printInventory(){
         Item[] inventory = inv.getInventory();
         if (inventory.length == 0){
-            System.out.println("Inventory is empty");
+            System.out.println("Inventory is empty.");
             return;
         }
         for(Item item : inventory){
@@ -287,11 +292,25 @@ public class Game
 
     private void printHelp()
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println("So you need help with the controls, huh?");
+        System.out.println("Well, your command words are:");
         parser.showCommands(); // Udskriver alle tilgængelige kommandoer for input, på nær UNKNOWN, da den bliver sorteret fra.
+        System.out.println();
+        System.out.println("To walk between rooms, write 'go' followed by which direction to go"
+                            + "\n" + "  Example: 'go east' - lets you go east!");
+        System.out.println("To accept tasks, write 'accept' followed by the task name"
+                            + "\n" + "  Example: 'accept main' - lets you accept the main task!");
+        System.out.println("To talk with an NPC, write 'hello' followed by the NPC's name"
+                            + "\n" + "  Example: 'hello Victor' - lets you talk to Victor!");
+        System.out.println("To show which tasks are currently accepted, write 'show task'");
+        System.out.println("To show what the next step in your task is, write 'show task' followed by the task name!"
+                            + "\n" + "  Example: 'show task main' - to see the next step of the main task!");
+        System.out.println("To pick up an item, write 'take' followed by the item name");
+        System.out.println("To inspect an item, write 'inspect' followed by the item name");
+        System.out.println("To drop an item, write 'drop' followed by the item name");
+        System.out.println("To view your inventory, simply write 'inventory'");
+        System.out.println("To quit the game, simply write 'quit'");
+
     }
 
     private void goRoom(Command command) 
@@ -353,7 +372,7 @@ public class Game
                 if (currentRoom == harbour_west) {
                     System.out.println(npc.victor());
                 } else {
-                    System.out.println("Victor is not in this room");
+                    System.out.println("Victor is not in this room ...");
                 }
                 break;
             }
@@ -361,7 +380,7 @@ public class Game
                 if (currentRoom == pier_2) {
                     System.out.println(npc.sigurd());
                 } else {
-                    System.out.println("Sigurd is not in this room");
+                    System.out.println("Sigurd is not in this room ...");
                 }
                 break;
             }
@@ -369,12 +388,12 @@ public class Game
                 if (currentRoom == fish_store) {
                     System.out.println(npc.kenneth());
                 } else {
-                    System.out.println("Kenneth is not in this room");
+                    System.out.println("Kenneth is not in this room ...");
                 }
                 break;
             }
             default: {
-                System.out.println("Don't know who " + talkTo + " is");
+                System.out.println("Don't know who " + talkTo + " is.");
             }
         }
     }
@@ -415,7 +434,7 @@ public class Game
                 System.out.println("Completed tasks: " + ts.getCompletedTask());
                 break;
             default:
-                System.out.println(showing + " is not a valid command for show");
+                System.out.println(showing + " is not a valid command for show.");
         }
     }
 
