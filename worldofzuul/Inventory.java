@@ -27,13 +27,6 @@ public class Inventory {
     //Vi laver en additem metode, som kan tilfoeje items til inventaret.
     }
 
-    public Item removeItem (int index){
-        Item removedItem = items.remove(index);
-        totalWeight -= removedItem.getSize();
-        return removedItem;
-    //Vi laver en removeitem metode, som kan fjerne items fra inventaret.
-    }
-
     Item removeItem(String name){
         for (Item item : items){
             if (!item.getName().equals(name))
