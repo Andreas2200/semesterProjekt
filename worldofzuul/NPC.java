@@ -21,7 +21,7 @@ public class NPC {
 
     public String sigurd()
     {
-        String temp = "hello fuckhead";
+        String temp = "hola amigo";
         return temp;
     }
 
