@@ -221,8 +221,24 @@ public class Game
             case QUIT -> wantToQuit = quit(command);
             case INSPECT -> inspect(command);
             case HELLO -> hello(command);
+            case MAP -> map(command);
         }
         return wantToQuit;
+    }
+    private void map(Command command) {
+        System.out.println("#############################################################################");
+        System.out.println("#                  #                  #                  #                  #");
+        System.out.println("# Garbage Disposal     Town Square      Shopping Street       Fish Store    #");
+        System.out.println("#                  #                  #                  #                  #");
+        System.out.println("############################  #################  ############################");
+        System.out.println("                   #                  #                  #                  #");
+        System.out.println("                   #   Harbour West   #   Harbour East          Beach       #");
+        System.out.println("                   #                  #                  #                  #");
+        System.out.println("                   #########  #################  ############################");
+        System.out.println("                   #                  #                  #                  #");
+        System.out.println("                   #     Pier 1              Pier 2             Reef        #");
+        System.out.println("                   #                  #                  #                  #");
+        System.out.println("                   ##########################################################");
     }
 
     private void inspect(Command command) {
@@ -296,6 +312,7 @@ public class Game
         System.out.println("Well, your command words are:");
         parser.showCommands(); // Udskriver alle tilgængelige kommandoer for input, på nær UNKNOWN, da den bliver sorteret fra.
         System.out.println();
+        System.out.println("To see a map of the game, simply write 'map'");
         System.out.println("To walk between rooms, write 'go' followed by which direction to go"
                             + "\n" + "  Example: 'go east' - lets you go east!");
         System.out.println("To accept tasks, write 'accept' followed by the task name"
