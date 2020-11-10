@@ -7,7 +7,7 @@ public class Inventory {
     //This.maxSize(Field maxSize) = maxSize(Parameter) FieldmaxSize tilhoerer vores objekt.
     }
 
-    private int maxSize; //Lav en constructor!!
+    private int maxSize; 
     private int totalWeight = 0;
     
     private final ArrayList<Item> items = new ArrayList<Item>(maxSize);
@@ -25,13 +25,6 @@ public class Inventory {
         items.add(item);
         return true;
     //Vi laver en additem metode, som kan tilfoeje items til inventaret.
-    }
-
-    public Item removeItem (int index){
-        Item removedItem = items.remove(index);
-        totalWeight -= removedItem.getSize();
-        return removedItem;
-    //Vi laver en removeitem metode, som kan fjerne items fra inventaret.
     }
 
     Item removeItem(String name){

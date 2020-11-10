@@ -48,7 +48,7 @@ public class Task
         {
             isCompleted = true;
         }
-        else if(isCompleted == false)
+        if(!isCompleted)
         {
             System.out.println(getStep());
         }

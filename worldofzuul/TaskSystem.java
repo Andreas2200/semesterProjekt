@@ -22,15 +22,19 @@ public class TaskSystem
     {
         // Main Task:
         mainTask = new Task(100,5,"main","Main task");
-        mainTask.setStep(0, "Go to the fishers market and speak with Kenneth, to take back his subsidies");
-        mainTask.setStep(1,"Next step: Go to pier 2, to get a fishing rod from Sigurd");
-        mainTask.setStep(2,"Next step: Return to Kenneth in fish store, and give him the fishing rod");
+        mainTask.setStep(0, "First, speak with Victor"
+                + "\n" + " Then go to the fishers market, which is east-north-east of here, and speak with Kenneth, to take back his subsidies");
+        mainTask.setStep(1,"Next step: First, speak with Kenneth"
+                + "\n" + " Then go to pier 2, to get a fishing rod from Sigurd");
+        mainTask.setStep(2,"Next step: First, speak with Sigurd"
+                + "\n" + " Then return to Kenneth in fish store, and give him the fishing rod");
         mainTask.setStep(3, "Kenneth: Thank you for this fishing rod, now I'm able to catch less fish,"
                 + "\n" + " which is more in line with the needs of this fishing village"
                 + "\n" + " here; take my subsidies, and give them back to Victor the Statesman"
-                + "\n" + "Next step: Return to the harbor");
-        mainTask.setStep(4,"Congratulations, you've completed the main quest!"
-                + "\n" + "Go to pier 2, to take a boat ride out to the coral reef, to see how it fares");
+                + "\n" + "Next step: Return to the west harbour");
+        mainTask.setStep(4,"Victor the Statesman: \"Thanks for bringing back the subsidies,"
+                + "\n" + " you've done the world a great service, by reducing overfishing in our village!\""
+                + "\n" + "Next step: Go to pier 2, which is south-east of here, to take a boat ride out to the coral reef, to see how it fares");
 
 
         // Side Task; plastic waste
