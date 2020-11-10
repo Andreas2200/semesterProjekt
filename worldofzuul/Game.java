@@ -243,11 +243,11 @@ public class Game
         System.out.println("#                  #                  #                  #                  #");
         System.out.println("############################  #################  ############################");
         System.out.println("                   #                  #                  #                  #");
-        System.out.println("                   #   Harbour West   #   Harbour East          Beach       #");
+        System.out.println("                   #   Harbour West       Harbour East          Beach       #");
         System.out.println("                   #                  #                  #                  #");
         System.out.println("                   #########  #################  ############################");
         System.out.println("                   #                  #                  #                  #");
-        System.out.println("                   #     Pier 1              Pier 2             Reef        #");
+        System.out.println("                   #     Pier 1       #      Pier 2      >      Reef        #");
         System.out.println("                   #                  #                  #                  #");
         System.out.println("                   ##########################################################");
     }
