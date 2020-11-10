@@ -283,7 +283,7 @@ public class Game
         if(command.hasSecondWord() == false){
             return;
         }
-        String secondWord = command.getSecondWord().toLowerCase();
+        String secondWord = command.getSecondWord();
         Item item = inv.removeItem(secondWord);
         if (item == null){
             System.out.println("Item not found.");
