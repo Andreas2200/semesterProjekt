@@ -207,7 +207,6 @@ public class Game
             case GO -> goRoom(command);
             case SHOW -> show(command);
             case ACCEPT -> accept(command);
-            case SPEAK -> speak(command);
             case TAKE -> take(command);
             case DROP -> drop(command);
             case INV -> printInventory();
@@ -222,7 +221,7 @@ public class Game
         if(command.hasSecondWord() == false){
             return;
         }
-        String item_name = command.getSecondWord();
+        String item_name = command.getSecondWord().toLowerCase();
         Item[] inventory = inv.getInventory();
         if (inventory.length == 0) {
             System.out.println("Inventory is empty");
@@ -241,7 +240,7 @@ public class Game
         if(command.hasSecondWord() == false){
             return;
         }
-        String secondWord = command.getSecondWord();
+        String secondWord = command.getSecondWord().toLowerCase();
         Item item = currentRoom.getItem(secondWord);
         if (item == null){
             System.out.println("Item not found");
@@ -261,7 +260,7 @@ public class Game
         if(command.hasSecondWord() == false){
             return;
         }
-        String secondWord = command.getSecondWord();
+        String secondWord = command.getSecondWord().toLowerCase();
         Item item = inv.removeItem(secondWord);
         if (item == null){
             System.out.println("Item not found");
@@ -298,7 +297,7 @@ public class Game
             System.out.println("Go where?");
             return;
         }
-        String direction = command.getSecondWord();
+        String direction = command.getSecondWord().toLowerCase();
 
         Room nextRoom = currentRoom.getExit(direction);
 
@@ -331,11 +330,6 @@ public class Game
         }
     }
 
-    private void speak(Command command)
-    {
-        System.out.println("Under construction");
-    }
-
     private void hello(Command command)
     {
         if(!command.hasSecondWord())
@@ -344,7 +338,8 @@ public class Game
             return;
         }
 
-        String talkTo = command.getSecondWord();
+        String talkTo = command.getSecondWord().toLowerCase();
+
         switch (talkTo) {
 
             case "victor": {
@@ -385,7 +380,7 @@ public class Game
             return;
         }
 
-        String showing = command.getSecondWord();
+        String showing = command.getSecondWord().toLowerCase();
 
         switch (showing)
         {
@@ -424,7 +419,7 @@ public class Game
             System.out.println("Accept what?");
             return;
         }
-        String task = command.getSecondWord();
+        String task = command.getSecondWord().toLowerCase();
         System.out.println("Accepting " + task);
 
         if(currentRoom.getTask(task) != null)

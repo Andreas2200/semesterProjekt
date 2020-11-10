@@ -44,10 +44,13 @@ public class Task
         completedSteps[completedStepsCounter] = goodSteps[completedStepsCounter];
         completedStepsCounter++;
         System.out.println("Step completed");
-        System.out.println(getStep());
         if(completedStepsCounter == goodSteps.length)
         {
             isCompleted = true;
+        }
+        else if(isCompleted == false)
+        {
+            System.out.println(getStep());
         }
     }
 

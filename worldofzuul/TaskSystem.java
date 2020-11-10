@@ -21,7 +21,7 @@ public class TaskSystem
     private void createTasks()
     {
         // Main Task:
-        mainTask = new Task(100,6,"main","Main task");
+        mainTask = new Task(100,5,"main","Main task");
         mainTask.setStep(0, "Go to the fishers market and speak with Kenneth, to take back his subsidies");
         mainTask.setStep(1,"Next step: Go to pier 2, to get a fishing rod from Sigurd");
         mainTask.setStep(2,"Next step: Return to Kenneth in fish store, and give him the fishing rod");
