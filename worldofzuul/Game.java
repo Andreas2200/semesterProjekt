@@ -11,6 +11,10 @@ public class Game
     private PointSystem ps;
     private Inventory inv;
     private NPC npc;
+    private PlayMusic musicObject;
+    private PlayMusic fishStoreMusicObject;
+    private String mainMusic = "MusicFileVictor.wav";
+    private String fishStoreMusic = "FishStoreMusic.wav";
 
 
     protected Room town_square, garbage_disposal, shopping_street, fish_store, harbour_east, harbour_west, beach, pier_1, pier_2, reef;
@@ -18,6 +22,9 @@ public class Game
 
     public Game()
     {
+        musicObject = new PlayMusic();
+        fishStoreMusicObject = new PlayMusic();
+        musicObject.playMusic(mainMusic);
         ts = new TaskSystem(10);
         createRooms();
         parser = new Parser();
@@ -113,6 +120,11 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
             checkTasks();
+            if(currentRoom == fish_store)
+            {
+                musicObject.playMusic(mainMusic);
+                //fishStoreMusicObject.playMusic(fishStoreMusic);
+            }
             if(currentRoom == reef)
             {
                 endGame();
@@ -435,18 +447,29 @@ public class Game
                 }
                 else if(ts.getActiveTaskCounter() > 0)
                 {
-                    if(ts.isATask(task))
+                    try
                     {
-                        Task temp = ts.getTask(task);
-                        System.out.println(ts.showTaskStep(temp));
+                        if(ts.isATask(task))
+                        {
+                            Task temp = ts.getTask(task);
+                            System.out.println(ts.showTaskStep(temp));
+                            break;
+                        }
+                    }
+                    catch (NullPointerException ex)
+                    {
+                        System.out.println(task + " is not a valid task");
                         break;
                     }
                 }
+                break;
+
             case "completed":
                 System.out.println("Completed tasks: " + ts.getCompletedTask());
                 break;
             default:
                 System.out.println(showing + " is not a valid command for show.");
+                break;
         }
     }
 

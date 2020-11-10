@@ -10,6 +10,7 @@ public class PlayMusic {
 
     void playMusic(String musicLocation){
 
+
         try {
             File musicPath = new File(musicLocation);
 
@@ -19,8 +20,6 @@ public class PlayMusic {
                 clip.open(audioInput);
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
-
-                //JOptionPane.showMessageDialog(null,"Press OK to start playing");
             }
             else {
                 System.out.println("Can't find file");
