@@ -236,7 +236,7 @@ public class Game
         System.out.println("                   #                  #                  #                  #");
         System.out.println("                   #########  #################  ############################");
         System.out.println("                   #                  #                  #                  #");
-        System.out.println("                   #     Bridge 1           Bridge 2            Reef        #");
+        System.out.println("                   #     Pier 1              Pier 2             Reef        #");
         System.out.println("                   #                  #                  #                  #");
         System.out.println("                   ##########################################################");
     }
