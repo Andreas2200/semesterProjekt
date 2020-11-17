@@ -1,3 +1,5 @@
+package MusicPlayer;
+
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -8,7 +10,7 @@ import java.io.File;
 
 public class PlayMusic {
 
-    void playMusic(String musicLocation){
+    public void playMusic(String musicLocation){
 
 
         try {

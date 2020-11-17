@@ -1,3 +1,5 @@
+package NPC;
+
 public class NPC {
 
     private String name;

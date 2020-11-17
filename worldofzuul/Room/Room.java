@@ -1,8 +1,11 @@
-//package worldofzuul;
+package Room;
+
+import InventorySystem.Item;
+import TaskSystem.Task;
+import NPC.NPC;
 
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class Room 

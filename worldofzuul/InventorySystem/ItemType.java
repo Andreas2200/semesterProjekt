@@ -1,4 +1,4 @@
-
+package InventorySystem;
 
 public enum ItemType {
 

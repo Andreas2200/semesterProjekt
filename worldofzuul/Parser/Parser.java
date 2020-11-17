@@ -1,4 +1,7 @@
-//package worldofzuul;
+package Parser;
+
+import Commands.Command;
+import Commands.CommandWords;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;

@@ -1,3 +1,5 @@
+package PointSystem;
+
 public class PointSystem {
 
     private int point = 0;

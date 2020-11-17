@@ -1,7 +1,14 @@
-//package worldofzuul;
+package GameLauncher;
 
-import javax.swing.*;
 import java.util.Scanner;
+import Commands.*;
+import Room.*;
+import TaskSystem.*;
+import Parser.*;
+import PointSystem.*;
+import InventorySystem.*;
+import NPC.*;
+import MusicPlayer.*;
 
 public class Game
 {
@@ -13,7 +20,7 @@ public class Game
     private NPC npc;
     private PlayMusic musicObject;
     private PlayMusic fishStoreMusicObject;
-    private String mainMusic = "MusicFileVictor.wav";
+    private String mainMusic = "MusicPlayer/MusicFileVictor.wav";
     private String fishStoreMusic = "FishStoreMusic.wav";
 
 

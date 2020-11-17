@@ -1,3 +1,6 @@
+package GameLauncher;
+
+import MusicPlayer.PlayMusic;
 
 public class Start {
     public static void main (String[] args) {

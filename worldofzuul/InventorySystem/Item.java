@@ -1,3 +1,5 @@
+package InventorySystem;
+
 public class Item {
 
     private String name;
@@ -10,7 +12,7 @@ public class Item {
         this.size = size;
         this.type = ItemType.UNSPECIFIED;
     }
-    Item (String name, int size, ItemType type) {
+    public Item(String name, int size, ItemType type) {
         this.name = name;
         this.size = size;
         this.type = type;

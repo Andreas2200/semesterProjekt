@@ -1,6 +1,6 @@
-//package worldofzuul;
-import java.util.HashMap;
+package Commands;
 
+import java.util.HashMap;
 
 public class CommandWords
 {

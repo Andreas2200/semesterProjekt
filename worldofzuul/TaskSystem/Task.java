@@ -1,3 +1,7 @@
+package TaskSystem;
+
+import Room.Room;
+
 public class Task
 {
     private int rewardPoints;

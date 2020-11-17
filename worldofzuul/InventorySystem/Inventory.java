@@ -1,3 +1,5 @@
+package InventorySystem;
+
 import java.util.ArrayList;
 
 public class Inventory {
@@ -27,7 +29,7 @@ public class Inventory {
     //Vi laver en additem metode, som kan tilfoeje items til inventaret.
     }
 
-    Item removeItem(String name){
+    public Item removeItem(String name){
         for (Item item : items){
             if (!item.getName().equals(name))
                 continue;
