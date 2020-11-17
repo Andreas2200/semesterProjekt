@@ -52,7 +52,6 @@ public class TaskSystem
             if(activeTasks[i] == task)
             {
                 completedTask[completedTaskCounter] = activeTasks[i];
-                System.out.println("assigned completed task");
                 completedTaskCounter++;
                 for (int j = activeTaskCounter<1 ? i + 1 : i; j < activeTaskCounter; j++)
                 {
