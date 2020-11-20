@@ -43,6 +43,8 @@ public class Controller implements Initializable {
         town_square.setRoomImage("island.png");
         town_square.setRoomExit(768,972);
         town_square.setRoomExit(960,972);
+        town_square.setRoomExit(0,432);
+        town_square.setRoomExit(0,540);
 
         shopping_street.setRoomImage("woods.jpg");
     }
