@@ -30,14 +30,15 @@ public class Inventory {
     }
 
     public Item removeItem(String name){
-        for (Item item : items){
-            if (!item.getName().equals(name))
+        for (Item item : items){ //For alle Item's af typen item i klassen items..
+            if (!item.getName().equals(name)) { //If statement i "forloop" med not-operator
                 continue;
-            items.remove(item);
-            totalWeight -= item.getSize();
-            return item;
+            }
+            items.remove(item); //Er if-statement sandt bliver det paagaeldende item fjernet
+            totalWeight -= item.getSize(); //Derefter bliver stoerrelsen af det item trukket fra "totalWeight"
+            return item; //det er typen item der bliver returneret
         }
-        return null;
+        return null; //Hvis vores if-statement er falsk, returner intet.
     }
 
     public Item[] getInventory(){
