@@ -183,26 +183,36 @@ public class Room
     {
         exitLocations[exitCounter][0] = x;
         exitLocations[exitCounter][1] = y;
-        removeBoundary(x,y);
+        moveBoundary(x,y);
     }
 
-    public void removeBoundary(int x, int y)
+    private void moveBoundary(int x, int y)
     {
-        int[][] replacementArray = new int[boundaries.length - 1][2];
-
-        for (int i = 0, j = 0; i < boundaries.length; i++)
+        for (int i = 0; i < boundaries.length; i++)
         {
             if(boundaries[i][0] == x)
             {
                 if(boundaries[i][1] == y)
                 {
-                    continue;
+                    if(x == 0)
+                    {
+                        boundaries[i][0] -= 192;
+                    }
+                    else if(x == 1728)
+                    {
+                        boundaries[i][0] += 192;
+                    }
+                    else if(y == 0)
+                    {
+                        boundaries[i][1] -= 108;
+                    }
+                    else if(y == 972)
+                    {
+                        boundaries[i][1] += 108;
+                    }
                 }
             }
-            replacementArray[j][0] = boundaries[i][0];
-            replacementArray[j++][1] = boundaries[i][1];
         }
-        boundaries = replacementArray;
     }
 
     public boolean isWall(int x, int y)
