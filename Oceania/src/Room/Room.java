@@ -5,8 +5,6 @@ import TaskSystem.*;
 import NPC.*;
 import javafx.scene.image.Image;
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
 
@@ -14,25 +12,26 @@ import java.util.HashMap;
 
 public class Room 
 {
-    private String description;
-    private HashMap<String, Room> exits;
+    private HashMap<Integer, Room> roomNeighbours;
     private HashMap<String, Task> tasksInRoom;
     private HashMap<String, Item> itemsInRoom;
     private HashMap<String, NPC> NPCsInRoom;
     private int[][] boundaries;
+    private int[][] extraBoundaries;
+    private int extraBoundaryCounter = 0;
     private int[][] exitLocations;
     private int exitCounter = 0;
     private Image roomImage;
 
-    public Room(String description, int exitLocations)
+    public Room(int exitLocations)
     {
-        this.description = description;
-        exits = new HashMap<String, Room>();
+        roomNeighbours = new HashMap<Integer, Room>();
         tasksInRoom = new HashMap<String, Task>();
         itemsInRoom = new HashMap<String, Item>();
         NPCsInRoom = new HashMap<String, NPC>();
         this.exitLocations = new int[exitLocations*2][2];
         boundaries = new int[37][2];
+        extraBoundaries = new int[14][2];
         setBoundaries();
     }
 
@@ -106,16 +105,12 @@ public class Room
         }
     }
 
-    public String getShortDescription()
+    public void addBoundary(int x, int y)
     {
-        return "You are " + description + ".\n" + getExitString();
+        extraBoundaries[extraBoundaryCounter][0] = x;
+        extraBoundaries[extraBoundaryCounter][1] = y;
+        extraBoundaryCounter++;
     }
-
-    public String getLongDescription()
-    {
-        return "You are " + description + ".\n" + getExitString() + getTasksInRoom() + getItemStringsInRoom() + getNPCInRoom();
-    }
-
     public Item getItem(String name){
         Item item = itemsInRoom.get(name);
         return item;
@@ -179,10 +174,21 @@ public class Room
         roomImage = new Image(file.toURI().toString());
     }
 
+    public Image getRoomImage()
+    {
+        return roomImage;
+    }
+
+    public void setRoomNeighbour(int exitNumber, Room room)
+    {
+        roomNeighbours.put(exitNumber,room);
+    }
+
     public void setRoomExit(int x, int y)
     {
         exitLocations[exitCounter][0] = x;
         exitLocations[exitCounter][1] = y;
+        exitCounter++;
         moveBoundary(x,y);
     }
 
@@ -219,12 +225,17 @@ public class Room
     {
         boolean result = false;
 
-        for (int i = 0; i < boundaries.length; i++)
-        {
-            if(boundaries[i][0] == x)
-            {
-                if(boundaries[i][1] == y)
-                {
+        for (int[] boundary : boundaries) {
+            if (boundary[0] == x) {
+                if (boundary[1] == y) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        for (int[] extraBoundary : extraBoundaries) {
+            if (extraBoundary[0] == x) {
+                if (extraBoundary[1] == y) {
                     result = true;
                     break;
                 }
@@ -233,17 +244,57 @@ public class Room
 
         return result;
     }
+    
+    public boolean isExit(int x, int y)
+    {
+        boolean result = false;
+
+        for (int i = 0; i < exitCounter; i++)
+        {
+            if(exitLocations[i][0] == x)
+            {
+                if(exitLocations[i][1] == y)
+                {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        
+        return result;
+    }
+
+    public int getExitNumber(int x,int y)
+    {
+        int returnInt = 0;
+
+        for (int i = 0; i < exitCounter; i++)
+        {
+            if(exitLocations[i][0] == x)
+            {
+                if(exitLocations[i][1] == y)
+                {
+                    returnInt = i;
+                    break;
+                }
+            }
+        }
+
+        return returnInt;
+    }
+
+    public Room getRoomFromExitNumber(int exitNumber)
+    {
+        Room result = null;
+
+        result = roomNeighbours.get(exitNumber);
+
+        return result;
+    }
 
     public boolean isTasksInRoom()
     {
-        if(tasksInRoom.size() >= 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return tasksInRoom.size() >= 1;
     }
 
     public String getNPCInRoom()
@@ -264,29 +315,7 @@ public class Room
 
     public boolean isNPCInRoom()
     {
-        if(NPCsInRoom.size() >= 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private String getExitString()
-    {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
-    }
-
-    public Room getExit(String direction) 
-    {
-        return exits.get(direction);
+        return NPCsInRoom.size() >= 1;
     }
 
     public Task getTask(String name)

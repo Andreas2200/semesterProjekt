@@ -26,7 +26,7 @@ public class Controller implements Initializable {
     public Pane pane1;
     public Pane helpPane;
     public Label helpPaneText;
-    private Room town_square, shopping_street, currentRoom;
+    private Room currentRoom;
 
 
     @Override
@@ -36,21 +36,76 @@ public class Controller implements Initializable {
         createHelpPane();
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
-        currentRoom = town_square;
+    }
+
+    private void changeRoom(Room room)
+    {
+        currentRoom = room;
+        backgroundImage.setImage(currentRoom.getRoomImage());
+        int x = (int)myLabel.getLayoutX();
+        int y = (int)myLabel.getLayoutY();
+        if(myLabel.getLayoutX() == 0)
+        {
+            myLabel.setLayoutX(width-(2*width/10));
+            System.out.println("Set x:" + myLabel.getLayoutX());
+        }
+        else if(myLabel.getLayoutX() == width-(width/10))
+        {
+            myLabel.setLayoutX(width/10);
+            System.out.println("Set x:" + myLabel.getLayoutX());
+        }
+        else if(myLabel.getLayoutY() == 0)
+        {
+            myLabel.setLayoutY(height - (2*height/10));
+            System.out.println("Set y:" + myLabel.getLayoutY());
+        }
+        else if(myLabel.getLayoutY() == height-(height/10))
+        {
+            myLabel.setLayoutY(height/10);
+            System.out.println("Set y:" + myLabel.getLayoutY());
+        }
     }
 
     private void createRooms()
     {
-        town_square = new Room("at the town square",3);
-        shopping_street = new Room("at the shopping street",3);
+        Room town_square, shopping_street, test1, test2;
+
+        town_square = new Room(3);
+        shopping_street = new Room(1);
+        test1 = new Room(1);
+        test2 = new Room(1);
 
         town_square.setRoomImage("island.png");
         town_square.setRoomExit(768,972);
         town_square.setRoomExit(960,972);
         town_square.setRoomExit(0,432);
         town_square.setRoomExit(0,540);
+        town_square.setRoomExit(1728,432);
+        town_square.setRoomExit(1728,540);
+        town_square.setRoomNeighbour(0,shopping_street);
+        town_square.setRoomNeighbour(1,shopping_street);
+        town_square.setRoomNeighbour(2,test1);
+        town_square.setRoomNeighbour(3,test1);
+        town_square.setRoomNeighbour(4,test2);
+        town_square.setRoomNeighbour(5,test2);
 
         shopping_street.setRoomImage("woods.jpg");
+        shopping_street.setRoomExit(768,0);
+        shopping_street.setRoomExit(960,0);
+        shopping_street.setRoomNeighbour(0,town_square);
+        shopping_street.setRoomNeighbour(1,town_square);
+
+        test1.setRoomExit(1728,432);
+        test1.setRoomExit(1728,540);
+        test1.setRoomNeighbour(0,town_square);
+        test1.setRoomNeighbour(1,town_square);
+
+        test2.setRoomExit(0,432);
+        test2.setRoomExit(0, 540);
+        test2.setRoomNeighbour(0,town_square);
+        test2.setRoomNeighbour(1,town_square);
+
+        currentRoom = town_square;
     }
 
     private void createHelpPane()
@@ -90,10 +145,17 @@ public class Controller implements Initializable {
     {
         int x = (int) myLabel.getLayoutX();
         int y = (int) myLabel.getLayoutY();
-        if(!currentRoom.isWall(x,y- (int) height/10))
+        if(!currentRoom.isWall(x,y - (int) height/10))
         {
             myLabel.setLayoutY(myLabel.getLayoutY() - height/10);
             System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+        }
+        if(currentRoom.isExit(x,(int)myLabel.getLayoutY()))
+        {
+            System.out.println("You are on an exit");
+            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
+            changeRoom(nextRoom);
         }
 
     }
@@ -106,6 +168,13 @@ public class Controller implements Initializable {
             myLabel.setLayoutY(myLabel.getLayoutY() + height/10);
             System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
         }
+        if(currentRoom.isExit(x,(int)myLabel.getLayoutY()))
+        {
+            System.out.println("You are on an exit");
+            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
+            changeRoom(nextRoom);
+        }
     }
     public void moveLeft(Room currentRoom)
     {
@@ -116,15 +185,29 @@ public class Controller implements Initializable {
             myLabel.setLayoutX(myLabel.getLayoutX() - width/10);
             System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
         }
+        if(currentRoom.isExit((int)myLabel.getLayoutX(),y))
+        {
+            System.out.println("You are on an exit");
+            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
+            changeRoom(nextRoom);
+        }
     }
     public void moveRight(Room currentRoom)
     {
         int x = (int) myLabel.getLayoutX();
         int y = (int) myLabel.getLayoutY();
-        if(!currentRoom.isWall(x + (int) width/10, y))
+        if(!currentRoom.isWall(x + (int) width/10, y)) //This line checks if we are trying to move into a boundary, and only runs the codeblock if we are not entering a boundary
         {
             myLabel.setLayoutX(myLabel.getLayoutX() + width/10);
             System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+        }
+        if(currentRoom.isExit((int)myLabel.getLayoutX(),y)) //This line checks if we are moving into an active exit and if so we change the room to the room corresponding with the exit
+        {
+            System.out.println("You are on an exit");
+            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
+            changeRoom(nextRoom);
         }
     }
 
