@@ -4,16 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import java.io.File;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import Room.*;
+import MusicPlayer.PlayMusic;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.TextFlow;
 
 public class Controller implements Initializable {
     public double width,height;
@@ -27,11 +26,14 @@ public class Controller implements Initializable {
     public Pane helpPane;
     public Label helpPaneText;
     private Room currentRoom;
+    private PlayMusic musicPlayer;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        musicPlayer = new PlayMusic();
+        musicPlayer.playMusic("MusicFileVictor.wav");
         createRooms();
         createHelpPane();
         width = backgroundImage.getFitWidth();
