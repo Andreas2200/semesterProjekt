@@ -99,7 +99,7 @@ public class Controller implements Initializable {
         pier_2 = new Room(2);
 
 
-        town_square.setRoomImage("island.png");
+        town_square.setRoomImage("town_square.png");
         town_square.setRoomExit(768,972);
         town_square.setRoomExit(960,972);
         town_square.setRoomExit(0,432);
@@ -112,6 +112,21 @@ public class Controller implements Initializable {
         town_square.setRoomNeighbour(3,garbage_disposal);
         town_square.setRoomNeighbour(4, shopping_street);
         town_square.setRoomNeighbour(5, shopping_street);
+        town_square.addBoundary(192,324);
+        town_square.addBoundary(384,324);
+        town_square.addBoundary(576,216);
+        town_square.addBoundary(768,216);
+        town_square.addBoundary(768,108);
+        town_square.addBoundary(1152,108);
+        town_square.addBoundary(1152,216);
+        town_square.addBoundary(1344,216);
+        town_square.addBoundary(1536,216);
+        town_square.addBoundary(576,864);
+        town_square.addBoundary(384,864);
+        town_square.addBoundary(384,756);
+        town_square.addBoundary(384,648);
+        town_square.addBoundary(192,648);
+
 
         harbor_west.setRoomImage("HarborWest.png");
         harbor_west.setRoomExit(768,0);
@@ -192,6 +207,7 @@ public class Controller implements Initializable {
         shopping_street.setRoomNeighbour(4,fish_store);
         shopping_street.setRoomNeighbour(5,fish_store);
 
+        fish_store.setRoomImage("fiskebod.png");
         fish_store.setRoomExit(0,216);
         fish_store.setRoomExit(0,324);
         fish_store.setRoomExit(0,432);
@@ -201,6 +217,7 @@ public class Controller implements Initializable {
         fish_store.setRoomNeighbour(2,shopping_street);
         fish_store.setRoomNeighbour(3,shopping_street);
 
+        garbage_disposal.setRoomImage("garbage_disposal.png");
         garbage_disposal.setRoomExit(1728,432);
         garbage_disposal.setRoomExit(1728, 540);
         garbage_disposal.setRoomNeighbour(0,town_square);
@@ -224,22 +241,35 @@ public class Controller implements Initializable {
         beach.addBoundary(1344,864);
         beach.addBoundary(1536,864);
 
-
-
         pier_1.setRoomImage("pier_1.png");
         pier_1.setRoomExit(768,0);
         pier_1.setRoomExit(960,0);
         pier_1.setRoomNeighbour(0,harbor_west);
         pier_1.setRoomNeighbour(1,harbor_west);
+        pier_1.addBoundary(192,864);
+        pier_1.addBoundary(384,864);
+        pier_1.addBoundary(576,864);
+        pier_1.addBoundary(768,864);
+        pier_1.addBoundary(960,864);
+        pier_1.addBoundary(1152,864);
+        pier_1.addBoundary(1344,864);
+        pier_1.addBoundary(1536,864);
+        pier_1.addBoundary(1344,756);
+        pier_1.addBoundary(1152,756);
 
         pier_2.setRoomImage("pier_2.png");
         pier_2.setRoomExit(768,0);
         pier_2.setRoomExit(960,0);
         pier_2.setRoomNeighbour(0,harbor_east);
         pier_2.setRoomNeighbour(1,harbor_east);
-
-
-
+        pier_2.addBoundary(192,864);
+        pier_2.addBoundary(384,864);
+        pier_2.addBoundary(576,864);
+        pier_2.addBoundary(768,864);
+        pier_2.addBoundary(960,864);
+        pier_2.addBoundary(1152,864);
+        pier_2.addBoundary(1344,864);
+        pier_2.addBoundary(1536,864);
 
         currentRoom = town_square;
     }
