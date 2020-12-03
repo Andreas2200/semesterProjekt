@@ -17,6 +17,8 @@ import javafx.scene.layout.Pane;
 public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane;
+    private String musicFile1 = "MusicFileVictor.wav";
+    private String musicFile2 = "gameMusic.wav";
 
     public Label myLabel;
     public Button myButton;
@@ -26,14 +28,15 @@ public class Controller implements Initializable {
     public Pane helpPane;
     public Label helpPaneText;
     private Room currentRoom;
+    private Room town_square, harbor_west, shopping_street, garbage_disposal;
     private PlayMusic musicPlayer;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        musicPlayer = new PlayMusic();
-        musicPlayer.playMusic("MusicFileVictor.wav");
+        musicPlayer = new PlayMusic(musicFile1, musicFile2);
+        changeMusic();
         createRooms();
         createHelpPane();
         width = backgroundImage.getFitWidth();
@@ -66,16 +69,29 @@ public class Controller implements Initializable {
             myLabel.setLayoutY(height/10);
             System.out.println("Set y:" + myLabel.getLayoutY());
         }
+        changeMusic();
+    }
+
+    private void changeMusic()
+    {
+        if(currentRoom == town_square)
+        {
+            musicPlayer.stopMusicFile2();
+            musicPlayer.startMusicFile1();
+        }
+        else
+        {
+            musicPlayer.stopMusicFile1();
+            musicPlayer.startMusicFile2();
+        }
     }
 
     private void createRooms()
     {
-        Room town_square, shopping_street, test1, test2;
-
         town_square = new Room(3);
+        harbor_west = new Room(1);
         shopping_street = new Room(1);
-        test1 = new Room(1);
-        test2 = new Room(1);
+        garbage_disposal = new Room(1);
 
         town_square.setRoomImage("island.png");
         town_square.setRoomExit(768,972);
@@ -84,28 +100,40 @@ public class Controller implements Initializable {
         town_square.setRoomExit(0,540);
         town_square.setRoomExit(1728,432);
         town_square.setRoomExit(1728,540);
-        town_square.setRoomNeighbour(0,shopping_street);
-        town_square.setRoomNeighbour(1,shopping_street);
-        town_square.setRoomNeighbour(2,test1);
-        town_square.setRoomNeighbour(3,test1);
-        town_square.setRoomNeighbour(4,test2);
-        town_square.setRoomNeighbour(5,test2);
+        town_square.setRoomNeighbour(0,harbor_west);
+        town_square.setRoomNeighbour(1,harbor_west);
+        town_square.setRoomNeighbour(2,shopping_street);
+        town_square.setRoomNeighbour(3,shopping_street);
+        town_square.setRoomNeighbour(4, garbage_disposal);
+        town_square.setRoomNeighbour(5, garbage_disposal);
 
-        shopping_street.setRoomImage("woods.jpg");
-        shopping_street.setRoomExit(768,0);
-        shopping_street.setRoomExit(960,0);
+        harbor_west.setRoomImage("HarborWest.png");
+        harbor_west.setRoomExit(768,0);
+        harbor_west.setRoomExit(960,0);
+        harbor_west.setRoomNeighbour(0,town_square);
+        harbor_west.setRoomNeighbour(1,town_square);
+        harbor_west.addBoundary(576,540);
+        harbor_west.addBoundary(384,540);
+        harbor_west.addBoundary(192,540);
+        harbor_west.addBoundary(576,432);
+        harbor_west.addBoundary(384,432);
+        harbor_west.addBoundary(192,432);
+        harbor_west.addBoundary(192,324);
+        harbor_west.addBoundary(384,324);
+        harbor_west.addBoundary(384,216);
+        harbor_west.addBoundary(192,864);
+        harbor_west.addBoundary(1536,756);
+
+
+        shopping_street.setRoomExit(1728,432);
+        shopping_street.setRoomExit(1728,540);
         shopping_street.setRoomNeighbour(0,town_square);
         shopping_street.setRoomNeighbour(1,town_square);
 
-        test1.setRoomExit(1728,432);
-        test1.setRoomExit(1728,540);
-        test1.setRoomNeighbour(0,town_square);
-        test1.setRoomNeighbour(1,town_square);
-
-        test2.setRoomExit(0,432);
-        test2.setRoomExit(0, 540);
-        test2.setRoomNeighbour(0,town_square);
-        test2.setRoomNeighbour(1,town_square);
+        garbage_disposal.setRoomExit(0,432);
+        garbage_disposal.setRoomExit(0, 540);
+        garbage_disposal.setRoomNeighbour(0,town_square);
+        garbage_disposal.setRoomNeighbour(1,town_square);
 
         currentRoom = town_square;
     }
@@ -124,7 +152,7 @@ public class Controller implements Initializable {
                 "To hide/show this help window, press 'H'" + "\n\n" +
                 "To quit the game, press 'ESC'";
         helpPaneText.setText(helpPaneTextFieldText);
-        toggleHelpPane = true;
+        toggleHelpPane = false;
     }
 
     public void changeText(ActionEvent actionEvent) {

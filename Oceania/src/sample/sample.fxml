@@ -77,7 +77,7 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <Pane fx:id="helpPane" layoutX="609.0" layoutY="347.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="720.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="300.0">
+      <Pane fx:id="helpPane" layoutX="609.0" layoutY="347.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" visible="false" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="720.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="300.0">
          <children>
             <Label fx:id="helpPaneText" prefHeight="480.0" prefWidth="480.0" wrapText="true">
                <font>
