@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +18,7 @@ import javafx.scene.layout.Pane;
 public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane;
+    public boolean toggleMapPane;
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
@@ -26,6 +28,7 @@ public class Controller implements Initializable {
     public ImageView backgroundImage;
     public Pane pane1;
     public Pane helpPane;
+    public Pane mapPane;
     public Label helpPaneText;
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
@@ -303,6 +306,7 @@ public class Controller implements Initializable {
             case S: moveDown(currentRoom); break;
             case D: moveRight(currentRoom);break;
             case H: help(); break;
+            case M: map(); break;
             case ESCAPE:
         }
     }
@@ -381,6 +385,12 @@ public class Controller implements Initializable {
     {
         toggleHelpPane = !toggleHelpPane;
         helpPane.setVisible(toggleHelpPane);
+    }
+
+    private void map()
+    {
+        toggleMapPane = !toggleMapPane;
+        mapPane.setVisible(toggleMapPane);
     }
 
     public void changeColor(MouseEvent mouseEvent)

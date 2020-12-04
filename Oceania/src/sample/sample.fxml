@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="myAnchorPane" fx:id="myAnchorPane" maxHeight="1080" maxWidth="1920" minHeight="0" minWidth="0" onKeyPressed="#handle" prefHeight="1080.0" prefWidth="1920.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="myAnchorPane" fx:id="myAnchorPane" maxHeight="1080" maxWidth="1920" minHeight="0" minWidth="0" onKeyPressed="#handle" prefHeight="1080.0" prefWidth="1920.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Button id="myButton" fx:id="myButton" layoutY="-27.0" mnemonicParsing="false" onAction="#changeText" opacity="0.0" text="Button" />
       <ImageView id="backgroundImage" fx:id="backgroundImage" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
@@ -84,6 +85,15 @@
                   <Font size="15.0" />
                </font>
             </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="mapPane" layoutX="730.0" layoutY="310.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" visible="false">
+         <children>
+            <ImageView id="backgroundImage" fx:id="backgroundImage1" fitHeight="962.0" fitWidth="1752.0" layoutX="-633.0" layoutY="-246.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../map.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
