@@ -1,12 +1,15 @@
 package InventorySystem;
 
+import javafx.scene.layout.Pane;
+
 public class Item {
 
     private String name;
     private int size;
     private ItemType type;
+    private Pane pane;
 
-    Item (String name, int size)
+    public Item (String name, int size, Pane pane)
     {
         this.name = name;
         this.size = size;

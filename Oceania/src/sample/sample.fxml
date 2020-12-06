@@ -96,5 +96,14 @@
             </ImageView>
          </children>
       </Pane>
+      <Pane fx:id="item_1" layoutX="1536.0" layoutY="108.0" prefHeight="108.0" prefWidth="192.0">
+         <children>
+            <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="108.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../bottle_1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

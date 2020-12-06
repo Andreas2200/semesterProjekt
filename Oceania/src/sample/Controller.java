@@ -1,10 +1,10 @@
 package sample;
 
+import InventorySystem.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,8 +17,7 @@ import javafx.scene.layout.Pane;
 
 public class Controller implements Initializable {
     public double width,height;
-    public boolean toggleHelpPane;
-    public boolean toggleMapPane;
+    public boolean toggleHelpPane, toggleMapPane;
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
@@ -27,8 +26,9 @@ public class Controller implements Initializable {
     public AnchorPane myAnchorPane;
     public ImageView backgroundImage;
     public Pane pane1;
-    public Pane helpPane;
-    public Pane mapPane;
+    public Pane helpPane, mapPane;
+    public Item item1;
+    public Pane item_1;
     public Label helpPaneText;
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
@@ -44,6 +44,7 @@ public class Controller implements Initializable {
         createHelpPane();
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
+        createItem();
     }
 
     private void changeRoom(Room room)
@@ -87,6 +88,11 @@ public class Controller implements Initializable {
             musicPlayer.stopMusicFile1();
             musicPlayer.startMusicFile2();
         }
+    }
+
+    private void createItem()
+    {
+        item_1.setVisible(true);
     }
 
     private void createRooms()
