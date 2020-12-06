@@ -12,7 +12,7 @@ public class PlayMusic {
     private File musicFile2;
     private Clip clip;
     private AudioInputStream audioInput;
-    private boolean hasPlayed, hasPlayed2, isPlaying;
+    private boolean hasPlayed, hasPlayed2, isPlaying1, isPlaying2;
     private long timePlayed1, timePlayed2;
 
     public PlayMusic(String musicFile1, String musicFile2){
@@ -22,7 +22,8 @@ public class PlayMusic {
         audioInput = null;
         hasPlayed = false;
         hasPlayed2 = false;
-        isPlaying = false;
+        isPlaying1 = false;
+        isPlaying2 = false;
         timePlayed1 = 0;
         timePlayed2 = 0;
     }
@@ -49,7 +50,7 @@ public class PlayMusic {
             ex.printStackTrace();
         }
         hasPlayed = true;
-        isPlaying = true;
+        isPlaying1 = true;
     }
 
     public void startMusicFile2()
@@ -74,12 +75,16 @@ public class PlayMusic {
             ex.printStackTrace();
         }
         hasPlayed2 = true;
-        isPlaying = true;
+        isPlaying2 = true;
     }
 
-    public boolean isPlaying()
+    public boolean isPlaying1()
     {
-        return isPlaying;
+        return isPlaying1;
+    }
+    public boolean isPlaying2()
+    {
+        return isPlaying2;
     }
 
     public void stopMusicFile1()
@@ -89,7 +94,7 @@ public class PlayMusic {
             timePlayed1 = clip.getMicrosecondPosition();
             clip.stop();
         }
-        isPlaying = false;
+        isPlaying1 = false;
     }
     public void stopMusicFile2()
     {
@@ -98,6 +103,6 @@ public class PlayMusic {
             timePlayed2 = clip.getMicrosecondPosition();
             clip.stop();
         }
-        isPlaying = false;
+        isPlaying2 = false;
     }
 }

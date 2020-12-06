@@ -84,8 +84,11 @@ public class Controller implements Initializable {
         }
         else
         {
-            musicPlayer.stopMusicFile1();
-            musicPlayer.startMusicFile2();
+            if(!musicPlayer.isPlaying2())
+            {
+                musicPlayer.stopMusicFile1();
+                musicPlayer.startMusicFile2();
+            }
         }
     }
 
@@ -129,8 +132,7 @@ public class Controller implements Initializable {
         town_square.addBoundary(384,756);
         town_square.addBoundary(384,648);
         town_square.addBoundary(192,648);
-
-
+        
         harbor_west.setRoomImage("HarborWest.png");
         harbor_west.setRoomExit(768,0);
         harbor_west.setRoomExit(960,0);
