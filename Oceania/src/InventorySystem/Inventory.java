@@ -1,7 +1,6 @@
 package InventorySystem;
 
 import java.util.ArrayList;
-import InventorySystem.*;
 
 public class Inventory {
 
