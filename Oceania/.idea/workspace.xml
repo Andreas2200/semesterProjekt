@@ -19,17 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added musicplayer">
-      <change afterPath="$PROJECT_DIR$/../Pixelfiles/Beach.done.pyxel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pixelfiles/reef_bad.pyxel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pixelfiles/reef_fine.pyxel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pixelfiles/reef_perfekt.pyxel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HarborEast.pyxel" beforeDir="false" afterPath="$PROJECT_DIR$/../Pixelfiles/HarborEast.pyxel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HarborWest.pyxel" beforeDir="false" afterPath="$PROJECT_DIR$/../Pixelfiles/HarborWest.pyxel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated all rooms with boundaries">
+      <change afterPath="$PROJECT_DIR$/map.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Pier1.pyxel" beforeDir="false" afterPath="$PROJECT_DIR$/../Pixelfiles/Pier1.pyxel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Pier2.pyxel" beforeDir="false" afterPath="$PROJECT_DIR$/../Pixelfiles/Pier2.pyxel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Beach.done.png" beforeDir="false" afterPath="$PROJECT_DIR$/Beach.done.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HarborWest.png" beforeDir="false" afterPath="$PROJECT_DIR$/HarborWest.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Oceania/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Oceania/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +82,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
+        <entry key="$PROJECT_DIR$/.." value="CompletingWorld" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -236,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606933642091</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated all rooms with boundaries">
+      <created>1607035437363</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607035437363</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -262,7 +266,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="Added musicplayer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added musicplayer" />
+    <MESSAGE value="updated all rooms with boundaries" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated all rooms with boundaries" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="63" key="#Project_Structure" timestamp="1605870795855">
@@ -285,39 +290,39 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="986" y="441" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1606906270713" />
-    <state width="939" height="212" key="GridCell.Tab.0.bottom" timestamp="1607010549022">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="294" key="GridCell.Tab.0.bottom" timestamp="1607081137891">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="619" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1607010283766" />
     <state width="1398" height="167" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1605871218907" />
-    <state width="1638" height="146" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1606116217787" />
+    <state width="1638" height="294" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1607081137891" />
     <state width="939" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1607010549022" />
     <state width="2517" height="417" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1607009012243" />
     <state width="2518" height="146" key="GridCell.Tab.0.bottom/0.0.2560.1600@0.0.2560.1600" timestamp="1605961423895" />
-    <state width="939" height="212" key="GridCell.Tab.0.center" timestamp="1607010549019">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="294" key="GridCell.Tab.0.center" timestamp="1607081137889">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="619" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1607010283763" />
     <state width="1398" height="167" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1605871218906" />
-    <state width="1638" height="146" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1606116217785" />
+    <state width="1638" height="294" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1607081137889" />
     <state width="939" height="212" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1607010549019" />
     <state width="2517" height="417" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1607009012243" />
     <state width="2518" height="146" key="GridCell.Tab.0.center/0.0.2560.1600@0.0.2560.1600" timestamp="1605961423894" />
-    <state width="939" height="212" key="GridCell.Tab.0.left" timestamp="1607010549017">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="294" key="GridCell.Tab.0.left" timestamp="1607081137888">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="619" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1607010283760" />
     <state width="1398" height="167" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1605871218906" />
-    <state width="1638" height="146" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1606116217784" />
+    <state width="1638" height="294" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1607081137888" />
     <state width="939" height="212" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1607010549017" />
     <state width="2517" height="417" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1607009012243" />
     <state width="2518" height="146" key="GridCell.Tab.0.left/0.0.2560.1600@0.0.2560.1600" timestamp="1605961423894" />
-    <state width="939" height="212" key="GridCell.Tab.0.right" timestamp="1607010549021">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="294" key="GridCell.Tab.0.right" timestamp="1607081137890">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="619" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1607010283765" />
     <state width="1398" height="167" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1605871218907" />
-    <state width="1638" height="146" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1606116217786" />
+    <state width="1638" height="294" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1607081137890" />
     <state width="939" height="212" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1607010549021" />
     <state width="2517" height="417" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1607009012243" />
     <state width="2518" height="146" key="GridCell.Tab.0.right/0.0.2560.1600@0.0.2560.1600" timestamp="1605961423895" />
@@ -350,12 +355,25 @@
     </state>
     <state x="208" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605870822259" />
     <state x="370" y="48" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1606911424757" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1606933645295">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="572" y="325" key="Vcs.Push.Dialog.v2" timestamp="1607035444121">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="572" y="325" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1607035444121" />
     <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606933645295" />
+    <state x="335" y="268" width="1009" height="617" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1607029103371">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="335" y="268" width="1009" height="617" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1680.1050@0.0.1680.1050" timestamp="1607029103371" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="boundaries[9]" />

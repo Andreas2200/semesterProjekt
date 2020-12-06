@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +18,7 @@ import javafx.scene.layout.Pane;
 public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane;
+    public boolean toggleMapPane;
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
@@ -26,9 +28,10 @@ public class Controller implements Initializable {
     public ImageView backgroundImage;
     public Pane pane1;
     public Pane helpPane;
+    public Pane mapPane;
     public Label helpPaneText;
     private Room currentRoom;
-    private Room town_square, harbor_west, shopping_street, garbage_disposal;
+    private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
     private PlayMusic musicPlayer;
 
 
@@ -89,11 +92,17 @@ public class Controller implements Initializable {
     private void createRooms()
     {
         town_square = new Room(3);
-        harbor_west = new Room(1);
-        shopping_street = new Room(1);
+        harbor_east = new Room(8);
+        harbor_west = new Room(4);
+        shopping_street = new Room(4);
+        fish_store = new Room(2);
         garbage_disposal = new Room(1);
+        beach = new Room(2);
+        pier_1 = new Room(2);
+        pier_2 = new Room(2);
 
-        town_square.setRoomImage("island.png");
+
+        town_square.setRoomImage("town_square.png");
         town_square.setRoomExit(768,972);
         town_square.setRoomExit(960,972);
         town_square.setRoomExit(0,432);
@@ -102,38 +111,168 @@ public class Controller implements Initializable {
         town_square.setRoomExit(1728,540);
         town_square.setRoomNeighbour(0,harbor_west);
         town_square.setRoomNeighbour(1,harbor_west);
-        town_square.setRoomNeighbour(2,shopping_street);
-        town_square.setRoomNeighbour(3,shopping_street);
-        town_square.setRoomNeighbour(4, garbage_disposal);
-        town_square.setRoomNeighbour(5, garbage_disposal);
+        town_square.setRoomNeighbour(2,garbage_disposal);
+        town_square.setRoomNeighbour(3,garbage_disposal);
+        town_square.setRoomNeighbour(4, shopping_street);
+        town_square.setRoomNeighbour(5, shopping_street);
+        town_square.addBoundary(192,324);
+        town_square.addBoundary(384,324);
+        town_square.addBoundary(576,216);
+        town_square.addBoundary(768,216);
+        town_square.addBoundary(768,108);
+        town_square.addBoundary(1152,108);
+        town_square.addBoundary(1152,216);
+        town_square.addBoundary(1344,216);
+        town_square.addBoundary(1536,216);
+        town_square.addBoundary(576,864);
+        town_square.addBoundary(384,864);
+        town_square.addBoundary(384,756);
+        town_square.addBoundary(384,648);
+        town_square.addBoundary(192,648);
+
 
         harbor_west.setRoomImage("HarborWest.png");
         harbor_west.setRoomExit(768,0);
         harbor_west.setRoomExit(960,0);
+        harbor_west.setRoomExit(1728,108);
+        harbor_west.setRoomExit(1728,216);
+        harbor_west.setRoomExit(1728,324);
+        harbor_west.setRoomExit(1728,432);
+        harbor_west.setRoomExit(768,972);
+        harbor_west.setRoomExit(960,972);
         harbor_west.setRoomNeighbour(0,town_square);
         harbor_west.setRoomNeighbour(1,town_square);
+        harbor_west.setRoomNeighbour(2,harbor_east);
+        harbor_west.setRoomNeighbour(3,harbor_east);
+        harbor_west.setRoomNeighbour(4,harbor_east);
+        harbor_west.setRoomNeighbour(5,harbor_east);
+        harbor_west.setRoomNeighbour(6,pier_1);
+        harbor_west.setRoomNeighbour(7,pier_1);
         harbor_west.addBoundary(576,540);
         harbor_west.addBoundary(384,540);
         harbor_west.addBoundary(192,540);
         harbor_west.addBoundary(576,432);
         harbor_west.addBoundary(384,432);
         harbor_west.addBoundary(192,432);
-        harbor_west.addBoundary(192,324);
         harbor_west.addBoundary(384,324);
         harbor_west.addBoundary(384,216);
         harbor_west.addBoundary(192,864);
         harbor_west.addBoundary(1536,756);
 
+        harbor_east.setRoomImage("HarborEast.png");
+        harbor_east.setRoomExit(0,108);
+        harbor_east.setRoomExit(0,216);
+        harbor_east.setRoomExit(0,324);
+        harbor_east.setRoomExit(0,432);
+        harbor_east.setRoomExit(768,0);
+        harbor_east.setRoomExit(960,0);
+        harbor_east.setRoomExit(1728,216);
+        harbor_east.setRoomExit(1728,324);
+        harbor_east.setRoomExit(1728,432);
+        harbor_east.setRoomExit(1728,540);
+        harbor_east.setRoomExit(768,972);
+        harbor_east.setRoomExit(960,972);
+        harbor_east.setRoomNeighbour(0,harbor_west);
+        harbor_east.setRoomNeighbour(1,harbor_west);
+        harbor_east.setRoomNeighbour(2,harbor_west);
+        harbor_east.setRoomNeighbour(3,harbor_west);
+        harbor_east.setRoomNeighbour(4,shopping_street);
+        harbor_east.setRoomNeighbour(5,shopping_street);
+        harbor_east.setRoomNeighbour(6,beach);
+        harbor_east.setRoomNeighbour(7,beach);
+        harbor_east.setRoomNeighbour(8,beach);
+        harbor_east.setRoomNeighbour(9,beach);
+        harbor_east.setRoomNeighbour(10,pier_2);
+        harbor_east.setRoomNeighbour(11,pier_2);
+        harbor_east.addBoundary(192,540);
+        harbor_east.addBoundary(192,648);
+        harbor_east.addBoundary(192,756);
+        harbor_east.addBoundary(192,864);
+        harbor_east.addBoundary(384,648);
+        harbor_east.addBoundary(384,756);
+        harbor_east.addBoundary(384,864);
+        harbor_east.addBoundary(1536,648);
+        harbor_east.addBoundary(1536,756);
+        harbor_east.addBoundary(1536,864);
+        harbor_east.addBoundary(1536,108);
 
+        shopping_street.setRoomImage("backgroundTest.jpg");
+        shopping_street.setRoomExit(0,432);
+        shopping_street.setRoomExit(0,540);
+        shopping_street.setRoomExit(768,972);
+        shopping_street.setRoomExit(960,972);
         shopping_street.setRoomExit(1728,432);
         shopping_street.setRoomExit(1728,540);
         shopping_street.setRoomNeighbour(0,town_square);
         shopping_street.setRoomNeighbour(1,town_square);
+        shopping_street.setRoomNeighbour(2,harbor_east);
+        shopping_street.setRoomNeighbour(3,harbor_east);
+        shopping_street.setRoomNeighbour(4,fish_store);
+        shopping_street.setRoomNeighbour(5,fish_store);
 
-        garbage_disposal.setRoomExit(0,432);
-        garbage_disposal.setRoomExit(0, 540);
+        fish_store.setRoomImage("fiskebod.png");
+        fish_store.setRoomExit(0,216);
+        fish_store.setRoomExit(0,324);
+        fish_store.setRoomExit(0,432);
+        fish_store.setRoomExit(0,540);
+        fish_store.setRoomNeighbour(0,shopping_street);
+        fish_store.setRoomNeighbour(1,shopping_street);
+        fish_store.setRoomNeighbour(2,shopping_street);
+        fish_store.setRoomNeighbour(3,shopping_street);
+
+        garbage_disposal.setRoomImage("garbage_disposal.png");
+        garbage_disposal.setRoomExit(1728,432);
+        garbage_disposal.setRoomExit(1728, 540);
         garbage_disposal.setRoomNeighbour(0,town_square);
         garbage_disposal.setRoomNeighbour(1,town_square);
+
+        beach.setRoomImage("Beach.done.png");
+        beach.setRoomExit(0,216);
+        beach.setRoomExit(0,324);
+        beach.setRoomExit(0,432);
+        beach.setRoomExit(0,540);
+        beach.setRoomNeighbour(0,harbor_east);
+        beach.setRoomNeighbour(1,harbor_east);
+        beach.setRoomNeighbour(2,harbor_east);
+        beach.setRoomNeighbour(3,harbor_east);
+        beach.addBoundary(192,864);
+        beach.addBoundary(384,864);
+        beach.addBoundary(576,864);
+        beach.addBoundary(768,864);
+        beach.addBoundary(960,864);
+        beach.addBoundary(1152,864);
+        beach.addBoundary(1344,864);
+        beach.addBoundary(1536,864);
+
+        pier_1.setRoomImage("pier_1.png");
+        pier_1.setRoomExit(768,0);
+        pier_1.setRoomExit(960,0);
+        pier_1.setRoomNeighbour(0,harbor_west);
+        pier_1.setRoomNeighbour(1,harbor_west);
+        pier_1.addBoundary(192,864);
+        pier_1.addBoundary(384,864);
+        pier_1.addBoundary(576,864);
+        pier_1.addBoundary(768,864);
+        pier_1.addBoundary(960,864);
+        pier_1.addBoundary(1152,864);
+        pier_1.addBoundary(1344,864);
+        pier_1.addBoundary(1536,864);
+        pier_1.addBoundary(1344,756);
+        pier_1.addBoundary(1152,756);
+
+        pier_2.setRoomImage("pier_2.png");
+        pier_2.setRoomExit(768,0);
+        pier_2.setRoomExit(960,0);
+        pier_2.setRoomNeighbour(0,harbor_east);
+        pier_2.setRoomNeighbour(1,harbor_east);
+        pier_2.addBoundary(192,864);
+        pier_2.addBoundary(384,864);
+        pier_2.addBoundary(576,864);
+        pier_2.addBoundary(768,864);
+        pier_2.addBoundary(960,864);
+        pier_2.addBoundary(1152,864);
+        pier_2.addBoundary(1344,864);
+        pier_2.addBoundary(1536,864);
 
         currentRoom = town_square;
     }
@@ -167,6 +306,7 @@ public class Controller implements Initializable {
             case S: moveDown(currentRoom); break;
             case D: moveRight(currentRoom);break;
             case H: help(); break;
+            case M: map(); break;
             case ESCAPE:
         }
     }
@@ -245,6 +385,12 @@ public class Controller implements Initializable {
     {
         toggleHelpPane = !toggleHelpPane;
         helpPane.setVisible(toggleHelpPane);
+    }
+
+    private void map()
+    {
+        toggleMapPane = !toggleMapPane;
+        mapPane.setVisible(toggleMapPane);
     }
 
     public void changeColor(MouseEvent mouseEvent)
