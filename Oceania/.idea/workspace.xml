@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated all rooms with boundaries" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated shoppingstreet" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -232,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607035437363</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="updated shoppingstreet">
+      <created>1607369975991</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607369975991</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -259,7 +266,8 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="Added musicplayer" />
     <MESSAGE value="updated all rooms with boundaries" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated all rooms with boundaries" />
+    <MESSAGE value="updated shoppingstreet" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated shoppingstreet" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="63" key="#Project_Structure" timestamp="1605870795855">
