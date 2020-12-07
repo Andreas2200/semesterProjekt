@@ -202,7 +202,7 @@ public class Controller implements Initializable {
         harbor_east.addBoundary(1536,864);
         harbor_east.addBoundary(1536,108);
 
-        shopping_street.setRoomImage("backgroundTest.jpg");
+        shopping_street.setRoomImage("ShoppingStreet.png");
         shopping_street.setRoomExit(0,432);
         shopping_street.setRoomExit(0,540);
         shopping_street.setRoomExit(768,972);
