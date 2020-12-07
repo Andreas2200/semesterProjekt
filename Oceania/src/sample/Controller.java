@@ -36,7 +36,6 @@ public class Controller implements Initializable {
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
     private PlayMusic musicPlayer;
-    private PointSystem pointSystem;
 
 
 
