@@ -4,73 +4,106 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
+import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import Room.*;
 import MusicPlayer.PlayMusic;
-import javafx.scene.layout.Pane;
+import NPC.*;
+import TaskSystem.TaskSystem;
+
 
 public class Controller implements Initializable {
     public double width,height;
-    public boolean toggleHelpPane;
-    public boolean toggleMapPane;
+    public boolean toggleHelpPane, toggleMapPane, toggleNPCPane;
+
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
-    public Label myLabel;
+    public Label playerLabel;
     public Button myButton;
     public AnchorPane myAnchorPane;
     public ImageView backgroundImage;
     public Pane pane1;
     public Pane helpPane;
     public Pane mapPane;
+    public Pane npcPane;
     public Label helpPaneText;
+    public Label npcPaneText;
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
+    private NPC sigurd, victor, kenneth;
     private PlayMusic musicPlayer;
+    private Player player;
+    private TaskSystem ts;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         musicPlayer = new PlayMusic(musicFile1, musicFile2);
+        player = new Player(playerLabel);
+        ts = new TaskSystem(1);
         changeMusic();
+        createNPC();
         createRooms();
         createHelpPane();
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
     }
 
+    private void createNPC()
+    {
+        sigurd = new NPC("Sigurd");
+        String speechToSet = "Hello I'm sigurd";
+        sigurd.setSpeech(speechToSet);
+        sigurd.setPosition(192,432);
+        sigurd.setPosition(192,540);
+
+
+        victor = new NPC("Victor");
+        speechToSet = "Hello I'm Victor";
+        victor.setSpeech(speechToSet);
+        victor.setPosition(576,864);
+        victor.setPosition(576,756);
+        victor.assignTask(ts.mainTask);
+
+        kenneth = new NPC("Kenneth");
+        speechToSet = "Hello I'm Kenneth";
+        kenneth.setSpeech(speechToSet);
+        kenneth.setPosition(1344,540);
+        kenneth.setPosition(1344,432);
+    }
+
     private void changeRoom(Room room)
     {
         currentRoom = room;
         backgroundImage.setImage(currentRoom.getRoomImage());
-        int x = (int)myLabel.getLayoutX();
-        int y = (int)myLabel.getLayoutY();
-        if(myLabel.getLayoutX() == 0)
+        int x = (int) player.getPlayerX();
+        int y = (int) player.getPlayerY();
+        if(player.getPlayerX() == 0)
         {
-            myLabel.setLayoutX(width-(2*width/10));
-            System.out.println("Set x:" + myLabel.getLayoutX());
+            player.setPlayerX(width-(2*width/10));
+            System.out.println("Set x:" + player.getPlayerX());
         }
-        else if(myLabel.getLayoutX() == width-(width/10))
+        else if(player.getPlayerX() == width-(width/10))
         {
-            myLabel.setLayoutX(width/10);
-            System.out.println("Set x:" + myLabel.getLayoutX());
+            player.setPlayerX(width/10);
+            System.out.println("Set x:" + player.getPlayerX());
         }
-        else if(myLabel.getLayoutY() == 0)
+        else if(player.getPlayerY() == 0)
         {
-            myLabel.setLayoutY(height - (2*height/10));
-            System.out.println("Set y:" + myLabel.getLayoutY());
+            player.setPlayerY(height - (2*height/10));
+            System.out.println("Set y:" + player.getPlayerY());
         }
-        else if(myLabel.getLayoutY() == height-(height/10))
+        else if(player.getPlayerY() == height-(height/10))
         {
-            myLabel.setLayoutY(height/10);
-            System.out.println("Set y:" + myLabel.getLayoutY());
+            player.setPlayerY(height/10);
+            System.out.println("Set y:" + player.getPlayerY());
         }
         changeMusic();
     }
@@ -134,6 +167,7 @@ public class Controller implements Initializable {
         town_square.addBoundary(192,648);
         
         harbor_west.setRoomImage("HarborWest.png");
+        harbor_west.assignNPC(victor);
         harbor_west.setRoomExit(768,0);
         harbor_west.setRoomExit(960,0);
         harbor_west.setRoomExit(1728,108);
@@ -213,6 +247,7 @@ public class Controller implements Initializable {
         shopping_street.setRoomNeighbour(5,fish_store);
 
         fish_store.setRoomImage("fiskebod.png");
+        fish_store.assignNPC(kenneth);
         fish_store.setRoomExit(0,216);
         fish_store.setRoomExit(0,324);
         fish_store.setRoomExit(0,432);
@@ -263,6 +298,7 @@ public class Controller implements Initializable {
         pier_1.addBoundary(1152,756);
 
         pier_2.setRoomImage("pier_2.png");
+        pier_2.assignNPC(sigurd);
         pier_2.setRoomExit(768,0);
         pier_2.setRoomExit(960,0);
         pier_2.setRoomNeighbour(0,harbor_east);
@@ -297,7 +333,7 @@ public class Controller implements Initializable {
     }
 
     public void changeText(ActionEvent actionEvent) {
-        myLabel.setText("TESTY McTest");
+        //player.setText("TESTY McTest");
     }
 
     public void handle(javafx.scene.input.KeyEvent keyEvent) {
@@ -309,23 +345,33 @@ public class Controller implements Initializable {
             case D: moveRight(currentRoom);break;
             case H: help(); break;
             case M: map(); break;
+            case T: talkNPC(currentRoom); break;
             case ESCAPE:
         }
     }
 
     public void moveUp(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getPlayerX();
+        int y = (int) player.getPlayerY();
         if(!currentRoom.isWall(x,y - (int) height/10))
         {
-            myLabel.setLayoutY(myLabel.getLayoutY() - height/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setPlayerY(player.getPlayerY() - height/10);
+            System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
-        if(currentRoom.isExit(x,(int)myLabel.getLayoutY()))
+        if(toggleNPCPane)
+        {
+            NPC npc = currentRoom.getNPC();
+            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            {
+                toggleNPCPane = false;
+                npcPane.setVisible(toggleNPCPane);
+            }
+        }
+        if(currentRoom.isExit(x,(int) player.getPlayerY()))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
@@ -333,51 +379,78 @@ public class Controller implements Initializable {
     }
     public void moveDown(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getPlayerX();
+        int y = (int) player.getPlayerY();
         if(!currentRoom.isWall(x,y + (int) height/10))
         {
-            myLabel.setLayoutY(myLabel.getLayoutY() + height/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setPlayerY(player.getPlayerY() + height/10);
+            System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
-        if(currentRoom.isExit(x,(int)myLabel.getLayoutY()))
+        if(toggleNPCPane)
+        {
+            NPC npc = currentRoom.getNPC();
+            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            {
+                toggleNPCPane = false;
+                npcPane.setVisible(toggleNPCPane);
+            }
+        }
+        if(currentRoom.isExit(x,(int) player.getPlayerY()))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
     }
     public void moveLeft(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getPlayerX();
+        int y = (int) player.getPlayerY();
         if(!currentRoom.isWall(x - (int) width/10, y))
         {
-            myLabel.setLayoutX(myLabel.getLayoutX() - width/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setPlayerX(player.getPlayerX() - width/10);
+            System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
-        if(currentRoom.isExit((int)myLabel.getLayoutX(),y))
+        if(toggleNPCPane)
+        {
+            NPC npc = currentRoom.getNPC();
+            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            {
+                toggleNPCPane = false;
+                npcPane.setVisible(toggleNPCPane);
+            }
+        }
+        if(currentRoom.isExit((int) player.getPlayerX(),y))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
     }
     public void moveRight(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getPlayerX();
+        int y = (int) player.getPlayerY();
         if(!currentRoom.isWall(x + (int) width/10, y)) //This line checks if we are trying to move into a boundary, and only runs the codeblock if we are not entering a boundary
         {
-            myLabel.setLayoutX(myLabel.getLayoutX() + width/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setPlayerX(player.getPlayerX() + width/10);
+            System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
-        if(currentRoom.isExit((int)myLabel.getLayoutX(),y)) //This line checks if we are moving into an active exit and if so we change the room to the room corresponding with the exit
+        if(toggleNPCPane)
+        {
+            NPC npc = currentRoom.getNPC();
+            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            {
+                toggleNPCPane = false;
+                npcPane.setVisible(toggleNPCPane);
+            }
+        }
+        if(currentRoom.isExit((int) player.getPlayerX(),y)) //This line checks if we are moving into an active exit and if so we change the room to the room corresponding with the exit
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
@@ -393,6 +466,20 @@ public class Controller implements Initializable {
     {
         toggleMapPane = !toggleMapPane;
         mapPane.setVisible(toggleMapPane);
+    }
+
+    private void talkNPC(Room currentRoom)
+    {
+        if(currentRoom.hasNPC())
+        {
+            toggleNPCPane = !toggleNPCPane;
+            NPC npcInTheRoom = currentRoom.getNPC();
+            if(npcInTheRoom.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            {
+                npcPaneText.setText(npcInTheRoom.getSpeech());
+                npcPane.setVisible(toggleNPCPane);
+            }
+        }
     }
 
     public void changeColor(MouseEvent mouseEvent)

@@ -16,6 +16,7 @@ public class Room
     private HashMap<String, Task> tasksInRoom;
     private HashMap<String, Item> itemsInRoom;
     private HashMap<String, NPC> NPCsInRoom;
+    private NPC npcInRoom;
     private int[][] boundaries;
     private int[][] extraBoundaries;
     private int extraBoundaryCounter = 0;
@@ -32,6 +33,7 @@ public class Room
         this.exitLocations = new int[exitLocations*2][2];
         boundaries = new int[37][2];
         extraBoundaries = new int[14][2];
+        npcInRoom = null;
         setBoundaries();
     }
 
@@ -297,7 +299,7 @@ public class Room
         return tasksInRoom.size() >= 1;
     }
 
-    public String getNPCInRoom()
+    /*public String getNPCInRoom()
     {
         String temp = " ";
         if(isNPCInRoom())
@@ -311,11 +313,16 @@ public class Room
 
         }
         return temp;
+    }*/
+
+    public NPC getNPC()
+    {
+        return npcInRoom;
     }
 
-    public boolean isNPCInRoom()
+    public boolean hasNPC()
     {
-        return NPCsInRoom.size() >= 1;
+        return npcInRoom != null;
     }
 
     public Task getTask(String name)
@@ -333,9 +340,9 @@ public class Room
         tasksInRoom.put(taskName, task);
     }
 
-    public void addNPC(String npcName, NPC npc)
+    public void assignNPC(NPC npc)
     {
-        NPCsInRoom.put(npcName, npc);
+        npcInRoom = npc;
     }
 }
 
