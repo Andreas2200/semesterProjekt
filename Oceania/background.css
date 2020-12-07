@@ -5,3 +5,6 @@
 .panebg{
  -fx-background-color: #ffffff;
 }
+.progressbarbg{
+ -fx-accent: red;
+}

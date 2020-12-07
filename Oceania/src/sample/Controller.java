@@ -1,9 +1,11 @@
 package sample;
 
+import PointSystem.PointSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +21,7 @@ public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane;
     public boolean toggleMapPane;
+    public ProgressBar progressbar;
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
@@ -33,6 +36,8 @@ public class Controller implements Initializable {
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
     private PlayMusic musicPlayer;
+    private PointSystem pointSystem;
+
 
 
     @Override
@@ -72,6 +77,7 @@ public class Controller implements Initializable {
             myLabel.setLayoutY(height/10);
             System.out.println("Set y:" + myLabel.getLayoutY());
         }
+        progressbar.setProgress(progressbar.getProgress()-0.05);
         changeMusic();
     }
 
@@ -326,6 +332,10 @@ public class Controller implements Initializable {
             int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
+
+
+
+
         }
 
     }
