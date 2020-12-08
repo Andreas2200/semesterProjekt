@@ -36,7 +36,7 @@ public class Controller implements Initializable {
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
     private PlayMusic musicPlayer;
-
+    private PointSystem ps;
 
 
     @Override
@@ -48,6 +48,7 @@ public class Controller implements Initializable {
         createHelpPane();
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
+        ps = new PointSystem();
     }
 
     private void changeRoom(Room room)
@@ -76,7 +77,8 @@ public class Controller implements Initializable {
             myLabel.setLayoutY(height/10);
             System.out.println("Set y:" + myLabel.getLayoutY());
         }
-        progressbar.setProgress(progressbar.getProgress()-0.05);
+
+        progressbar.setProgress(progressbar.getProgress()+(ps.getPoint()/1000));
         changeMusic();
     }
 

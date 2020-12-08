@@ -5,12 +5,12 @@ import javafx.scene.control.ProgressBar;
 public class PointSystem {
 public ProgressBar progressBar;
 
-    private int point = 0;
+    private double point = 10;
 
-    public int addPoint(int value)
+    public double addPoint(int value)
     {
         point += value;
-        progressBar.setProgress(0);
+        progressBar.setProgress(progressBar.getProgress()-getPoint());
         return point;
     }
 
@@ -20,7 +20,7 @@ public ProgressBar progressBar;
         return "Your current points: " + point;
     }
 
-    public int getPoint() { return point; }
+    public double getPoint() { return point; }
 
     public void setPoint(int point) { this.point = point; }
 
