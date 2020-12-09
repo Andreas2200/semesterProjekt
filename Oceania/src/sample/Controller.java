@@ -1,12 +1,11 @@
 package sample;
 
-import PointSystem.PointSystem;
+import Pollution.Pollution;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -36,7 +35,7 @@ public class Controller implements Initializable {
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
     private PlayMusic musicPlayer;
-    private PointSystem ps;
+    private Pollution ps;
 
 
     @Override
@@ -48,7 +47,8 @@ public class Controller implements Initializable {
         createHelpPane();
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
-        ps = new PointSystem();
+        ps = new Pollution(50);
+        progressbar.setProgress(ps.getPollution()/100);
     }
 
     private void changeRoom(Room room)
@@ -78,7 +78,8 @@ public class Controller implements Initializable {
             System.out.println("Set y:" + myLabel.getLayoutY());
         }
 
-        progressbar.setProgress(progressbar.getProgress()+(ps.getPoint()/1000));
+        //progressbar.setProgress(ps.getPoint()/100);
+
         changeMusic();
     }
 

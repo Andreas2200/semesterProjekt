@@ -97,7 +97,7 @@
             </ImageView>
          </children>
       </Pane>
-      <ProgressBar fx:id="progressbar" layoutX="41.0" layoutY="39.0" prefHeight="39.0" prefWidth="210.0" progress="0.5" styleClass="progressbarbg" stylesheets="@../../background.css" />
+      <ProgressBar fx:id="progressbar" layoutX="41.0" layoutY="39.0" prefHeight="39.0" prefWidth="210.0" progress="0" styleClass="progressbarbg" stylesheets="@../../background.css" />
       <Label layoutX="52.0" layoutY="39.0" prefHeight="39.0" prefWidth="191.0" text="Coralreef pollution">
          <font>
             <Font size="16.0" />
