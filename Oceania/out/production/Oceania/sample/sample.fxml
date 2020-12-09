@@ -81,12 +81,12 @@
       </AnchorPane>
       <Pane fx:id="helpPane" layoutX="679.0" layoutY="295.0" prefHeight="526.0" prefWidth="653.0" stylesheets="@../../background.css" visible="false" AnchorPane.leftAnchor="679.0" AnchorPane.topAnchor="295.0">
          <children>
-            <ImageView fitHeight="563.0" fitWidth="1088.0" layoutX="-227.0" layoutY="-67.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="647.0" fitWidth="773.0" layoutX="-104.0" layoutY="-66.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../out/production/Paper.png" />
+                   <Image url="@../../Paper.png" />
                </image>
             </ImageView>
-            <Label fx:id="helpPaneText" alignment="CENTER" contentDisplay="CENTER" layoutX="-8.0" layoutY="-16.0" prefHeight="584.0" prefWidth="672.0" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="helpPaneText" alignment="CENTER" contentDisplay="CENTER" layoutX="-77.0" layoutY="-4.0" prefHeight="572.0" prefWidth="741.0" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
@@ -97,7 +97,7 @@
          <children>
             <ImageView id="backgroundImage" fx:id="backgroundImage1" fitHeight="962.0" fitWidth="1752.0" layoutX="-633.0" layoutY="-246.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../out/production/map.png" />
+                   <Image url="@../../map.png" />
                </image>
             </ImageView>
          </children>
