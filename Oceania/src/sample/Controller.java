@@ -1,10 +1,11 @@
 package sample;
 
+import Pollution.Pollution;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +20,7 @@ public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane;
     public boolean toggleMapPane;
+    public ProgressBar progressbar;
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
@@ -33,6 +35,7 @@ public class Controller implements Initializable {
     private Room currentRoom;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
     private PlayMusic musicPlayer;
+    private Pollution ps;
 
 
     @Override
@@ -44,6 +47,8 @@ public class Controller implements Initializable {
         createHelpPane();
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
+        ps = new Pollution(50);
+        progressbar.setProgress(ps.getPollution()/100);
     }
 
     private void changeRoom(Room room)
@@ -72,6 +77,9 @@ public class Controller implements Initializable {
             myLabel.setLayoutY(height/10);
             System.out.println("Set y:" + myLabel.getLayoutY());
         }
+
+        //progressbar.setProgress(ps.getPoint()/100);
+
         changeMusic();
     }
 
@@ -198,7 +206,7 @@ public class Controller implements Initializable {
         harbor_east.addBoundary(1536,864);
         harbor_east.addBoundary(1536,108);
 
-        shopping_street.setRoomImage("backgroundTest.jpg");
+        shopping_street.setRoomImage("ShoppingStreet.png");
         shopping_street.setRoomExit(0,432);
         shopping_street.setRoomExit(0,540);
         shopping_street.setRoomExit(768,972);
@@ -328,6 +336,10 @@ public class Controller implements Initializable {
             int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
+
+
+
+
         }
 
     }
