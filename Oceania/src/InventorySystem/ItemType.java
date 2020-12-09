@@ -2,7 +2,7 @@ package InventorySystem;
 
 public enum ItemType {
 
-    UNSPECIFIED("unspecified"), PLASTIC("plastic"), BIOLOGICAL("biological"), METAL("metal");
+    PLASTIC("plastic"), BIOLOGICAL("biological"), METAL("metal");
 
     public String typeString;
 

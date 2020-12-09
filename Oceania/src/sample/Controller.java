@@ -1,5 +1,8 @@
 package sample;
 
+import InventorySystem.Coords;
+import InventorySystem.Inventory;
+import InventorySystem.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,7 +27,7 @@ public class Controller implements Initializable {
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
-    public Label myLabel;
+    public Label player;
     public Button myButton;
     public AnchorPane myAnchorPane;
     public ImageView backgroundImage;
@@ -36,6 +39,8 @@ public class Controller implements Initializable {
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2, reef;
     private PlayMusic musicPlayer;
     private Pollution ps;
+    private Inventory playerInventory;
+
 
 
     @Override
@@ -65,27 +70,27 @@ public class Controller implements Initializable {
     {
         currentRoom = room;
         backgroundImage.setImage(currentRoom.getRoomImage());
-        int x = (int)myLabel.getLayoutX();
-        int y = (int)myLabel.getLayoutY();
-        if(myLabel.getLayoutX() == 0)
+        int x = (int) player.getLayoutX();
+        int y = (int) player.getLayoutY();
+        if(player.getLayoutX() == 0)
         {
-            myLabel.setLayoutX(width-(2*width/10));
-            System.out.println("Set x:" + myLabel.getLayoutX());
+            player.setLayoutX(width-(2*width/10));
+            System.out.println("Set x:" + player.getLayoutX());
         }
-        else if(myLabel.getLayoutX() == width-(width/10))
+        else if(player.getLayoutX() == width-(width/10))
         {
-            myLabel.setLayoutX(width/10);
-            System.out.println("Set x:" + myLabel.getLayoutX());
+            player.setLayoutX(width/10);
+            System.out.println("Set x:" + player.getLayoutX());
         }
-        else if(myLabel.getLayoutY() == 0)
+        else if(player.getLayoutY() == 0)
         {
-            myLabel.setLayoutY(height - (2*height/10));
-            System.out.println("Set y:" + myLabel.getLayoutY());
+            player.setLayoutY(height - (2*height/10));
+            System.out.println("Set y:" + player.getLayoutY());
         }
-        else if(myLabel.getLayoutY() == height-(height/10))
+        else if(player.getLayoutY() == height-(height/10))
         {
-            myLabel.setLayoutY(height/10);
-            System.out.println("Set y:" + myLabel.getLayoutY());
+            player.setLayoutY(height/10);
+            System.out.println("Set y:" + player.getLayoutY());
         }
         changeEndGameScene();
 
@@ -327,7 +332,7 @@ public class Controller implements Initializable {
     }
 
     public void changeText(ActionEvent actionEvent) {
-        myLabel.setText("TESTY McTest");
+        player.setText("TESTY McTest");
     }
 
     public void handle(javafx.scene.input.KeyEvent keyEvent) {
@@ -339,74 +344,86 @@ public class Controller implements Initializable {
             case D: moveRight(currentRoom);break;
             case H: help(); break;
             case M: map(); break;
+            case E: pickUp(); break;
             case ESCAPE:
+        }
+    }
+
+    private void pickUp() {
+        int x = (int) player.getLayoutX();
+        int y = (int) player.getLayoutY();
+        Coords coords = new Coords(x, y);
+        Item item = currentRoom.getItemByCoordinates(coords);
+        if (item == null) return;
+        if(playerInventory.addItem(item)) {
+            currentRoom.removeItem(item.getName());
         }
     }
 
     public void moveUp(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getLayoutX();
+        int y = (int) player.getLayoutY();
         if(!currentRoom.isWall(x,y - (int) height/10))
         {
-            myLabel.setLayoutY(myLabel.getLayoutY() - height/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setLayoutY(player.getLayoutY() - height/10);
+            System.out.println(player.getLayoutX() + ", " + player.getLayoutY());
         }
-        if(currentRoom.isExit(x,(int)myLabel.getLayoutY()))
+        if(currentRoom.isExit(x,(int) player.getLayoutY()))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getLayoutX(),(int) player.getLayoutY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
     }
     public void moveDown(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getLayoutX();
+        int y = (int) player.getLayoutY();
         if(!currentRoom.isWall(x,y + (int) height/10))
         {
-            myLabel.setLayoutY(myLabel.getLayoutY() + height/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setLayoutY(player.getLayoutY() + height/10);
+            System.out.println(player.getLayoutX() + ", " + player.getLayoutY());
         }
-        if(currentRoom.isExit(x,(int)myLabel.getLayoutY()))
+        if(currentRoom.isExit(x,(int) player.getLayoutY()))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getLayoutX(),(int) player.getLayoutY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
     }
     public void moveLeft(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getLayoutX();
+        int y = (int) player.getLayoutY();
         if(!currentRoom.isWall(x - (int) width/10, y))
         {
-            myLabel.setLayoutX(myLabel.getLayoutX() - width/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setLayoutX(player.getLayoutX() - width/10);
+            System.out.println(player.getLayoutX() + ", " + player.getLayoutY());
         }
-        if(currentRoom.isExit((int)myLabel.getLayoutX(),y))
+        if(currentRoom.isExit((int) player.getLayoutX(),y))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getLayoutX(),(int) player.getLayoutY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
     }
     public void moveRight(Room currentRoom)
     {
-        int x = (int) myLabel.getLayoutX();
-        int y = (int) myLabel.getLayoutY();
+        int x = (int) player.getLayoutX();
+        int y = (int) player.getLayoutY();
         if(!currentRoom.isWall(x + (int) width/10, y)) //This line checks if we are trying to move into a boundary, and only runs the codeblock if we are not entering a boundary
         {
-            myLabel.setLayoutX(myLabel.getLayoutX() + width/10);
-            System.out.println(myLabel.getLayoutX() + ", " + myLabel.getLayoutY());
+            player.setLayoutX(player.getLayoutX() + width/10);
+            System.out.println(player.getLayoutX() + ", " + player.getLayoutY());
         }
-        if(currentRoom.isExit((int)myLabel.getLayoutX(),y)) //This line checks if we are moving into an active exit and if so we change the room to the room corresponding with the exit
+        if(currentRoom.isExit((int) player.getLayoutX(),y)) //This line checks if we are moving into an active exit and if so we change the room to the room corresponding with the exit
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
+            int exitNumber = currentRoom.getExitNumber((int) player.getLayoutX(),(int) player.getLayoutY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }

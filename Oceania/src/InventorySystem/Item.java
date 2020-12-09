@@ -5,18 +5,15 @@ public class Item {
     private String name;
     private int size;
     private ItemType type;
+    private Coords coords;
 
-    Item (String name, int size)
-    {
-        this.name = name;
-        this.size = size;
-        this.type = ItemType.UNSPECIFIED;
-    }
-    public Item(String name, int size, ItemType type) {
+    public Item(String name, int size, ItemType type, Coords coords) {
         this.name = name;
         this.size = size;
         this.type = type;
+        this.coords = coords;
     }
+
 
 
     //Getters
@@ -32,10 +29,14 @@ public class Item {
 
     public ItemType getType() { return type; }
 
+    public Coords getCoords() {return coords; }
+
     //Setters
     public void setName(String name) { this.name = name; }
 
     public void setSize(int size) { this.size = size; }
 
     public void setType(ItemType type) { this.type = type; }
+
+    public void setCoords(Coords coords) { this.coords = coords; }
 }

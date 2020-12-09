@@ -20,7 +20,7 @@
             <Image url="@../../town_square.png" />
          </image>
       </ImageView>
-      <Label id="myLabel" fx:id="myLabel" layoutX="960" layoutY="540" prefHeight="59.0" prefWidth="109.0" text="Label" textFill="#fa000000">
+      <Label id="myLabel" fx:id="player" layoutX="960" layoutY="540" prefHeight="59.0" prefWidth="109.0" text="Label" textFill="#fa000000">
          <graphic>
             <ImageView fitHeight="108" fitWidth="192" pickOnBounds="true" preserveRatio="true">
                <image>

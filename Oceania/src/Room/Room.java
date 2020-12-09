@@ -111,14 +111,14 @@ public class Room
         extraBoundaries[extraBoundaryCounter][1] = y;
         extraBoundaryCounter++;
     }
-    public Item getItem(String name){
-        Item item = itemsInRoom.get(name);
-        return item;
+
+    public void addItem(String itemName, Item item)
+    {
+        itemsInRoom.put(itemName, item);
     }
 
-    public void removeItem(String name){
-        itemsInRoom.remove(name);
-
+    public Item removeItem(String name){
+        return itemsInRoom.remove(name);
     }
 
     public String getItemStringsInRoom()
@@ -146,6 +146,16 @@ public class Room
         {
             return false;
         }
+    }
+
+    public Item getItemByCoordinates(Coords coords){
+        for (Item item : itemsInRoom.values()){
+            if (item.getCoords() != coords){
+                continue;
+            }
+            return item;
+        }
+        return null;
     }
 
     public String getTasksInRoom()
@@ -321,11 +331,6 @@ public class Room
     public Task getTask(String name)
     {
         return tasksInRoom.get(name);
-    }
-
-    public void addItem(String itemName, Item item)
-    {
-        itemsInRoom.put(itemName, item);
     }
 
     public void addTask(String taskName,Task task)
