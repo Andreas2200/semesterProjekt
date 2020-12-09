@@ -1,6 +1,5 @@
 package sample;
 
-import Pollution.Pollution;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 import Room.*;
+import Pollution.*;
 import MusicPlayer.PlayMusic;
 import javafx.scene.layout.Pane;
 
@@ -33,7 +33,7 @@ public class Controller implements Initializable {
     public Pane mapPane;
     public Label helpPaneText;
     private Room currentRoom;
-    private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2;
+    private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2, reef;
     private PlayMusic musicPlayer;
     private Pollution ps;
 
@@ -49,6 +49,16 @@ public class Controller implements Initializable {
         height = backgroundImage.getFitHeight();
         ps = new Pollution(50);
         progressbar.setProgress(ps.getPollution()/100);
+    }
+
+    public void changeEndGameScene()
+    {
+        if (25 > ps.getPollution())
+        { reef.setRoomImage("reef_perfekt.png"); }
+        else if (25 <= ps.getPollution() & ps.getPollution() < 75)
+        { reef.setRoomImage("reef_fine.png"); }
+        else if (75 <= ps.getPollution())
+        { reef.setRoomImage("reef_bad.png"); }
     }
 
     private void changeRoom(Room room)
@@ -77,6 +87,7 @@ public class Controller implements Initializable {
             myLabel.setLayoutY(height/10);
             System.out.println("Set y:" + myLabel.getLayoutY());
         }
+        changeEndGameScene();
 
         //progressbar.setProgress(ps.getPoint()/100);
 
@@ -110,7 +121,8 @@ public class Controller implements Initializable {
         garbage_disposal = new Room(1);
         beach = new Room(2);
         pier_1 = new Room(2);
-        pier_2 = new Room(2);
+        pier_2 = new Room(3);
+        reef = new Room(1);
 
 
         town_square.setRoomImage("town_square.png");
@@ -273,8 +285,16 @@ public class Controller implements Initializable {
         pier_2.setRoomImage("pier_2.png");
         pier_2.setRoomExit(768,0);
         pier_2.setRoomExit(960,0);
+        pier_2.setRoomExit(1728,216);
+        pier_2.setRoomExit(1728,324);
+        pier_2.setRoomExit(1728,432);
+        pier_2.setRoomExit(1728,540);
         pier_2.setRoomNeighbour(0,harbor_east);
         pier_2.setRoomNeighbour(1,harbor_east);
+        pier_2.setRoomNeighbour(2,reef);
+        pier_2.setRoomNeighbour(3,reef);
+        pier_2.setRoomNeighbour(4,reef);
+        pier_2.setRoomNeighbour(5,reef);
         pier_2.addBoundary(192,864);
         pier_2.addBoundary(384,864);
         pier_2.addBoundary(576,864);
@@ -283,6 +303,8 @@ public class Controller implements Initializable {
         pier_2.addBoundary(1152,864);
         pier_2.addBoundary(1344,864);
         pier_2.addBoundary(1536,864);
+
+
 
         currentRoom = town_square;
     }
@@ -336,12 +358,7 @@ public class Controller implements Initializable {
             int exitNumber = currentRoom.getExitNumber((int)myLabel.getLayoutX(),(int)myLabel.getLayoutY());
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
-
-
-
-
         }
-
     }
     public void moveDown(Room currentRoom)
     {

@@ -79,11 +79,16 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <Pane fx:id="helpPane" layoutX="609.0" layoutY="347.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" visible="false" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="720.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="300.0">
+      <Pane fx:id="helpPane" layoutX="679.0" layoutY="295.0" prefHeight="526.0" prefWidth="653.0" stylesheets="@../../background.css" visible="false" AnchorPane.leftAnchor="679.0" AnchorPane.topAnchor="295.0">
          <children>
-            <Label fx:id="helpPaneText" prefHeight="480.0" prefWidth="480.0" wrapText="true">
+            <ImageView fitHeight="563.0" fitWidth="1088.0" layoutX="-227.0" layoutY="-67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../out/production/Paper.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="helpPaneText" alignment="CENTER" contentDisplay="CENTER" layoutX="-8.0" layoutY="-16.0" prefHeight="584.0" prefWidth="672.0" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
          </children>
@@ -92,7 +97,7 @@
          <children>
             <ImageView id="backgroundImage" fx:id="backgroundImage1" fitHeight="962.0" fitWidth="1752.0" layoutX="-633.0" layoutY="-246.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../map.png" />
+                  <Image url="@../../out/production/Paper.png" />
                </image>
             </ImageView>
          </children>
