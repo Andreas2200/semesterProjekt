@@ -111,6 +111,15 @@
                </ImageView>
            </children>
        </Pane>
+       <Pane fx:id="bottle_2" layoutX="1536.0" layoutY="108.0" prefHeight="108.0" prefWidth="192.0" visible="false">
+           <children>
+               <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="108.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../bottle_2.png" />
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
       <ProgressBar fx:id="progressbar_1" layoutX="41.0" layoutY="39.0" prefHeight="39.0" prefWidth="210.0" progress="0" style="-fx-accent: red; -fx-border-color: blue;" styleClass="progressbarbg" stylesheets="@../../background.css" />
       <Label layoutX="52.0" layoutY="39.0" prefHeight="39.0" prefWidth="191.0" text="Coralreef pollution">
          <font>

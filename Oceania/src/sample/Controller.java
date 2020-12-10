@@ -41,7 +41,7 @@ public class Controller implements Initializable {
     private PlayMusic musicPlayer;
     private Pollution ps;
     private Inventory playerInventory;
-    public Pane bottle_1;
+    public Pane bottle_1, bottle_2;
 
 
 
@@ -78,11 +78,18 @@ public class Controller implements Initializable {
         harbor_east.addItem("bottle1", bottle1);
         bottle_1.setLayoutX(coordBottle1.getX());
         bottle_1.setLayoutY(coordBottle1.getY());
+
+        Coords coordBottle2 = new Coords(960,216);
+        Item bottle2 = new Item("bottle2", 1, ItemType.PLASTIC, coordBottle2);
+        beach.addItem("bottle2", bottle2);
+        bottle_2.setLayoutX(coordBottle2.getX());
+        bottle_2.setLayoutY(coordBottle2.getY());
     }
 
     public void VisibleItems()
     {
         bottle_1.setVisible(currentRoom == harbor_east);
+        bottle_2.setVisible(currentRoom == beach);
     }
 
     private void changeRoom(Room room)
