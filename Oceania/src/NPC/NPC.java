@@ -33,6 +33,12 @@ public class NPC {
     public void assignTask(Task task)
     {
         npcTask = task;
+        task.setTaskGiver(this);
+    }
+
+    public void removeTask()
+    {
+        npcTask = null;
     }
 
     public boolean isPlayerInRange(int x, int y)
@@ -54,8 +60,17 @@ public class NPC {
         return result;
     }
 
+    public boolean hasTask()
+    {
+        return npcTask != null;
+    }
 
     public String getName() { return name; }
 
     public String getSpeech() { return speech;}
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

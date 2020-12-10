@@ -25,12 +25,13 @@ import TaskSystem.TaskSystem;
 public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane, toggleMapPane, toggleNPCPane;
-    public ProgressBar progressbar_1;
-    private String musicFile1 = "MusicFileVictor.wav";
-    private String musicFile2 = "gameMusic.wav";
+    private String musicFile1 = "GameMusic.wav";
+    private String musicFile2 = "MusicFileVictor.wav";
 
     public Label playerLabel;
     public Button myButton;
+    public Button taskButton;
+    public ProgressBar progressbar_1;
     public AnchorPane myAnchorPane;
     public ImageView backgroundImage;
     public Pane pane1;
@@ -57,10 +58,10 @@ public class Controller implements Initializable {
         musicPlayer = new PlayMusic(musicFile1, musicFile2);
         player = new Player(playerLabel);
         ts = new TaskSystem(1);
-        changeMusic();
         createNPC();
         createRooms();
         createHelpPane();
+        changeMusic();
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
         ps = new Pollution(50);
@@ -72,24 +73,24 @@ public class Controller implements Initializable {
     private void createNPC()
     {
         sigurd = new NPC("Sigurd");
-        String speechToSet = "Hello I'm sigurd";
-        sigurd.setSpeech(speechToSet);
         sigurd.setPosition(192,432);
         sigurd.setPosition(192,540);
 
 
         victor = new NPC("Victor");
-        speechToSet = "Hello I'm Victor";
-        victor.setSpeech(speechToSet);
         victor.setPosition(576,864);
         victor.setPosition(576,756);
         victor.assignTask(ts.mainTask);
 
         kenneth = new NPC("Kenneth");
-        speechToSet = "Hello I'm Kenneth";
-        kenneth.setSpeech(speechToSet);
         kenneth.setPosition(1344,540);
         kenneth.setPosition(1344,432);
+
+        //Assign Task steps to NPCs
+        ts.assignStepNPC(ts.mainTask,0,kenneth);
+        ts.assignStepNPC(ts.mainTask,1,sigurd);
+        ts.assignStepNPC(ts.mainTask,2,kenneth);
+        ts.assignStepNPC(ts.mainTask,3,victor);
     }
 
     public void changeEndGameScene()
@@ -157,7 +158,7 @@ public class Controller implements Initializable {
 
     private void changeMusic()
     {
-        if(currentRoom == town_square)
+        if(currentRoom == fish_store)
         {
             musicPlayer.stopMusicFile2();
             musicPlayer.startMusicFile1();
@@ -535,29 +536,81 @@ public class Controller implements Initializable {
         mapPane.setVisible(toggleMapPane);
     }
 
+    private void checkTask()
+    {
+        if(ts.getActiveTask().isCompleted())
+        {
+            ps.addPollution(ts.getActiveTask().getRewardPoints());
+            ts.moveCompletedTask(ts.getActiveTask());
+        }
+    }
+
     private void talkNPC(Room currentRoom)
     {
         if(currentRoom.hasNPC())
         {
-            toggleNPCPane = !toggleNPCPane;
+
             NPC npcInTheRoom = currentRoom.getNPC();
             if(npcInTheRoom.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
             {
-                npcPaneText.setText(npcInTheRoom.getSpeech());
+                toggleNPCPane = !toggleNPCPane;
+                if(toggleNPCPane)
+                {
+                    if(npcInTheRoom.hasTask())
+                    {
+                        npcInTheRoom.setSpeech("Hello, I'm " + npcInTheRoom.getName() + " and I have a task for you");
+                        npcPaneText.setText(npcInTheRoom.getSpeech());
+                        taskButton.setText("Accept task");
+                        taskButton.setVisible(true);
+                    }
+                    else if(ts.getActiveTask().isNPCInTask(npcInTheRoom) && !npcInTheRoom.hasTask())
+                    {
+                        if(!ts.getActiveTask().isTaskGiver(npcInTheRoom))
+                        {
+                            npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
+                            taskButton.setVisible(true);
+                        }
+                        else if(ts.getActiveTask().isTaskGiver(npcInTheRoom))
+                        {
+                            npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
+                            taskButton.setVisible(true);
+                        }
+                        else if(ts.getActiveTask().isTaskGiver(npcInTheRoom))
+                        {
+                            npcInTheRoom.setSpeech(ts.getActiveTask().getTaskDescription());
+                            taskButton.setVisible(false);
+                        }
+                        npcPaneText.setText(npcInTheRoom.getSpeech());
+
+                    }
+                    else
+                    {
+                        npcInTheRoom.setSpeech("Hello, I'm " + npcInTheRoom.getName());
+                        npcPaneText.setText(npcInTheRoom.getSpeech());
+                        taskButton.setVisible(false);
+                        taskButton.setText("I don't have a task");
+                    }
+                }
                 npcPane.setVisible(toggleNPCPane);
             }
         }
     }
 
-    public void changeColor(MouseEvent mouseEvent)
+    public void taskButtonPress(ActionEvent actionEvent)
     {
-        Pane tempPane = (Pane) mouseEvent.getTarget();
-        tempPane.setStyle("-fx-background-color: #ff0000;");
-    }
-
-    public void changeColorNormal(MouseEvent mouseEvent)
-    {
-       Pane tempPane = (Pane) mouseEvent.getTarget();
-       tempPane.setStyle("-fx-background-color: #ffffff;");
+        NPC npcInTheRoom = currentRoom.getNPC();
+        if(npcInTheRoom.hasTask())
+        {
+            ts.addTask(ts.mainTask);
+            npcInTheRoom.removeTask();
+            taskButton.setVisible(false);
+            npcPaneText.setText(ts.mainTask.taskStart());
+        }
+        else if(ts.getActiveTask().isNPCInTask(npcInTheRoom))
+        {
+            ts.getActiveTask().completedStep();
+            taskButton.setVisible(false);
+            checkTask();
+        }
     }
 }
