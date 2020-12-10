@@ -22,6 +22,7 @@ public class Room
     private int[][] exitLocations;
     private int exitCounter = 0;
     private Image roomImage;
+    private Coords coords;
 
     public Room(int exitLocations)
     {
@@ -112,9 +113,11 @@ public class Room
         extraBoundaryCounter++;
     }
 
-    public void addItem(String itemName, Item item)
+    public void addItem(String itemName, Item item, Coords coords)
     {
         itemsInRoom.put(itemName, item);
+
+
     }
 
     public Item removeItem(String name){

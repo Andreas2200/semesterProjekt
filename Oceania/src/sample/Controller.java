@@ -3,6 +3,7 @@ package sample;
 import InventorySystem.Coords;
 import InventorySystem.Inventory;
 import InventorySystem.Item;
+import InventorySystem.ItemType;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -40,6 +41,8 @@ public class Controller implements Initializable {
     private PlayMusic musicPlayer;
     private Pollution ps;
     private Inventory playerInventory;
+    public Pane bottle_1;
+
 
 
 
@@ -54,6 +57,8 @@ public class Controller implements Initializable {
         height = backgroundImage.getFitHeight();
         ps = new Pollution(50);
         progressbar.setProgress(ps.getPollution()/100);
+        createItem();
+
     }
 
     public void changeEndGameScene()
@@ -64,6 +69,13 @@ public class Controller implements Initializable {
         { reef.setRoomImage("reef_fine.png"); }
         else if (75 <= ps.getPollution())
         { reef.setRoomImage("reef_bad.png"); }
+    }
+
+    public void createItem()
+    {
+        Coords coordBottle1 = new Coords(384,540);
+        Item bottle1 = new Item("bottle1", 1, ItemType.PLASTIC, coordBottle1, bottle_1);
+        harbor_east.addItem("bottle1", bottle1);
     }
 
     private void changeRoom(Room room)
@@ -353,7 +365,8 @@ public class Controller implements Initializable {
         Coords coords = new Coords(x, y);
         Item item = currentRoom.getItemByCoordinates(coords);
         if (item == null) return;
-        if(playerInventory.addItem(item)) {
+        else {
+            playerInventory.addItem(item);
             currentRoom.removeItem(item.getName());
         }
     }
@@ -437,6 +450,8 @@ public class Controller implements Initializable {
     {
         toggleMapPane = !toggleMapPane;
         mapPane.setVisible(toggleMapPane);
+        System.out.println(currentRoom.getItemStringsInRoom());
+
     }
 
     public void changeColor(MouseEvent mouseEvent)

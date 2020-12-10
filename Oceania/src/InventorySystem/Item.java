@@ -1,17 +1,21 @@
 package InventorySystem;
 
+import javafx.scene.layout.Pane;
+
 public class Item {
 
     private String name;
     private int size;
     private ItemType type;
     private Coords coords;
+    private Pane pane;
 
-    public Item(String name, int size, ItemType type, Coords coords) {
+    public Item(String name, int size, ItemType type, Coords coords, Pane pane) {
         this.name = name;
         this.size = size;
         this.type = type;
         this.coords = coords;
+        this.pane = pane;
     }
 
 
