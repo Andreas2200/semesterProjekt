@@ -102,7 +102,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javafx-sdk-15.0.1/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -155,7 +155,7 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Oceania" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;D:\General Purpose Programs\javafx-sdk-15.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Daniel\Desktop\javafx-sdk-15.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
@@ -313,8 +313,8 @@
     </state>
     <state x="416" y="63" key="#Project_Structure/0.0.1440.900@0.0.1440.900" timestamp="1605870795855" />
     <state x="760" y="274" key="#Project_Structure/0.0.2560.1400@0.0.2560.1400" timestamp="1605813062011" />
-    <state x="327" y="174" width="1524" height="1257" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607624458798">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="328" y="25" width="1524" height="1257" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607625590605">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="246" y="129" key="#com.intellij.execution.impl.EditConfigurationsDialog/-3840.0.1280.707/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607349199680" />
     <state x="164" y="99" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1607010281384" />
@@ -322,7 +322,7 @@
     <state x="246" y="129" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607526375401" />
     <state x="262" y="23" width="1524" height="1257" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1607529417305" />
     <state x="327" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607624458798" />
-    <state x="328" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607543614732" />
+    <state x="328" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607625590605" />
     <state x="328" y="198" width="1428" height="1173" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1600@0.0.2560.1600" timestamp="1607366217495" />
     <state x="262" y="45" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2048.1257@0.23.2048.1257" timestamp="1607593461169" />
     <state x="948" y="254" key="#com.intellij.ide.util.MemberChooser" timestamp="1607620223210">
@@ -334,13 +334,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="673" y="35" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607527672495" />
-    <state x="986" y="441" key="FileChooserDialogImpl" timestamp="1607604660398">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="987" y="445" key="FileChooserDialogImpl" timestamp="1607625577111">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="740" y="328" key="FileChooserDialogImpl/-3840.0.1280.707/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607349158328" />
     <state x="740" y="328" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607526364061" />
     <state x="986" y="441" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1607604660398" />
-    <state x="987" y="445" key="FileChooserDialogImpl/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607543598259" />
+    <state x="987" y="445" key="FileChooserDialogImpl/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607625577111" />
     <state width="2517" height="276" key="GridCell.Tab.0.bottom" timestamp="1607624443945">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -425,15 +425,15 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="248" y="122" key="MergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607624435086" />
-    <state x="370" y="48" key="SettingsEditor" timestamp="1607604662782">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="371" y="48" key="SettingsEditor" timestamp="1607625580193">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="278" y="36" key="SettingsEditor/-3840.0.1280.707/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607349161965" />
     <state x="208" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605870822259" />
     <state x="278" y="36" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607526365855" />
     <state x="297" y="44" key="SettingsEditor/0.0.2048.1280@0.0.2048.1280" timestamp="1607529378862" />
     <state x="370" y="48" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1607604662782" />
-    <state x="371" y="48" key="SettingsEditor/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607543601371" />
+    <state x="371" y="48" key="SettingsEditor/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607625580193" />
     <state x="371" y="55" key="SettingsEditor/0.0.2560.1600@0.0.2560.1600" timestamp="1607366175596" />
     <state x="297" y="66" key="SettingsEditor/0.23.2048.1257@0.23.2048.1257" timestamp="1607593479881" />
     <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1607623860137">
