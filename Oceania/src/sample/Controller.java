@@ -3,6 +3,7 @@ package sample;
 import InventorySystem.Coords;
 import InventorySystem.Inventory;
 import InventorySystem.Item;
+import InventorySystem.ItemType;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,7 +24,7 @@ public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane;
     public boolean toggleMapPane;
-    public ProgressBar progressbar;
+    public ProgressBar progressbar_1;
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
@@ -40,6 +41,8 @@ public class Controller implements Initializable {
     private PlayMusic musicPlayer;
     private Pollution ps;
     private Inventory playerInventory;
+    public Pane bottle_1;
+
 
 
 
@@ -53,7 +56,9 @@ public class Controller implements Initializable {
         width = backgroundImage.getFitWidth();
         height = backgroundImage.getFitHeight();
         ps = new Pollution(50);
-        progressbar.setProgress(ps.getPollution()/100);
+        progressbar_1.setProgress(ps.getPollution()/100);
+        createItem();
+
     }
 
     public void changeEndGameScene()
@@ -64,6 +69,20 @@ public class Controller implements Initializable {
         { reef.setRoomImage("reef_fine.png"); }
         else if (75 <= ps.getPollution())
         { reef.setRoomImage("reef_bad.png"); }
+    }
+
+    public void createItem()
+    {
+        Coords coordBottle1 = new Coords(384,540);
+        Item bottle1 = new Item("bottle1", 1, ItemType.PLASTIC, coordBottle1);
+        harbor_east.addItem("bottle1", bottle1);
+        bottle_1.setLayoutX(coordBottle1.getX());
+        bottle_1.setLayoutY(coordBottle1.getY());
+    }
+
+    public void VisibleItems()
+    {
+        bottle_1.setVisible(currentRoom == harbor_east);
     }
 
     private void changeRoom(Room room)
@@ -93,6 +112,7 @@ public class Controller implements Initializable {
             System.out.println("Set y:" + player.getLayoutY());
         }
         changeEndGameScene();
+        VisibleItems();
 
         //progressbar.setProgress(ps.getPoint()/100);
 
