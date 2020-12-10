@@ -23,18 +23,30 @@ public class TaskSystem
     private void createTasks()
     {
         // Main Task:
-        mainTask = new Task(100,5,"main","Main task");
-        mainTask.setStep(0, "First, speak with Victor"
-                + "\n" + " Then go to the fishers market, which is east-north-east of here, and speak with Kenneth, to take back his subsidies");
-        mainTask.setStep(1,"Next step: First, speak with Kenneth"
-                + "\n" + " Then go to pier 2, to get a fishing rod from Sigurd");
-        mainTask.setStep(2,"Next step: First, speak with Sigurd"
-                + "\n" + " Then return to Kenneth in fish store, and give him the fishing rod");
-        mainTask.setStep(3, "Kenneth: Thank you for this fishing rod, now I'm able to catch less fish,"
+        mainTask = new Task(100,5,"main","\"Hey, You! I am so glad you could make it down here. We need your help!"
+                + "\n" + " Subsidies, which is support provided to the fishing industry to offset the costs of doing business,"
+                + "\n" + " are a key driver of overfishing. "
+                + "\n" + " Subsidies can lead to overcapacity of fishing vessels and skews the production "
+                + "\n" + "  costs, so that fishing operations continue when they would otherwise not make economic sense. "
+                + "\n" + " Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times "
+                + "\n" + "  the capacity needed to catch what we actually need. "
+                + "\n" + " The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies."
+                + "\n" + " We need your help. We have been giving fishermen subsidies and need it back, so we can stop overfishing"
+                + "\n" + " Kenneth, the village fisherman, has received some of these subsidies. Please bring them back to me!"
+                + "\n" + " He has a little shop up on the east side of the shopping street.");
+        mainTask.setStep(0, "Kenneth: \"Hello there!\""
+                + "\n" + "You: \"General Kenobi!!\""
+                + "\n" + "Kenneth: \"Who's General Kenobi? You know what, it doesn't matter,"
+                + "\n" + " I know who you are, and I know why you're here! You want my subsidies don't you?"
+                + "\n" + " Well, if you want them back, you're gonna have to go get me a new fishing rod"
+                + "\n" + " I've heard that Sigurd, whom is on Pier 2, has one\"");
+        mainTask.setStep(1,"Golly, you're one pretty lady/man or everything in between or around or what ever.."
+                + "\n" + " you know, doesn't matter, I don't judge either way - oh gosh, now I'm just embarrassed"
+                + "\n" + "here; take my fishing rod, I don't even like fishing anyway ...");
+        mainTask.setStep(2,"Kenneth: Thank you for this fishing rod, now I'm able to catch less fish,"
                 + "\n" + " which is more in line with the needs of this fishing village"
-                + "\n" + " here; take my subsidies, and give them back to Victor the Statesman"
-                + "\n" + "Next step: Return to the west harbour");
-        mainTask.setStep(4,"Victor the Statesman: \"Thanks for bringing back the subsidies,"
+                + "\n" + " here; take my subsidies, and give them back to Victor the Statesman");
+        mainTask.setStep(3,"Victor the Statesman: \"Thanks for bringing back the subsidies,"
                 + "\n" + " you've done the world a great service, by reducing overfishing in our village!\""
                 + "\n" + "Next step: Go to pier 2, which is south-east of here, to take a boat ride out to the coral reef, to see how it fares");
 
@@ -63,12 +75,11 @@ public class TaskSystem
     {
         activeTasks[activeTaskCounter] = task;
         activeTaskCounter++;
-        System.out.println(task.taskStart());
     }
 
-    public void assignStepRoom(Task task, int stepNumber,Room room)//Kan på sigt ændres til assignStepNPC således man skal snakke med en NPC i stedet for, men da det ikke er lagt i spillet endnu bliver det rummet
+    public void assignStepNPC(Task task, int stepNumber,NPC npc)//Kan på sigt ændres til assignStepNPC således man skal snakke med en NPC i stedet for, men da det ikke er lagt i spillet endnu bliver det rummet
     {
-        task.setRoomSteps(stepNumber, room);
+        task.setRoomSteps(stepNumber, npc);
     }
 
     public void assignBadStepRoom(Task task, int stepNumber, Room room)
@@ -155,21 +166,6 @@ public class TaskSystem
         return false;
     }
 
-    public String showTaskStep(Task task)
-    {
-        String temp = "";
-        Task tempTask = null;
-        for (int i = 0; i < activeTaskCounter ; i++)
-        {
-            if(activeTasks[i] == task)
-            {
-                tempTask = activeTasks[i];
-                break;
-            }
-        }
-        temp += tempTask.getStep();
-        return temp;
-    }
 
     public int getActiveTaskCounter()
     {
