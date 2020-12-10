@@ -152,7 +152,7 @@ public class Room
 
     public Item getItemByCoordinates(Coords coords){
         for (Item item : itemsInRoom.values()){
-            if (item.getCoords() != coords){
+            if (!item.getCoords().equals(coords)){
                 continue;
             }
             return item;

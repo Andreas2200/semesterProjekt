@@ -47,7 +47,6 @@ public class Controller implements Initializable {
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2, reef;
     private PlayMusic musicPlayer;
     private Pollution ps;
-    private Inventory playerInventory;
     public Pane bottle_1, bottle_2;
     private Player player;
     private TaskSystem ts;
@@ -108,13 +107,13 @@ public class Controller implements Initializable {
     public void createItem()
     {
         Coords coordBottle1 = new Coords(384,540);
-        Item bottle1 = new Item("bottle1", 1, ItemType.PLASTIC, coordBottle1);
+        Item bottle1 = new Item("bottle1", 1, ItemType.PLASTIC, coordBottle1, bottle_1);
         harbor_east.addItem("bottle1", bottle1);
         bottle_1.setLayoutX(coordBottle1.getX());
         bottle_1.setLayoutY(coordBottle1.getY());
 
         Coords coordBottle2 = new Coords(960,216);
-        Item bottle2 = new Item("bottle2", 1, ItemType.PLASTIC, coordBottle2);
+        Item bottle2 = new Item("bottle2", 1, ItemType.PLASTIC, coordBottle2, bottle_2);
         beach.addItem("bottle2", bottle2);
         bottle_2.setLayoutX(coordBottle2.getX());
         bottle_2.setLayoutY(coordBottle2.getY());
@@ -396,7 +395,8 @@ public class Controller implements Initializable {
     }
 
     public void handle(javafx.scene.input.KeyEvent keyEvent) {
-        switch (keyEvent.getCode())
+        var key = keyEvent.getCode();
+        switch (key)
         {
             case W: moveUp(currentRoom);   break;
             case A: moveLeft(currentRoom); break;
@@ -406,8 +406,23 @@ public class Controller implements Initializable {
             case M: map(); break;
             case T: talkNPC(currentRoom); break;
             case E: pickUp(); break;
+            case DIGIT1:
+            case DIGIT2:
+            case DIGIT3:
+            case DIGIT4:
+            case DIGIT5:
+            case DIGIT6:
+            case DIGIT7:
+            case DIGIT8:
+            case DIGIT9:
+            case DIGIT0: drop(key.ordinal()-25); break;
             case ESCAPE:
         }
+    }
+
+    private void drop(int index){
+        if (index == -1) index = 10;
+        player.dropItem(index);
     }
 
     private void pickUp() {
@@ -416,7 +431,7 @@ public class Controller implements Initializable {
         Coords coords = new Coords(x, y);
         Item item = currentRoom.getItemByCoordinates(coords);
         if (item == null) return;
-        if(playerInventory.addItem(item)) {
+        if(player.getPlayerInventory().addItem(item)) {
             currentRoom.removeItem(item.getName());
         }
     }

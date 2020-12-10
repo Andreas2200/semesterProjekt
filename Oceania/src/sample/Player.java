@@ -1,5 +1,8 @@
 package sample;
 
+import InventorySystem.Coords;
+import InventorySystem.Inventory;
+import InventorySystem.Item;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +16,7 @@ public class Player
     private ImageView playerImage;
     private double xPos;
     private double yPos;
+    private Inventory playerInventory = new Inventory(10);
 
     public Player(Label playerLabel, ImageView image)
     {
@@ -20,6 +24,12 @@ public class Player
         playerIcon = playerLabel;
         xPos = playerLabel.getLayoutX();
         yPos = playerLabel.getLayoutY();
+    }
+
+    public void dropItem(int index){
+        Item item = playerInventory.removeItem(index);
+        item.setCoords(new Coords((int)xPos, (int)yPos));
+        item.enable();
     }
 
     public void setPlayerImage(Image image)
@@ -53,4 +63,6 @@ public class Player
     {
         System.out.println(playerIcon.getBackground());
     }
+
+    public Inventory getPlayerInventory(){return playerInventory;}
 }

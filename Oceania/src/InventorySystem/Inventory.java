@@ -22,11 +22,15 @@ public class Inventory {
             return false;
     //Når stoerrelsen af items>maengden af maxitems returneres ingenting(Går ud af metoden).
         }
-        
+        item.disable();
         totalWeight += item.getSize();
         items.add(item);
         return true;
     //Vi laver en additem metode, som kan tilfoeje items til inventaret.
+    }
+
+    public Item removeItem(int index){
+        return items.remove(index);
     }
 
     public Item removeItem(String name){
