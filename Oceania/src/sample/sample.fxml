@@ -86,9 +86,9 @@
                    <Image url="@../../Paper.png" />
                </image>
             </ImageView>
-            <Label fx:id="helpPaneText" alignment="CENTER" contentDisplay="CENTER" layoutX="-77.0" layoutY="-4.0" prefHeight="572.0" prefWidth="741.0" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="helpPaneText" alignment="CENTER" contentDisplay="CENTER" layoutX="-77.0" layoutY="-4.0" prefHeight="572.0" prefWidth="719.0" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="System Bold Italic" size="15.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Label>
          </children>

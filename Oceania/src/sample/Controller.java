@@ -309,8 +309,6 @@ public class Controller implements Initializable {
         pier_2.addBoundary(1344,864);
         pier_2.addBoundary(1536,864);
 
-
-
         currentRoom = town_square;
     }
 
