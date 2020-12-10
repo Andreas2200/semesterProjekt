@@ -13,7 +13,6 @@ public class Player
     private ImageView playerImage;
     private double xPos;
     private double yPos;
-    public Image playerImage;
 
     public Player(Label playerLabel, ImageView image)
     {
