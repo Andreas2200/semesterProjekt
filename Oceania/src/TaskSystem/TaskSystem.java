@@ -1,6 +1,7 @@
 package TaskSystem;
 
 import Room.Room;
+import NPC.NPC;
 
 public class TaskSystem
 {
@@ -9,7 +10,6 @@ public class TaskSystem
     private Task[] completedTask;
     private int completedTaskCounter;
     public Task mainTask;
-    public Task testTrack2;
 
     public TaskSystem(int amountOfQuests)
     {
@@ -38,12 +38,6 @@ public class TaskSystem
                 + "\n" + " you've done the world a great service, by reducing overfishing in our village!\""
                 + "\n" + "Next step: Go to pier 2, which is south-east of here, to take a boat ride out to the coral reef, to see how it fares");
 
-
-        // Side Task; plastic waste
-        testTrack2 = new Task(100,2, 1,"side","Test task 2");
-        testTrack2.setStep(0,"Go to the beach");
-        testTrack2.setStep(1,"Return to Bridge 1");
-        testTrack2.setBadStep(0,"Test bad step");
 
     }
 
@@ -181,4 +175,5 @@ public class TaskSystem
     {
         return activeTaskCounter;
     }
+
 }
