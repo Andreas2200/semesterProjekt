@@ -26,10 +26,8 @@ public class Player
         yPos = playerLabel.getLayoutY();
     }
 
-    public void dropItem(int index){
-        Item item = playerInventory.removeItem(index);
-        item.setCoords(new Coords((int)xPos, (int)yPos));
-        item.enable();
+    public Coords getCoords(){
+        return new Coords((int)xPos, (int)yPos);
     }
 
     public void setPlayerImage(Image image)

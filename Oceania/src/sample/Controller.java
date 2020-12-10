@@ -422,7 +422,11 @@ public class Controller implements Initializable {
 
     private void drop(int index){
         if (index == -1) index = 10;
-        player.dropItem(index);
+        Inventory inv = player.getPlayerInventory();
+        Item item = inv.removeItem(index);
+        item.setCoords(player.getCoords());
+        currentRoom.addItem(item.getName(), item);
+        item.enable();
     }
 
     private void pickUp() {
