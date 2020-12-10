@@ -2,11 +2,14 @@ package sample;
 
 import javafx.scene.control.Label;
 
+import java.awt.*;
+
 public class Player
 {
     public Label playerIcon;
     private double xPos;
     private double yPos;
+    public Image playerImage;
 
     public Player(Label playerLabel)
     {
