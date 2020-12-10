@@ -20,7 +20,7 @@
             <Image url="@../../town_square.png" />
          </image>
       </ImageView>
-      <Label id="myLabel" fx:id="player" layoutX="960" layoutY="540" prefHeight="59.0" prefWidth="109.0" text="Label" textFill="#fa000000">
+      <Label id="myLabel" fx:id="playerLabel" layoutX="960" layoutY="540" prefHeight="59.0" prefWidth="109.0" text="Label" textFill="#fa000000">
          <graphic>
             <ImageView fitHeight="108" fitWidth="192" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -102,6 +102,16 @@
             </ImageView>
          </children>
       </Pane>
+       <Pane fx:id="npcPane" layoutX="730.0" layoutY="315.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" visible="false">
+           <children>
+               <Label fx:id="npcPaneText" alignment="TOP_LEFT" prefHeight="236.0" prefWidth="667.0" wrapText="true">
+                   <font>
+                       <Font size="15.0" />
+                   </font>
+               </Label>
+               <Button fx:id="taskButton" layoutX="212.0" layoutY="236.0" mnemonicParsing="false" prefHeight="148.0" prefWidth="243.0" text="Button" />
+           </children>
+       </Pane>
        <Pane fx:id="bottle_1" layoutX="1536.0" layoutY="108.0" prefHeight="108.0" prefWidth="192.0" visible="false">
            <children>
                <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="108.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true">
