@@ -42,6 +42,7 @@ public class Controller implements Initializable {
     private Pollution ps;
     private Inventory playerInventory;
     public Pane bottle_1;
+    boolean bottle1Vis;
 
 
 
@@ -76,6 +77,13 @@ public class Controller implements Initializable {
         Coords coordBottle1 = new Coords(384,540);
         Item bottle1 = new Item("bottle1", 1, ItemType.PLASTIC, coordBottle1, bottle_1);
         harbor_east.addItem("bottle1", bottle1);
+        bottle_1.setLayoutX(coordBottle1.getX());
+        bottle_1.setLayoutY(coordBottle1.getY());
+    }
+
+    public void VisibleItems()
+    {
+        bottle_1.setVisible(currentRoom == harbor_east);
     }
 
     private void changeRoom(Room room)
@@ -105,6 +113,7 @@ public class Controller implements Initializable {
             System.out.println("Set y:" + player.getLayoutY());
         }
         changeEndGameScene();
+        VisibleItems();
 
         //progressbar.setProgress(ps.getPoint()/100);
 

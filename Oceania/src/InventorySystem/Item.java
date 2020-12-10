@@ -8,7 +8,7 @@ public class Item {
     private int size;
     private ItemType type;
     private Coords coords;
-    private Pane pane;
+    public Pane pane;
 
     public Item(String name, int size, ItemType type, Coords coords, Pane pane) {
         this.name = name;

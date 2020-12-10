@@ -4,6 +4,8 @@ import InventorySystem.*;
 import TaskSystem.*;
 import NPC.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+
 import java.io.File;
 import java.util.Set;
 import java.util.HashMap;
@@ -22,7 +24,6 @@ public class Room
     private int[][] exitLocations;
     private int exitCounter = 0;
     private Image roomImage;
-    private Coords coords;
 
     public Room(int exitLocations)
     {
@@ -113,11 +114,9 @@ public class Room
         extraBoundaryCounter++;
     }
 
-    public void addItem(String itemName, Item item, Coords coords)
+    public void addItem(String itemName, Item item)
     {
         itemsInRoom.put(itemName, item);
-
-
     }
 
     public Item removeItem(String name){
