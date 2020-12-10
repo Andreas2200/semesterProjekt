@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +27,7 @@ public class Controller implements Initializable {
     public double width,height;
     public boolean toggleHelpPane, toggleMapPane, toggleNPCPane;
     public ProgressBar progressbar_1;
+    public ImageView playerIcon;
     private String musicFile1 = "MusicFileVictor.wav";
     private String musicFile2 = "gameMusic.wav";
 
@@ -40,6 +42,7 @@ public class Controller implements Initializable {
     public Label helpPaneText;
     public Label npcPaneText;
     private Room currentRoom;
+    private Image player1, player2, player3;
     private NPC sigurd, victor, kenneth;
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2, reef;
     private PlayMusic musicPlayer;
@@ -55,8 +58,11 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         musicPlayer = new PlayMusic(musicFile1, musicFile2);
-        player = new Player(playerLabel);
+        player = new Player(playerLabel, playerIcon);
         ts = new TaskSystem(1);
+        player1 = new Image("Player_png/Player_right_1.png");
+        player2 = new Image("Player_png/Player_right_2.png");
+        player3 = new Image("Player_png/Player_right_3.png");
         changeMusic();
         createNPC();
         createRooms();
@@ -151,7 +157,18 @@ public class Controller implements Initializable {
         VisibleItems();
 
         //progressbar.setProgress(ps.getPoint()/100);
-
+        if(currentRoom == harbor_east)
+        {
+            playerIcon.setImage(player3);
+        }
+        else if(currentRoom == harbor_west)
+        {
+            playerIcon.setImage(player2);
+        }
+        else if(currentRoom == town_square)
+        {
+            playerIcon.setImage(player1);
+        }
         changeMusic();
     }
 
