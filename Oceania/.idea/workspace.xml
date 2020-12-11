@@ -117,11 +117,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-<<<<<<< Updated upstream
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javafx-sdk-15.0.1/lib" />
-=======
     <property name="last_opened_file_path" value="$PROJECT_DIR$/deps/javafx-sdk-15.0.1/lib" />
->>>>>>> Stashed changes
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -190,11 +186,7 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Oceania" />
-<<<<<<< Updated upstream
-      <option name="VM_PARAMETERS" value="--module-path &quot;$PROJECT_DIR$/../../../javafx-sdk-15.0.1/lib&quot; --add-modules javafx.controls,javafx.fxml" />
-=======
       <option name="VM_PARAMETERS" value="--module-path &quot;deps\javafx-sdk-15.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
->>>>>>> Stashed changes
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
@@ -361,13 +353,8 @@
     </state>
     <state x="416" y="63" key="#Project_Structure/0.0.1440.900@0.0.1440.900" timestamp="1605870795855" />
     <state x="760" y="274" key="#Project_Structure/0.0.2560.1400@0.0.2560.1400" timestamp="1605813062011" />
-<<<<<<< Updated upstream
     <state x="262" y="23" width="1183" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607709326963">
       <screen x="0" y="0" width="2048" height="1280" />
-=======
-    <state x="328" y="25" width="1183" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607714884782">
-      <screen x="0" y="0" width="2560" height="1410" />
->>>>>>> Stashed changes
     </state>
     <state x="246" y="129" key="#com.intellij.execution.impl.EditConfigurationsDialog/-3840.0.1280.707/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607349199680" />
     <state x="97" y="0" width="1183" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1607696588311" />
@@ -393,30 +380,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="673" y="35" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607527672495" />
-<<<<<<< Updated upstream
-    <state x="987" y="445" key="FileChooserDialogImpl" timestamp="1607703355501">
-=======
     <state x="502" y="236" key="DetectedRootsChooserDialog" timestamp="1607709856074">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="502" y="236" key="DetectedRootsChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1607709856074" />
     <state x="987" y="445" key="FileChooserDialogImpl" timestamp="1607714820547">
->>>>>>> Stashed changes
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="740" y="328" key="FileChooserDialogImpl/-3840.0.1280.707/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607349158328" />
     <state x="494" y="165" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607696557526" />
     <state x="740" y="328" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607526364061" />
     <state x="986" y="441" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1607604660398" />
-<<<<<<< Updated upstream
     <state x="987" y="445" key="FileChooserDialogImpl/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607625577111" />
     <state width="2006" height="298" key="GridCell.Tab.0.bottom" timestamp="1607714255987">
       <screen x="0" y="0" width="2048" height="1280" />
-=======
-    <state x="987" y="445" key="FileChooserDialogImpl/0.0.2560.1410/-2560.0.2560.1410@0.0.2560.1410" timestamp="1607714820547" />
-    <state width="1877" height="39" key="GridCell.Tab.0.bottom" timestamp="1607713176152">
-      <screen x="0" y="0" width="1920" height="1040" />
->>>>>>> Stashed changes
     </state>
     <state width="1877" height="281" key="GridCell.Tab.0.bottom/-3840.0.1280.707/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607364700811" />
     <state width="1237" height="261" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607699344213" />
@@ -520,13 +497,8 @@
     </state>
     <state x="198" y="112" key="MergeDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1607713396700" />
     <state x="248" y="122" key="MergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607624435086" />
-<<<<<<< Updated upstream
     <state x="297" y="44" key="SettingsEditor" timestamp="1607709304029">
       <screen x="0" y="0" width="2048" height="1280" />
-=======
-    <state x="371" y="48" key="SettingsEditor" timestamp="1607714824470">
-      <screen x="0" y="0" width="2560" height="1410" />
->>>>>>> Stashed changes
     </state>
     <state x="278" y="36" key="SettingsEditor/-3840.0.1280.707/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607349161965" />
     <state x="185" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607696561189" />
