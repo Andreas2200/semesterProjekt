@@ -32,7 +32,7 @@ public class Room
         NPCsInRoom = new HashMap<String, NPC>();
         this.exitLocations = new int[exitLocations*2][2];
         boundaries = new int[37][2];
-        extraBoundaries = new int[14][2];
+        extraBoundaries = new int[28][2];
         npcInRoom = null;
         setBoundaries();
     }

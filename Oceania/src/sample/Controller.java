@@ -141,8 +141,8 @@ public class Controller implements Initializable {
         victor.assignTask(ts.mainTask);
 
         kenneth = new NPC("Kenneth");
-        kenneth.setPosition(1344,540);
-        kenneth.setPosition(1344,432);
+        kenneth.setPosition(1152,540);
+        kenneth.setPosition(1152,432);
 
         //Assign Task steps to NPCs
         ts.assignStepNPC(ts.mainTask,0,kenneth);
@@ -294,9 +294,10 @@ public class Controller implements Initializable {
         harbor_west.addBoundary(384,324);
         harbor_west.addBoundary(384,216);
         harbor_west.addBoundary(192,864);
-        harbor_west.addBoundary(1536,756);
-        harbor_west.addBoundary(1536,648);
-        harbor_west.addBoundary(1536,540);
+        harbor_west.addBoundary(1728,756);
+        harbor_west.addBoundary(1728,648);
+        harbor_west.addBoundary(1728,540);
+        harbor_west.addBoundary(1728,432);
 
 
         harbor_east.setRoomImage("HarborEast.png");
@@ -350,6 +351,20 @@ public class Controller implements Initializable {
         fish_store.setRoomNeighbour(1,shopping_street);
         fish_store.setRoomNeighbour(2,shopping_street);
         fish_store.setRoomNeighbour(3,shopping_street);
+        fish_store.addBoundary(192,756);
+        fish_store.addBoundary(384,756);
+        fish_store.addBoundary(576,756);
+        fish_store.addBoundary(768,756);
+        fish_store.addBoundary(960,756);
+        fish_store.addBoundary(1152,756);
+        fish_store.addBoundary(1344,756);
+        fish_store.addBoundary(1536,756);
+        fish_store.addBoundary(1536,648);
+        fish_store.addBoundary(1536,540);
+        fish_store.addBoundary(1536,432);
+        fish_store.addBoundary(1536,324);
+        fish_store.addBoundary(1536,216);
+        fish_store.addBoundary(1536,108);
 
         garbage_disposal.setRoomImage("garbage_disposal.png");
         garbage_disposal.setRoomExit(1728,432);
@@ -366,30 +381,29 @@ public class Controller implements Initializable {
         beach.setRoomNeighbour(1,harbor_east);
         beach.setRoomNeighbour(2,harbor_east);
         beach.setRoomNeighbour(3,harbor_east);
-        beach.addBoundary(192,864);
-        beach.addBoundary(384,864);
-        beach.addBoundary(576,864);
-        beach.addBoundary(768,864);
-        beach.addBoundary(960,864);
-        beach.addBoundary(1152,864);
-        beach.addBoundary(1344,864);
-        beach.addBoundary(1536,864);
+        beach.addBoundary(192,756);
+        beach.addBoundary(384,756);
+        beach.addBoundary(576,756);
+        beach.addBoundary(768,756);
+        beach.addBoundary(960,756);
+        beach.addBoundary(1152,756);
+        beach.addBoundary(1344,756);
+        beach.addBoundary(1536,756);
 
         pier_1.setRoomImage("pier_1.png");
         pier_1.setRoomExit(768,0);
         pier_1.setRoomExit(960,0);
         pier_1.setRoomNeighbour(0,harbor_west);
         pier_1.setRoomNeighbour(1,harbor_west);
-        pier_1.addBoundary(192,864);
-        pier_1.addBoundary(384,864);
-        pier_1.addBoundary(576,864);
-        pier_1.addBoundary(768,864);
-        pier_1.addBoundary(960,864);
-        pier_1.addBoundary(1152,864);
-        pier_1.addBoundary(1344,864);
-        pier_1.addBoundary(1536,864);
-        pier_1.addBoundary(1344,756);
+        pier_1.addBoundary(192,756);
+        pier_1.addBoundary(384,756);
+        pier_1.addBoundary(576,756);
+        pier_1.addBoundary(768,756);
+        pier_1.addBoundary(960,756);
         pier_1.addBoundary(1152,756);
+        pier_1.addBoundary(1344,756);
+        pier_1.addBoundary(1536,756);
+
 
         pier_2.setRoomImage("pier_2.png");
         pier_2.assignNPC(sigurd);
@@ -405,14 +419,14 @@ public class Controller implements Initializable {
         pier_2.setRoomNeighbour(3,reef);
         pier_2.setRoomNeighbour(4,reef);
         pier_2.setRoomNeighbour(5,reef);
-        pier_2.addBoundary(192,864);
-        pier_2.addBoundary(384,864);
-        pier_2.addBoundary(576,864);
-        pier_2.addBoundary(768,864);
-        pier_2.addBoundary(960,864);
-        pier_2.addBoundary(1152,864);
-        pier_2.addBoundary(1344,864);
-        pier_2.addBoundary(1536,864);
+        pier_2.addBoundary(192,756);
+        pier_2.addBoundary(384,756);
+        pier_2.addBoundary(576,756);
+        pier_2.addBoundary(768,756);
+        pier_2.addBoundary(960,756);
+        pier_2.addBoundary(1152,756);
+        pier_2.addBoundary(1344,756);
+        pier_2.addBoundary(1536,756);
 
         currentRoom = town_square;
     }
@@ -623,7 +637,7 @@ public class Controller implements Initializable {
         {
 
             NPC npcInTheRoom = currentRoom.getNPC();
-            if(npcInTheRoom.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            if(npcInTheRoom.isPlayerInRange((int)player.getPlayerTileX(),(int)player.getPlayerTileY()))
             {
                 toggleNPCPane = !toggleNPCPane;
                 if(toggleNPCPane)
