@@ -24,19 +24,19 @@ public class TaskSystem
     {
         // Main Task:
         mainTask = new Task(49,5,"main","\"Hey, You! I am so glad you could make it down here. We need your help!"
-                + "\n" + " Subsidies, which is support provided to the fishing industry to offset the costs of doing business,"
-                + "\n" + " are a key driver of overfishing. "
-                + "\n" + " Subsidies can lead to overcapacity of fishing vessels and skews the production "
-                + "\n" + "  costs, so that fishing operations continue when they would otherwise not make economic sense. "
-                + "\n" + " Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times "
-                + "\n" + "  the capacity needed to catch what we actually need. "
+                + "\n" + " Subsidies, which is support provided to the fishing industry to offset the costs of doing business, are a key driver of overfishing. "
+                + "\n" + " Subsidies can lead to overcapacity of fishing vessels and skews the production " +
+                "costs, so that fishing operations continue when they would otherwise not make economic sense. "
+                + "\n" + " Today’s worldwide fishing fleet is estimated to be up to two-and-a-half times "  +
+                "the capacity needed to catch what we actually need. "
                 + "\n" + " The United Nations 2030 Agenda for Sustainable Development has called for an end to harmful subsidies."
                 + "\n" + " We need your help. We have been giving fishermen subsidies and need it back, so we can stop overfishing"
                 + "\n" + " Kenneth, the village fisherman, has received some of these subsidies. Please bring them back to me!"
-                + "\n" + " He has a little shop up on the east side of the shopping street.");
+                + "\n" + " He has a little shop up on the east side of the shopping street."
+                + "\n" + "\n" + "By the way, there are a lot of trash around the city - Could you go pick it up, and throw it in the garbage disposal please?");
         mainTask.setStep(0, "Kenneth: \"Hello there!\""
-                + "\n" + "You: \"General Kenobi!!\""
-                + "\n" + "Kenneth: \"Who's General Kenobi? You know what, it doesn't matter,"
+                + "\n" + "You: \n General Kenobi!!\""
+                + "\n" + "Kenneth: \n Who's General Kenobi? You know what, it doesn't matter,"
                 + "\n" + " I know who you are, and I know why you're here! You want my subsidies don't you?"
                 + "\n" + " Well, if you want them back, you're gonna have to go get me a new fishing rod"
                 + "\n" + " I've heard that Sigurd, whom is on Pier 2, has one\"");
