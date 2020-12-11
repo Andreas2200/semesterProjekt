@@ -221,6 +221,7 @@ public class Controller implements Initializable {
 
     private void changeRoom(Room room)
     {
+        changeEndGameScene();
         backgroundImage.setImage(room.getRoomImage());
         if(player.getPlayerTileX() == 0)
         {
@@ -242,7 +243,7 @@ public class Controller implements Initializable {
             player.setPlayerY(height/10);
             System.out.println("Set y:" + player.getPlayerY());
         }
-        changeEndGameScene();
+
         manageItems(room);
         currentRoom = room;
         //progressbar.setProgress(ps.getPoint()/100);
@@ -528,12 +529,10 @@ public class Controller implements Initializable {
             if(currentRoom == pier_2 || currentRoom == beach || currentRoom == pier_1)
             {
                 ps.addPollution(25);
-                item.disable();
             }
             else if(currentRoom == garbage_disposal)
             {
                 ps.addPollution(-24);
-                item.disable();
             }
         }
         else if(item.getName().equals("bottle1") || item.getName().equals("bottle2") || item.getName().equals("plasticStraw"))
@@ -541,7 +540,6 @@ public class Controller implements Initializable {
             if(currentRoom == garbage_disposal)
             {
                 ps.addPollution(-6);
-                item.disable();
             }
         }
     }
