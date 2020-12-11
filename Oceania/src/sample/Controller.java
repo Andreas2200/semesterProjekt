@@ -589,17 +589,36 @@ public class Controller implements Initializable {
                         if(!ts.getActiveTask().isTaskGiver(npcInTheRoom))
                         {
                             npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
-                            taskButton.setVisible(true);
+
+                            if(ts.getActiveTask().getCompletedStepsCounter() > 0)
+                            {
+                                if(ts.getActiveTask().isNPCLastStep(npcInTheRoom))
+                                {
+                                    taskButton.setVisible(false);
+                                }
+                                else
+                                {
+                                    taskButton.setVisible(true);
+                                }
+                            }
+                            else if(ts.getActiveTask().getCompletedStepsCounter() < 1)
+                            {
+                                taskButton.setVisible(true);
+                            }
+
                         }
                         else if(ts.getActiveTask().isTaskGiver(npcInTheRoom))
                         {
-                            npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
-                            taskButton.setVisible(true);
-                        }
-                        else if(ts.getActiveTask().isTaskGiver(npcInTheRoom))
-                        {
-                            npcInTheRoom.setSpeech(ts.getActiveTask().getTaskDescription());
-                            taskButton.setVisible(false);
+                            if(npcInTheRoom == ts.getActiveTask().getNPCSteps(npcInTheRoom))
+                            {
+                                npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
+                                taskButton.setVisible(true);
+                            }
+                            else
+                            {
+                                npcInTheRoom.setSpeech(ts.getActiveTask().getTaskDescription());
+                                taskButton.setVisible(false);
+                            }
                         }
                         npcPaneText.setText(npcInTheRoom.getSpeech());
 

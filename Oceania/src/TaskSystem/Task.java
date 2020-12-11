@@ -45,6 +45,7 @@ public class Task
         completedSteps[completedStepsCounter] = goodSteps[completedStepsCounter];
         completedStepsCounter++;
         System.out.println("Step completed");
+        System.out.println(completedStepsCounter);
         if(completedStepsCounter == goodSteps.length - 1)
         {
             System.out.println("Completed task");
@@ -129,9 +130,19 @@ public class Task
         return completedStepsCounter;
     }
 
+    public NPC getNPCSteps(NPC npc)
+    {
+        return npcSteps[completedStepsCounter];
+    }
+
     public boolean isTaskGiver(NPC npc)
     {
         return npc == taskGiver;
+    }
+
+    public boolean isNPCLastStep(NPC npc)
+    {
+        return npc == npcSteps[completedStepsCounter - 1];
     }
 
     public boolean isNPCInTask(NPC npc)
