@@ -36,7 +36,7 @@ public class Inventory {
         totalWeight -= item.getSize();
         return item;
     }
-
+    //
 
     public Item removeItem(String name){
         for (Item item : items){
