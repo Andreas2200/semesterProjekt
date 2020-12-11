@@ -437,7 +437,7 @@ public class Controller implements Initializable {
                 "To accept tasks, simply go up to an NPC and press 'T' to talk with them and see their tasks" + "\n\n" +
                 "Press 'Q' for dancing" + "\n\n" +
                 "To pick up an item, walk over the tile with the item on it and press 'E'" + "\n\n" +
-                "To drop an item, press '1'" + "\n\n" +
+                "To drop an item, press '1, 2, 3 ... 0'" + "\n\n" +
                 "To hide/show this help window, press 'H'";
         helpPaneText.setText(helpPaneTextFieldText);
         toggleHelpPane = false;
