@@ -15,7 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ResourceBundle;
+
 
 import Room.*;
 import Pollution.*;
@@ -50,6 +52,7 @@ public class Controller implements Initializable {
     public Pane bottle_1, bottle_2;
     private Player player;
     private TaskSystem ts;
+    private Image[] playerImage;
 
 
 
@@ -68,7 +71,25 @@ public class Controller implements Initializable {
         ps = new Pollution(50);
         progressbar_1.setProgress(ps.getPollution()/100);
         createItem();
+        playerImage = new Image[21];
+        assignImageToList();
+    }
 
+    public void assignImageToList()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            playerImage[i] = new Image("Player_png/Player_" + (i+1) + ".png");
+            Duration.ofMillis(100);
+        }
+    }
+
+    public void changePlayerIcon(int interval)
+    {
+        for (int i = interval; i < interval + 7; i++)
+        {
+            playerIcon.setImage(playerImage[i]);
+        }
     }
 
     private void createNPC()
@@ -129,22 +150,22 @@ public class Controller implements Initializable {
     {
         currentRoom = room;
         backgroundImage.setImage(currentRoom.getRoomImage());
-        if(player.getPlayerX() == 0)
+        if(player.getPlayerTileX() == 0)
         {
             player.setPlayerX(width-(2*width/10));
             System.out.println("Set x:" + player.getPlayerX());
         }
-        else if(player.getPlayerX() == width-(width/10))
+        else if(player.getPlayerTileX() == width-(width/10))
         {
             player.setPlayerX(width/10);
             System.out.println("Set x:" + player.getPlayerX());
         }
-        else if(player.getPlayerY() == 0)
+        else if(player.getPlayerTileY() == 0)
         {
             player.setPlayerY(height - (2*height/10));
             System.out.println("Set y:" + player.getPlayerY());
         }
-        else if(player.getPlayerY() == height-(height/10))
+        else if(player.getPlayerTileY() == height-(height/10))
         {
             player.setPlayerY(height/10);
             System.out.println("Set y:" + player.getPlayerY());
@@ -176,7 +197,7 @@ public class Controller implements Initializable {
 
     private void createRooms()
     {
-        town_square = new Room(3);
+        town_square = new Room(20);
         harbor_east = new Room(8);
         harbor_west = new Room(4);
         shopping_street = new Room(4);
@@ -442,104 +463,107 @@ public class Controller implements Initializable {
 
     public void moveUp(Room currentRoom)
     {
-        int x = (int) player.getPlayerX();
-        int y = (int) player.getPlayerY();
+        int x = (int) player.getPlayerTileX();
+        int y = (int) player.getPlayerTileY();
         if(!currentRoom.isWall(x,y - (int) height/10))
         {
-            player.setPlayerY(player.getPlayerY() - height/10);
+            player.setPlayerY(player.getPlayerY() - height/40);
             System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
         if(toggleNPCPane)
         {
             NPC npc = currentRoom.getNPC();
-            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            if(!npc.isPlayerInRange(x , y))
             {
                 toggleNPCPane = false;
                 npcPane.setVisible(toggleNPCPane);
             }
         }
-        if(currentRoom.isExit(x,(int) player.getPlayerY()))
+        if(currentRoom.isExit(x, y))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
+            int exitNumber = currentRoom.getExitNumber(x , y);
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
+        changePlayerIcon(0);
+        System.out.println("x .  " + player.getPlayerTileX());
+        System.out.println("y  .  " + player.getPlayerTileY());
     }
     public void moveDown(Room currentRoom)
     {
-        int x = (int) player.getPlayerX();
-        int y = (int) player.getPlayerY();
+        int x = (int) player.getPlayerTileX();
+        int y = (int) player.getPlayerTileY();
         if(!currentRoom.isWall(x,y + (int) height/10))
         {
-            player.setPlayerY(player.getPlayerY() + height/10);
+            player.setPlayerY(player.getPlayerY() + height/40);
             System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
         if(toggleNPCPane)
         {
             NPC npc = currentRoom.getNPC();
-            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            if(!npc.isPlayerInRange(x ,y))
             {
                 toggleNPCPane = false;
                 npcPane.setVisible(toggleNPCPane);
             }
         }
-        if(currentRoom.isExit(x,(int) player.getPlayerY()))
+        if(currentRoom.isExit(x,y))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
+            int exitNumber = currentRoom.getExitNumber(x , y);
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
     }
     public void moveLeft(Room currentRoom)
     {
-        int x = (int) player.getPlayerX();
-        int y = (int) player.getPlayerY();
+        int x = (int) player.getPlayerTileX();
+        int y = (int) player.getPlayerTileY();
         if(!currentRoom.isWall(x - (int) width/10, y))
         {
-            player.setPlayerX(player.getPlayerX() - width/10);
+            player.setPlayerX(player.getPlayerX() - width/40);
             System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
         if(toggleNPCPane)
         {
             NPC npc = currentRoom.getNPC();
-            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            if(!npc.isPlayerInRange(x , y))
             {
                 toggleNPCPane = false;
                 npcPane.setVisible(toggleNPCPane);
             }
         }
-        if(currentRoom.isExit((int) player.getPlayerX(),y))
+        if(currentRoom.isExit(x ,y))
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
+            int exitNumber = currentRoom.getExitNumber(x, y);
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
     }
     public void moveRight(Room currentRoom)
     {
-        int x = (int) player.getPlayerX();
-        int y = (int) player.getPlayerY();
+        int x = (int) player.getPlayerTileX();
+        int y = (int) player.getPlayerTileY();
         if(!currentRoom.isWall(x + (int) width/10, y)) //This line checks if we are trying to move into a boundary, and only runs the codeblock if we are not entering a boundary
         {
-            player.setPlayerX(player.getPlayerX() + width/10);
+            player.setPlayerX(player.getPlayerX() + width/40);
             System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
         }
         if(toggleNPCPane)
         {
             NPC npc = currentRoom.getNPC();
-            if(!npc.isPlayerInRange((int)player.getPlayerX(),(int)player.getPlayerY()))
+            if(!npc.isPlayerInRange(x , y))
             {
                 toggleNPCPane = false;
                 npcPane.setVisible(toggleNPCPane);
             }
         }
-        if(currentRoom.isExit((int) player.getPlayerX(),y)) //This line checks if we are moving into an active exit and if so we change the room to the room corresponding with the exit
+        if(currentRoom.isExit(x ,y)) //This line checks if we are moving into an active exit and if so we change the room to the room corresponding with the exit
         {
             System.out.println("You are on an exit");
-            int exitNumber = currentRoom.getExitNumber((int) player.getPlayerX(),(int) player.getPlayerY());
+            int exitNumber = currentRoom.getExitNumber(x , y);
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }

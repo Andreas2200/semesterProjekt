@@ -57,6 +57,20 @@ public class Player
         return yPos;
     }
 
+    public double getPlayerTileX()
+    {
+        double tempX = getPlayerX() % 192;
+        return getPlayerX() - tempX;
+
+    }
+
+    public double getPlayerTileY()
+    {
+        double tempY = getPlayerY() % 108;
+        return getPlayerY() - tempY;
+
+    }
+
     public void getPlayerIcon()
     {
         System.out.println(playerIcon.getBackground());
