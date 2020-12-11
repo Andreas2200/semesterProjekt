@@ -23,7 +23,7 @@ public class TaskSystem
     private void createTasks()
     {
         // Main Task:
-        mainTask = new Task(100,5,"main","\"Hey, You! I am so glad you could make it down here. We need your help!"
+        mainTask = new Task(49,5,"main","\"Hey, You! I am so glad you could make it down here. We need your help!"
                 + "\n" + " Subsidies, which is support provided to the fishing industry to offset the costs of doing business,"
                 + "\n" + " are a key driver of overfishing. "
                 + "\n" + " Subsidies can lead to overcapacity of fishing vessels and skews the production "

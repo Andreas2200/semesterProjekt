@@ -205,12 +205,6 @@ public class Controller implements Initializable {
         pier_1.addItem("gin", gin1);
         gin.setLayoutX(coordgin.getX());
         gin.setLayoutY(coordgin.getY());
-
-
-
-
-
-
     }
 
     public void manageItems(Room newRoom) {
@@ -529,13 +523,26 @@ public class Controller implements Initializable {
 
     private void checkItemDropRoom(Item item)
     {
-        if(item.getName().equals("Fridge"))
+        if(item.getName().equals("fridge"))
         {
-            if(currentRoom == pier_2)
+            if(currentRoom == pier_2 || currentRoom == beach || currentRoom == pier_1)
             {
-                ps.addPollution(100);
+                ps.addPollution(25);
+                item.disable();
             }
-
+            else if(currentRoom == garbage_disposal)
+            {
+                ps.addPollution(-24);
+                item.disable();
+            }
+        }
+        else if(item.getName().equals("bottle1") || item.getName().equals("bottle2") || item.getName().equals("plasticStraw"))
+        {
+            if(currentRoom == garbage_disposal)
+            {
+                ps.addPollution(-6);
+                item.disable();
+            }
         }
     }
 
