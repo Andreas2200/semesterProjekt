@@ -30,8 +30,13 @@ public class Inventory {
     }
 
     public Item removeItem(int index){
-        return items.remove(index);
+        if (items.size() < 1) return null;
+        if (index > items.size()) return null;
+        Item item = items.remove(index);
+        totalWeight -= item.getSize();
+        return item;
     }
+
 
     public Item removeItem(String name){
         for (Item item : items){

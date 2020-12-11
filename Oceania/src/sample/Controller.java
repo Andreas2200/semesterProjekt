@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import java.net.URL;
@@ -178,24 +177,28 @@ public class Controller implements Initializable {
 
         //Coords coordFridge = new Coords(384,540);
         Coords coordFridge = new Coords(336,648);
-        Item Frigde = new Item("Fridge", 1, ItemType.PLASTIC, coordFridge, Fridge);
+        Item Frigde = new Item("Fridge", 10, ItemType.PLASTIC, coordFridge, Fridge);
         fish_store.addItem("Fridge", Frigde);
         Fridge.setLayoutX(coordFridge.getX());
         Fridge.setLayoutY(coordFridge.getY());
 
     }
 
-    public void VisibleItems()
-    {
-        bottle_1.setVisible(currentRoom == harbor_east);
-        bottle_2.setVisible(currentRoom == beach);
-        Fridge.setVisible(currentRoom == fish_store);
+    public void manageItems(Room newRoom) {
+        Item[] lastRoomItems = currentRoom.getAllItemsInRoom();
+        for (Item item : lastRoomItems){
+            item.disable();
+        }
+
+        Item[] newRoomItems = newRoom.getAllItemsInRoom();
+        for (Item item : newRoomItems){
+            item.enable();
+        }
     }
 
     private void changeRoom(Room room)
     {
-        currentRoom = room;
-        backgroundImage.setImage(currentRoom.getRoomImage());
+        backgroundImage.setImage(room.getRoomImage());
         if(player.getPlayerTileX() == 0)
         {
             player.setPlayerX(width-(2*width/10));
@@ -217,8 +220,8 @@ public class Controller implements Initializable {
             System.out.println("Set y:" + player.getPlayerY());
         }
         changeEndGameScene();
-        VisibleItems();
-
+        manageItems(room);
+        currentRoom = room;
         //progressbar.setProgress(ps.getPoint()/100);
 
         changeMusic();
@@ -491,6 +494,7 @@ public class Controller implements Initializable {
         if (index == -1) index = 10;
         Inventory inv = player.getPlayerInventory();
         Item item = inv.removeItem(index);
+        if (item == null) return;
         item.setCoords(player.getCoords());
         currentRoom.addItem(item.getName(), item);
         item.enable();

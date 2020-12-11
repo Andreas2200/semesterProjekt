@@ -150,6 +150,10 @@ public class Room
         }
     }
 
+    public Item[] getAllItemsInRoom(){
+        return itemsInRoom.values().toArray(new Item[0]);
+    }
+
     public Item getItemByCoordinates(Coords coords){
         for (Item item : itemsInRoom.values()){
             if (!item.getCoords().equals(coords)){
