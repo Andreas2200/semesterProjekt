@@ -27,7 +27,7 @@ public class Player
     }
 
     public Coords getCoords(){
-        return new Coords((int)xPos, (int)yPos);
+        return new Coords((int)getPlayerTileX(), (int)getPlayerTileY());
     }
 
     public void setPlayerImage(Image image)

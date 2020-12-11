@@ -181,7 +181,6 @@ public class Controller implements Initializable {
         fish_store.addItem("Fridge", Frigde);
         Fridge.setLayoutX(coordFridge.getX());
         Fridge.setLayoutY(coordFridge.getY());
-
     }
 
     public void manageItems(Room newRoom) {
@@ -501,8 +500,8 @@ public class Controller implements Initializable {
     }
 
     private void pickUp() {
-        int x = (int) player.getPlayerX();
-        int y = (int) player.getPlayerY();
+        int x = (int) player.getPlayerTileX();
+        int y = (int) player.getPlayerTileY();
         Coords coords = new Coords(x, y);
         Item item = currentRoom.getItemByCoordinates(coords);
         if (item == null) return;
