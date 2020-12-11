@@ -53,7 +53,7 @@ public class Controller implements Initializable {
     private Player player;
     private TaskSystem ts;
     private Image[] playerImage;
-
+    private int playerIconCounter;
 
 
 
@@ -73,23 +73,59 @@ public class Controller implements Initializable {
         progressbar_1.setProgress(ps.getPollution()/100);
         createItem();
         playerImage = new Image[21];
-        assignImageToList();
+        assignPlayerImageToList();
     }
-
-    public void assignImageToList()
+    public void assignPlayerImageToList()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 21; i++)
         {
             playerImage[i] = new Image("Player_png/Player_" + (i+1) + ".png");
-            Duration.ofMillis(100);
         }
     }
 
     public void changePlayerIcon(int interval)
     {
-        for (int i = interval; i < interval + 7; i++)
+        if (interval == 1)
         {
-            playerIcon.setImage(playerImage[i]);
+            if (playerIconCounter > 6)
+            {
+                playerIconCounter = 0;
+            }
+            playerIcon.setImage(playerImage[playerIconCounter]);
+            playerIconCounter++;
+
+            if (playerIconCounter > 6)
+            {
+                playerIconCounter = 0;
+            }
+        }
+        if (interval == 2)
+        {
+            if (playerIconCounter < 7 & playerIconCounter < 13)
+            {
+                playerIconCounter = 7;
+            }
+            playerIcon.setImage(playerImage[playerIconCounter]);
+            playerIconCounter++;
+
+            if (playerIconCounter > 13)
+            {
+                playerIconCounter = 7;
+            }
+        }
+        if (interval == 3)
+        {
+            if (playerIconCounter < 14)
+            {
+                playerIconCounter = 14;
+            }
+            playerIcon.setImage(playerImage[playerIconCounter]);
+            playerIconCounter++;
+
+            if (playerIconCounter > 20)
+            {
+                playerIconCounter = 14;
+            }
         }
     }
 
@@ -496,7 +532,7 @@ public class Controller implements Initializable {
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
-        changePlayerIcon(0);
+        changePlayerIcon(3);
         System.out.println("x .  " + player.getPlayerTileX());
         System.out.println("y  .  " + player.getPlayerTileY());
     }
@@ -525,6 +561,7 @@ public class Controller implements Initializable {
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
+        changePlayerIcon(1);
     }
     public void moveLeft(Room currentRoom)
     {
@@ -551,6 +588,7 @@ public class Controller implements Initializable {
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
+        changePlayerIcon(2);
     }
     public void moveRight(Room currentRoom)
     {
@@ -577,6 +615,7 @@ public class Controller implements Initializable {
             Room nextRoom = currentRoom.getRoomFromExitNumber(exitNumber);
             changeRoom(nextRoom);
         }
+        changePlayerIcon(1);
     }
 
     private void help()

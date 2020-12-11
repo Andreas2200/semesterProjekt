@@ -27,7 +27,7 @@
       </ImageView>
       <Label id="myLabel" fx:id="playerLabel" layoutX="960" layoutY="540" prefHeight="59.0" prefWidth="109.0" text="Label" textFill="#fa000000">
          <graphic>
-            <ImageView fx:id="playerIcon" fitHeight="108" fitWidth="192" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerIcon" fitHeight="216" fitWidth="192" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image fx:id="playerImage" url="@../../player.png" />
                </image>
