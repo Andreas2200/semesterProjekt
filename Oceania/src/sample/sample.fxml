@@ -22,10 +22,10 @@
       <Button id="myButton" fx:id="myButton" layoutY="-27.0" mnemonicParsing="false" onAction="#changeText" opacity="0.0" text="Button" />
       <ImageView id="backgroundImage" fx:id="backgroundImage" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../town_square.png" />
+            <Image url="@../../StartPage.png" />
          </image>
       </ImageView>
-      <Label id="myLabel" fx:id="playerLabel" layoutX="960" layoutY="540" prefHeight="59.0" prefWidth="109.0" text="Label" textFill="#fa000000">
+      <Label id="myLabel" fx:id="playerLabel" layoutX="192" layoutY="216" prefHeight="59.0" prefWidth="109.0" text="Label" textFill="#fa000000">
          <graphic>
             <ImageView fx:id="playerIcon" fitHeight="216" fitWidth="192" pickOnBounds="true" preserveRatio="true">
                <image>
