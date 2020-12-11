@@ -49,10 +49,11 @@ public class Controller implements Initializable {
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2, reef;
     private PlayMusic musicPlayer;
     private Pollution ps;
-    public Pane bottle_1, bottle_2;
+    public Pane bottle_1, bottle_2, Fridge;
     private Player player;
     private TaskSystem ts;
     private Image[] playerImage;
+
 
 
 
@@ -138,12 +139,21 @@ public class Controller implements Initializable {
         beach.addItem("bottle2", bottle2);
         bottle_2.setLayoutX(coordBottle2.getX());
         bottle_2.setLayoutY(coordBottle2.getY());
+
+        //Coords coordFridge = new Coords(384,540);
+        Coords coordFridge = new Coords(336,648);
+        Item Frigde = new Item("Fridge", 1, ItemType.PLASTIC, coordFridge, Fridge);
+        fish_store.addItem("Fridge", Frigde);
+        Fridge.setLayoutX(coordFridge.getX());
+        Fridge.setLayoutY(coordFridge.getY());
+
     }
 
     public void VisibleItems()
     {
         bottle_1.setVisible(currentRoom == harbor_east);
         bottle_2.setVisible(currentRoom == beach);
+        Fridge.setVisible(currentRoom == fish_store);
     }
 
     private void changeRoom(Room room)

@@ -84,6 +84,15 @@
                </ImageView>
            </children>
        </Pane>
+       <Pane fx:id="Fridge" layoutX="2536.0" layoutY="208.0" prefHeight="500.0" prefWidth="400.0" visible="false">
+           <children>
+               <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../Fridge.png" />
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
       <ProgressBar fx:id="progressbar_1" layoutX="41.0" layoutY="39.0" prefHeight="39.0" prefWidth="210.0" progress="0" style="-fx-accent: red; -fx-border-color: blue;" styleClass="progressbarbg" stylesheets="@../../background.css" />
       <Label layoutX="52.0" layoutY="39.0" prefHeight="39.0" prefWidth="191.0" text="Coralreef pollution">
          <font>
@@ -92,3 +101,4 @@
       </Label>
    </children>
 </AnchorPane>
+
