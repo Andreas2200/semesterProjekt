@@ -75,11 +75,29 @@
                </ImageView>
            </children>
        </Pane>
-       <Pane fx:id="Fridge" layoutX="2536.0" layoutY="208.0" prefHeight="500.0" prefWidth="400.0" visible="false">
+       <Pane fx:id="fridge" layoutX="2536.0" layoutY="208.0" prefHeight="500.0" prefWidth="400.0" visible="false">
            <children>
                <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                    <image>
                        <Image url="@../../Fridge.png" />
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
+       <Pane fx:id="plasticStraw" layoutX="1536.0" layoutY="108.0" prefHeight="100.0" prefWidth="100.0" visible="false">
+           <children>
+               <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../PlasticStraw.png" />
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
+       <Pane fx:id="gin" layoutX="1536.0" layoutY="108.0" prefHeight="100.0" prefWidth="100.0" visible="false">
+           <children>
+               <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../gin.png" />
                    </image>
                </ImageView>
            </children>

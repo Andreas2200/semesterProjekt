@@ -48,7 +48,7 @@ public class Controller implements Initializable {
     private Room town_square,harbor_east, harbor_west, shopping_street, fish_store, garbage_disposal, beach, pier_1, pier_2, reef;
     private PlayMusic musicPlayer;
     private Pollution ps;
-    public Pane bottle_1, bottle_2, Fridge;
+    public Pane bottle_1, bottle_2, fridge, plasticStraw, gin;
     private Player player;
     private TaskSystem ts;
     private Image[] playerImage;
@@ -187,12 +187,28 @@ public class Controller implements Initializable {
         bottle_2.setLayoutX(coordBottle2.getX());
         bottle_2.setLayoutY(coordBottle2.getY());
 
-        //Coords coordFridge = new Coords(384,540);
-        Coords coordFridge = new Coords(384,540);
-        Item Frigde = new Item("Fridge", 10, ItemType.PLASTIC, coordFridge, Fridge);
-        fish_store.addItem("Fridge", Frigde);
-        Fridge.setLayoutX(coordFridge.getX());
-        Fridge.setLayoutY(coordFridge.getY());
+
+        Coords coordfridge = new Coords(192,540);
+        Item frigde1 = new Item("fridge", 10, ItemType.PLASTIC, coordfridge, fridge);
+        fish_store.addItem("fridge", frigde1);
+        fridge.setLayoutX(coordfridge.getX());
+        fridge.setLayoutY(coordfridge.getY());
+
+        Coords coordplasticStraw = new Coords(576,540);
+        Item plasticStraw1 = new Item("plasticStraw", 1, ItemType.PLASTIC, coordplasticStraw, plasticStraw);
+        beach.addItem("plasticStraw", plasticStraw1);
+        plasticStraw.setLayoutX(coordplasticStraw.getX());
+        plasticStraw.setLayoutY(coordplasticStraw.getY());
+
+        Coords coordgin = new Coords(768,648);
+        Item gin1 = new Item("gin", 1, ItemType.PLASTIC, coordgin, gin);
+        pier_1.addItem("gin", gin1);
+        gin.setLayoutX(coordgin.getX());
+        gin.setLayoutY(coordgin.getY());
+
+
+
+
     }
 
     public void manageItems(Room newRoom) {
