@@ -713,51 +713,58 @@ public class Controller implements Initializable {
                         taskButton.setText("Accept task");
                         taskButton.setVisible(true);
                     }
-                    else if(ts.getActiveTask().isNPCInTask(npcInTheRoom) && !npcInTheRoom.hasTask())
+                    else if(ts.getActiveTask() == null)
                     {
-                        if(!ts.getActiveTask().isTaskGiver(npcInTheRoom))
-                        {
-                            npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
-
-                            if(ts.getActiveTask().getCompletedStepsCounter() > 0)
-                            {
-                                if(ts.getActiveTask().isNPCLastStep(npcInTheRoom))
-                                {
-                                    taskButton.setVisible(false);
-                                }
-                                else
-                                {
-                                    taskButton.setVisible(true);
-                                }
-                            }
-                            else if(ts.getActiveTask().getCompletedStepsCounter() < 1)
-                            {
-                                taskButton.setVisible(true);
-                            }
-
-                        }
-                        else if(ts.getActiveTask().isTaskGiver(npcInTheRoom))
-                        {
-                            if(npcInTheRoom == ts.getActiveTask().getNPCSteps(npcInTheRoom))
-                            {
-                                npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
-                                taskButton.setVisible(true);
-                            }
-                            else
-                            {
-                                npcInTheRoom.setSpeech(ts.getActiveTask().getTaskDescription());
-                                taskButton.setVisible(false);
-                            }
-                        }
-                        npcPaneText.setText(npcInTheRoom.getSpeech());
-
-                    }
-                    else
-                    {
-                        npcInTheRoom.setSpeech("Hello, I'm " + npcInTheRoom.getName());
+                        npcInTheRoom.setSpeech("Hello, I'm " + npcInTheRoom.getName() + ". Did you know that if you pick up some trash and throw it out at the garbage disposal it helps the environment.");
                         npcPaneText.setText(npcInTheRoom.getSpeech());
                         taskButton.setVisible(false);
                         taskButton.setText("I don't have a task");
+                    }
+                    try
+                    {
+                        if(ts.getActiveTask().isNPCInTask(npcInTheRoom) && !npcInTheRoom.hasTask())
+                        {
+                            if(!ts.getActiveTask().isTaskGiver(npcInTheRoom))
+                            {
+                                npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
+
+                                if(ts.getActiveTask().getCompletedStepsCounter() > 0)
+                                {
+                                    if(ts.getActiveTask().isNPCLastStep(npcInTheRoom))
+                                    {
+                                        taskButton.setVisible(false);
+                                    }
+                                    else
+                                    {
+                                        taskButton.setVisible(true);
+                                    }
+                                }
+                                else if(ts.getActiveTask().getCompletedStepsCounter() < 1)
+                                {
+                                    taskButton.setVisible(true);
+                                }
+
+                            }
+                            else if(ts.getActiveTask().isTaskGiver(npcInTheRoom))
+                            {
+                                if(npcInTheRoom == ts.getActiveTask().getNPCSteps(npcInTheRoom))
+                                {
+                                    npcInTheRoom.setSpeech(ts.getActiveTask().getStep(npcInTheRoom));
+                                    taskButton.setVisible(true);
+                                }
+                                else
+                                {
+                                    npcInTheRoom.setSpeech(ts.getActiveTask().getTaskDescription());
+                                    taskButton.setVisible(false);
+                                }
+                            }
+                            npcPaneText.setText(npcInTheRoom.getSpeech());
+
+                        }
+                    }
+                    catch (NullPointerException ex)
+                    {
+
                     }
                 }
                 npcPane.setVisible(toggleNPCPane);
