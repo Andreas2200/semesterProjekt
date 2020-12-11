@@ -176,7 +176,7 @@ public class Controller implements Initializable {
         bottle_2.setLayoutY(coordBottle2.getY());
 
         //Coords coordFridge = new Coords(384,540);
-        Coords coordFridge = new Coords(336,648);
+        Coords coordFridge = new Coords(384,540);
         Item Frigde = new Item("Fridge", 10, ItemType.PLASTIC, coordFridge, Fridge);
         fish_store.addItem("Fridge", Frigde);
         Fridge.setLayoutX(coordFridge.getX());
@@ -270,20 +270,7 @@ public class Controller implements Initializable {
         town_square.setRoomNeighbour(3,garbage_disposal);
         town_square.setRoomNeighbour(4, shopping_street);
         town_square.setRoomNeighbour(5, shopping_street);
-        town_square.addBoundary(192,324);
-        town_square.addBoundary(384,324);
-        town_square.addBoundary(576,216);
-        town_square.addBoundary(768,216);
-        town_square.addBoundary(768,108);
-        town_square.addBoundary(1152,108);
-        town_square.addBoundary(1152,216);
-        town_square.addBoundary(1344,216);
-        town_square.addBoundary(1536,216);
-        town_square.addBoundary(576,864);
-        town_square.addBoundary(384,864);
-        town_square.addBoundary(384,756);
-        town_square.addBoundary(384,648);
-        town_square.addBoundary(192,648);
+
         
         harbor_west.setRoomImage("HarborWest.png");
         harbor_west.assignNPC(victor);
@@ -303,16 +290,14 @@ public class Controller implements Initializable {
         harbor_west.setRoomNeighbour(5,harbor_east);
         harbor_west.setRoomNeighbour(6,pier_1);
         harbor_west.setRoomNeighbour(7,pier_1);
-        harbor_west.addBoundary(576,540);
-        harbor_west.addBoundary(384,540);
-        harbor_west.addBoundary(192,540);
-        harbor_west.addBoundary(576,432);
-        harbor_west.addBoundary(384,432);
         harbor_west.addBoundary(192,432);
         harbor_west.addBoundary(384,324);
         harbor_west.addBoundary(384,216);
         harbor_west.addBoundary(192,864);
         harbor_west.addBoundary(1536,756);
+        harbor_west.addBoundary(1536,648);
+        harbor_west.addBoundary(1536,540);
+
 
         harbor_east.setRoomImage("HarborEast.png");
         harbor_east.setRoomExit(0,108);
@@ -339,17 +324,7 @@ public class Controller implements Initializable {
         harbor_east.setRoomNeighbour(9,beach);
         harbor_east.setRoomNeighbour(10,pier_2);
         harbor_east.setRoomNeighbour(11,pier_2);
-        harbor_east.addBoundary(192,540);
-        harbor_east.addBoundary(192,648);
-        harbor_east.addBoundary(192,756);
-        harbor_east.addBoundary(192,864);
-        harbor_east.addBoundary(384,648);
-        harbor_east.addBoundary(384,756);
-        harbor_east.addBoundary(384,864);
-        harbor_east.addBoundary(1536,648);
-        harbor_east.addBoundary(1536,756);
-        harbor_east.addBoundary(1536,864);
-        harbor_east.addBoundary(1536,108);
+
 
         shopping_street.setRoomImage("ShoppingStreet.png");
         shopping_street.setRoomExit(0,432);
