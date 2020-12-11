@@ -489,7 +489,7 @@ public class Controller implements Initializable {
             case M: map(); break;
             case T: talkNPC(currentRoom); break;
             case E: pickUp(); break;
-            case Q: Dance(currentRoom);
+            case Q: Dance(currentRoom); break;
             case DIGIT1:
             case DIGIT2:
             case DIGIT3:
@@ -500,7 +500,6 @@ public class Controller implements Initializable {
             case DIGIT8:
             case DIGIT9:
             case DIGIT0: drop(key.ordinal()-25); break;
-            case ESCAPE:
         }
     }
 
@@ -512,6 +511,7 @@ public class Controller implements Initializable {
         item.setCoords(player.getCoords());
         currentRoom.addItem(item.getName(), item);
         item.enable();
+        checkItemDropRoom(item);
     }
 
     private void pickUp() {
@@ -522,6 +522,18 @@ public class Controller implements Initializable {
         if (item == null) return;
         if(player.getPlayerInventory().addItem(item)) {
             currentRoom.removeItem(item.getName());
+        }
+    }
+
+    private void checkItemDropRoom(Item item)
+    {
+        if(item.getName().equals("Fridge"))
+        {
+            if(currentRoom == pier_2)
+            {
+                ps.addPollution(100);
+            }
+
         }
     }
 
@@ -564,6 +576,7 @@ public class Controller implements Initializable {
             changeRoom(nextRoom);
         }
         changePlayerIcon(3);
+        progressbar_1.setProgress(ps.getPollution()/100);
         System.out.println("x .  " + player.getPlayerTileX());
         System.out.println("y  .  " + player.getPlayerTileY());
     }
@@ -593,6 +606,7 @@ public class Controller implements Initializable {
             changeRoom(nextRoom);
         }
         changePlayerIcon(1);
+        progressbar_1.setProgress(ps.getPollution()/100);
     }
     public void moveLeft(Room currentRoom)
     {
@@ -620,6 +634,7 @@ public class Controller implements Initializable {
             changeRoom(nextRoom);
         }
         changePlayerIcon(2);
+        progressbar_1.setProgress(ps.getPollution()/100);
     }
     public void moveRight(Room currentRoom)
     {
@@ -647,6 +662,7 @@ public class Controller implements Initializable {
             changeRoom(nextRoom);
         }
         changePlayerIcon(1);
+        progressbar_1.setProgress(ps.getPollution()/100);
     }
 
     private void help()
