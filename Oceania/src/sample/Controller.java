@@ -126,6 +126,18 @@ public class Controller implements Initializable {
                 playerIconCounter = 14;
             }
         }
+        if (interval == 4)
+        {
+
+            playerIcon.setImage(playerImage[playerIconCounter]);
+            playerIconCounter++;
+
+            if (playerIconCounter > 8)
+            {
+                playerIconCounter = 5;
+            }
+        }
+
     }
 
     private void createNPC()
@@ -423,13 +435,10 @@ public class Controller implements Initializable {
                 "To see a map of the game, simply press 'M'" + "\n\n" +
                 "To walk between rooms, use 'WASD'" + "\n\n" +
                 "To accept tasks, simply go up to an NPC and press 'T' to talk with them and see their tasks" + "\n\n" +
-                "To show which tasks you currently have, press 'L' to view your Task Log" + "\n\n" +
-                "To pick up an item, walk over the tile with the item on it and press 'U'" + "\n\n" +
-                "To view your inventory, press 'I'" + "\n\n" +
-                "To inspect an item, hover your mouse over the item in your inventory" + "\n\n" +
-                "To drop an item, press the red cross on the item in your inventory" + "\n\n" +
-                "To hide/show this help window, press 'H'" + "\n\n" +
-                "To quit the game, press 'ESC'";
+                "Press 'Q' for dancing" + "\n\n" +
+                "To pick up an item, walk over the tile with the item on it and press 'E'" + "\n\n" +
+                "To drop an item, press '1'" + "\n\n" +
+                "To hide/show this help window, press 'H'";
         helpPaneText.setText(helpPaneTextFieldText);
         toggleHelpPane = false;
     }
@@ -450,6 +459,7 @@ public class Controller implements Initializable {
             case M: map(); break;
             case T: talkNPC(currentRoom); break;
             case E: pickUp(); break;
+            case Q: Dance(currentRoom);
             case DIGIT1:
             case DIGIT2:
             case DIGIT3:
@@ -483,6 +493,19 @@ public class Controller implements Initializable {
         if(player.getPlayerInventory().addItem(item)) {
             currentRoom.removeItem(item.getName());
         }
+    }
+
+    public void Dance(Room currentRoom)
+    {
+        int x = (int) player.getPlayerTileX();
+        int y = (int) player.getPlayerTileY();
+        if(!currentRoom.isWall(x,y + (int) height/10))
+        {
+            player.setPlayerY(player.getPlayerY() + height/40000);
+            System.out.println(player.getPlayerX() + ", " + player.getPlayerY());
+        }
+
+        changePlayerIcon(4);
     }
 
     public void moveUp(Room currentRoom)

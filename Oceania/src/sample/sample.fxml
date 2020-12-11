@@ -47,15 +47,6 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="mapPane" layoutX="730.0" layoutY="310.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" visible="false">
-         <children>
-            <ImageView id="backgroundImage" fx:id="backgroundImage1" fitHeight="962.0" fitWidth="1752.0" layoutX="-633.0" layoutY="-246.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                   <Image url="@../../map.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
        <Pane fx:id="npcPane" layoutX="730.0" layoutY="315.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" visible="false">
            <children>
                <Label fx:id="npcPaneText" alignment="TOP_LEFT" prefHeight="370.0" prefWidth="667.0" wrapText="true">
@@ -89,6 +80,15 @@
                <ImageView id="backgroundImage" fx:id="backgroundImage2" fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                    <image>
                        <Image url="@../../Fridge.png" />
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
+       <Pane fx:id="mapPane" layoutX="730.0" layoutY="310.0" prefHeight="450.0" prefWidth="667.0" styleClass="panebg" stylesheets="@../../background.css" visible="false">
+           <children>
+               <ImageView id="backgroundImage" fx:id="backgroundImage1" fitHeight="962.0" fitWidth="1752.0" layoutX="-633.0" layoutY="-246.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../map.png" />
                    </image>
                </ImageView>
            </children>
